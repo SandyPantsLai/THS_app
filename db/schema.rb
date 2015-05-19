@@ -29,4 +29,40 @@ ActiveRecord::Schema.define(version: 20150519194343) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
 
+  create_table "book_copies", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "library_code"
+    t.string   "condition"
+    t.string   "format"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "subject"
+    t.datetime "published"
+    t.string   "publisher"
+    t.integer  "page_count"
+    t.integer  "price"
+    t.text     "description"
+    t.string   "cover_image"
+    t.string   "isbn"
+    t.integer  "book_copy_id"
+    t.integer  "hold_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "check_outs", force: :cascade do |t|
+    t.datetime "checkout_date"
+    t.datetime "due_date"
+    t.integer  "user_id"
+    t.integer  "book_copy_id"
+    t.integer  "renewal"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
 end
