@@ -22,6 +22,23 @@ ActiveRecord::Schema.define(version: 20150519192538) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "books", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.string   "subject"
+    t.datetime "published"
+    t.string   "publisher"
+    t.integer  "page_count"
+    t.integer  "price"
+    t.text     "description"
+    t.string   "cover_image"
+    t.string   "isbn"
+    t.integer  "book_copy_id"
+    t.integer  "hold_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "check_outs", force: :cascade do |t|
     t.datetime "checkout_date"
     t.datetime "due_date"
