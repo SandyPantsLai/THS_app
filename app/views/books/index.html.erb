@@ -1,0 +1,7 @@
+<h1>THS Library</h1>
+<%= link_to "New Book", new_book_path %>
+<% @books.each do |book| %>
+<h1><%= link_to book.title, "/books/#{book.id}" %></h1>
+<h3><%= book.description %></h3>
+<h6><%= book.page_count %></h6>
+<% end %>
