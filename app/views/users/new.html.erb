@@ -3,26 +3,28 @@
 	<div class="field">
 		<%= f.label :first_name %><br />
 		<%= f.text_field :first_name %>
-	</div>
+	</div>	
 
-	<div class="field">
+	<div clas="field">
 		<%= f.label :last_name %><br />
 		<%= f.text_field :last_name %>
 	</div>
 
-	<div class="field">
+	<div clas="field">
 		<%= f.label :email %><br />
 		<%= f.email_field :email %>
 	</div>
 
 	<div class="field">
-		<%= f.label :password %><br />
-		<%= f.password_field :password %>
+	   <%= f.label :password %><br />
+	   <%= f.password_field :password %>
+	</div>
+	
+	<div class="field">
+	   <%= f.label :password_confirmation %><br />
+	   <%= f.password_field :password_confirmation %>
 	</div>
 
-	<div class="field">
-		<%= f.label :password_confirmation %><br />
-		<%= f.password_field :password_confirmation %>
-	</div>
+	<div class="actions"><%= f.submit "Sign up" %></div>
 
 <% end %>
