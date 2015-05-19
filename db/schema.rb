@@ -11,7 +11,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519194343) do
+ActiveRecord::Schema.define(version: 20150519212556) do
+
+  create_table "book_copies", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "library_code"
+    t.string   "condition"
+    t.string   "format"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subject"
+    t.datetime "published"
+    t.string   "publisher"
+    t.integer  "page_count"
+    t.integer  "price"
+    t.text     "description"
+    t.string   "cover_image"
+    t.string   "isbn"
+    t.integer  "book_copy_id"
+    t.integer  "hold_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "first_name"
+    t.string   "last_name"
+  end
+
+  create_table "check_outs", force: :cascade do |t|
+    t.datetime "checkout_date"
+    t.datetime "due_date"
+    t.integer  "user_id"
+    t.integer  "book_copy_id"
+    t.integer  "renewal"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.datetime "return_date"
+  end
+
+  create_table "fines", force: :cascade do |t|
+    t.integer  "amount"
+    t.datetime "settlement_date"
+    t.integer  "check_out_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "holds", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "pickup_expiry"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                        null: false
@@ -28,41 +82,5 @@ ActiveRecord::Schema.define(version: 20150519194343) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
-
-  create_table "book_copies", force: :cascade do |t|
-    t.integer  "book_id"
-    t.integer  "library_code"
-    t.string   "condition"
-    t.string   "format"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string   "author"
-    t.string   "title"
-    t.string   "subject"
-    t.datetime "published"
-    t.string   "publisher"
-    t.integer  "page_count"
-    t.integer  "price"
-    t.text     "description"
-    t.string   "cover_image"
-    t.string   "isbn"
-    t.integer  "book_copy_id"
-    t.integer  "hold_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "check_outs", force: :cascade do |t|
-    t.datetime "checkout_date"
-    t.datetime "due_date"
-    t.integer  "user_id"
-    t.integer  "book_copy_id"
-    t.integer  "renewal"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
 
 end
