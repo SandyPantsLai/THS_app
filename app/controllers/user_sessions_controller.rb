@@ -1,7 +1,6 @@
 class UserSessionsController < ApplicationController
 	# This controller handles the login
   def new
-    @user = User.new
   end
 
   def create
