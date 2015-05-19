@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	def create
 			@user = User.new(user_params)
 			if @user.save
-				redirect_to projects_url, notice: "You have signed up"
+				redirect_to books_url, notice: "You have signed up"
 			else
 				render 'new'
 			end
