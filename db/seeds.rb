@@ -23,3 +23,9 @@ end
 30.times do
   Hold.create(user_id: rand(0..49), book_id: rand(0..99))
 end
+
+10.times do
+  hold = Hold.all.sample
+  hold.pickup_expiry = Faker::Date.forward(rand(0..7))
+  hold.save
+end
