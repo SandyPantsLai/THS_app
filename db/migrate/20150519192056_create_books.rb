@@ -11,6 +11,8 @@ class CreateBooks < ActiveRecord::Migration
       t.text :description
       t.string :cover_image
       t.string :isbn
+      t.integer :book_copy_id
+      t.integer :hold_id
 
       t.timestamps null: false
     end
