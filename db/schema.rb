@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150519212556) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string   "author"
     t.string   "title"
     t.string   "subject"
     t.datetime "published"
@@ -37,6 +36,8 @@ ActiveRecord::Schema.define(version: 20150519212556) do
     t.integer  "hold_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   create_table "check_outs", force: :cascade do |t|
@@ -57,5 +58,29 @@ ActiveRecord::Schema.define(version: 20150519212556) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "holds", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "pickup_expiry"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                        null: false
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "phone_number"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
 
 end
