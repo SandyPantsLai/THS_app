@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20150519192538) do
 
+  create_table "book_copies", force: :cascade do |t|
+    t.integer  "book_id"
+    t.integer  "library_code"
+    t.string   "condition"
+    t.string   "format"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "check_outs", force: :cascade do |t|
     t.datetime "checkout_date"
     t.datetime "due_date"
