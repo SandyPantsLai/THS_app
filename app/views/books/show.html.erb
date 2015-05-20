@@ -1,5 +1,11 @@
+<% copies = BookCopy.where(book_id: @book.id)%>
+<% copies_count = copies.count %>
+<% checked_out = 0 %>
+<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
+
 <h1><%= @book.title %></h1>
 <h3><%= @book.page_count %></h3>
 <p><%= @book.description %></p>
+<p><%= copies_count%> copies, <%= copies_count - checked_out %> available to checkout.</p>
 <p><%= link_to "Back to library", books_path %></p>
 <p><%= link_to "edit book", edit_book_path %></p>
