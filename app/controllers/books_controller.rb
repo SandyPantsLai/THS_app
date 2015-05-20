@@ -33,7 +33,11 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = if params[:search]
+      Book.where("LOWER(title) LIKE LOWER(?)", "%#{params[:search]}%")
+    else
+      Book.all
+    end
   end
 
   def delete
