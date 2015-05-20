@@ -7,24 +7,25 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	<body>
+		<div id="wrapper">
+			<header><h1>THS Library of Hermetic Selves</h1></header>
 
-		<header><h1>THS Library System</h1></header>
-
-		<nav class="main-nav">
-		  <% if current_user %>
-				<%= link_to "Add Book", new_book_path %>
-		   	<%= link_to "Logout", :logout, method: :post %>
-		  <% else %>
-		    <%= link_to "Register", new_user_path %> |
-		    <%= link_to "Login", :login %>
-		  <% end %>
-		</nav><!-- end .main-nav -->
-		<div>
-		  <p id="notice"><%= flash[:notice] %></p>
-		  <p id="alert"><%= flash[:alert] %></p>
-		</div>
-		  
-		<%= yield %>
-
+			<nav class="main-nav">
+			  <% if current_user %>
+					<%= link_to "Add Book", new_book_path %>
+			   	<%= link_to "Logout", :logout, method: :post %>
+			  <% else %>
+			    <%= link_to "Register", new_user_path %>
+			    <%= link_to "Login", :login %>
+			  <% end %>
+			</nav><!-- end .main-nav -->
+			<div>
+			  <p id="notice"><%= flash[:notice] %></p>
+			  <p id="alert"><%= flash[:alert] %></p>
+			</div>
+			  
+			<%= yield %>
+			
+			</div><!-- end #wrapper -->
 	</body>
 </html>
