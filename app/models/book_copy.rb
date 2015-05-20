@@ -1,4 +1,4 @@
 class BookCopy < ActiveRecord::Base
-  belongs_to :user through: :checkout
+  belongs_to :user
   has_many :books
 end
