@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
 	def create
 			@user = User.new(user_params)
+			@user.role = 'user'
 			if @user.save
 				redirect_to root_url, notice: "You have signed up"
 			else
@@ -16,6 +17,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role)
   end
 end
