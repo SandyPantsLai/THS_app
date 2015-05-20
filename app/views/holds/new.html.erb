@@ -1,2 +1,6 @@
-<h1>Holds#new</h1>
-<p>Find me in app/views/holds/new.html.erb</p>
+<p>Are you sure you want to reserve <%= Book.find(@hold.book_id).title %> ?</p>
+<%= form_for @hold do |f| %>
+  <%= f.hidden_field :book_id, value: @hold.book_id %>
+  <%= f.submit %>
+<% end %>
+<%= link_to 'Back', book_path(@hold.book_id) %>

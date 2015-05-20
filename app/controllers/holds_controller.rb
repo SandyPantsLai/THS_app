@@ -13,6 +13,7 @@ class HoldsController < ApplicationController
 
   def new
     @hold = Hold.new
+    @hold.book_id = params[:book_id]
   end
 
   def create
