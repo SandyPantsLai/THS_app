@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  # this filter requires the user to login before they can create new book
+  before_action :require_login, only: [:new, :create]
+
   def new
     @book = Book.new
   end
