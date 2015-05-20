@@ -4,6 +4,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
+
     if @user = login(params[:email], params[:password])
       redirect_back_or_to(:books, notice: 'Login successful')
     else
