@@ -14,6 +14,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:books, notice: 'Log out successful')
+    redirect_to(root_url, notice: 'Log out successful')
   end
 end
