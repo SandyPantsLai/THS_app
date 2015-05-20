@@ -1,7 +1,8 @@
-<h1>THS Library</h1>
-<%= link_to "New Book", new_book_path %>
+<h2>Catalogue</h2>
+
 <% @books.each do |book| %>
-<h1><%= link_to book.title, "/books/#{book.id}" %></h1>
-<h3><%= book.description %></h3>
-<h6><%= book.page_count %></h6>
+	<h3><%= link_to book.title, "/books/#{book.id}" %></h3>
+	<p><%= book.description %></p>
+	<p<%= book.page_count %></p>
 <% end %>
+

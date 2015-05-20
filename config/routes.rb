@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  
   root 'books#index'
+  
   resources :books
   resources :users, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]
-<<<<<<< HEAD
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
@@ -61,6 +62,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-=======
->>>>>>> 31fb7392e171069d6482de185670442f1de2c627
 end

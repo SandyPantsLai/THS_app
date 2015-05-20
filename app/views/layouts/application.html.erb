@@ -12,7 +12,7 @@
 
 		<nav class="main-nav">
 		  <% if current_user %>
-		  	<%= link_to "Edit Profile", edit_user_path(current_user.id) %>
+				<%= link_to "Add Book", new_book_path %>
 		   	<%= link_to "Logout", :logout, method: :post %>
 		  <% else %>
 		    <%= link_to "Register", new_user_path %> |
