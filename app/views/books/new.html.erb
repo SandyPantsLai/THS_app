@@ -1,0 +1,43 @@
+<h1>New Book</h1>
+<%= form_for(@book) do |book| %>
+
+  <div class="field">
+    <%= book.label :title %><br />
+    <%= book.text_field :title %>
+  </div>
+  <div class="field">
+    <%= book.label :subject %><br />
+    <%= book.text_area :subject %>
+  </div>
+  <div class="field">
+    <%= book.label :published %><br />
+    <%= book.date_field :published %>
+  </div>
+  <div class="field">
+    <%= book.label :publisher %><br />
+    <%= book.text_field :publisher %>
+  </div>
+    <div class="field">
+    <%= book.label :page_count %><br />
+    <%= book.number_field :page_count %>
+  </div>
+    <div class="field">
+    <%= book.label :price %><br />
+    <%= book.number_field :price %>
+  </div>
+  <div class="field">
+    <%= book.label :description %><br />
+    <%= book.text_field :description %>
+  </div>
+  <div class="field">
+    <%= book.label :cover_image %><br />
+    <%= book.text_field :cover_image %>
+  </div>
+  <div class="field">
+    <%= book.label :isbn %><br />
+    <%= book.text_field :isbn %>
+  </div>
+  <div class="action">
+    <%= book.submit %>
+  </div>
+<% end %>

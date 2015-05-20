@@ -1,0 +1,8 @@
+<h2>Catalogue</h2>
+
+<% @books.each do |book| %>
+	<h3><%= link_to book.title, "/books/#{book.id}" %></h3>
+	<p><%= book.description %></p>
+	<p<%= book.page_count %></p>
+<% end %>
+

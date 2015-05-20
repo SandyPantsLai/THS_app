@@ -4,7 +4,7 @@ class CheckOut < ActiveRecord::Base
   belongs_to :user
   has_one :fine
 
+  CHECK_OUT_PERIOD = 21
   RENEWAL_DATE = 3
-  RENEWAL_PERIOD = 21
 
 end
