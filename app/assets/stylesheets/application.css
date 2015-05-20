@@ -15,20 +15,22 @@
  */
 
 body {}
+
 #wrapper {
 	width: 1080px;
 	margin: 0 auto;
 	margin-top: 100px;
 }
 header { width: 1080px;}
-nav { margin-bottom: 60px;}
-nav ul {
+
+nav.main-nav { margin-bottom: 60px;}
+nav.main-nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-nav li { float: left;}
-nav ul li a {
+nav.main-nav a:link { 
+		float: left;
     display: block;
-    margin-right: 20px;
+    margin-right: 10px;
 }
