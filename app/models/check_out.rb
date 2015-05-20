@@ -5,6 +5,6 @@ class CheckOut < ActiveRecord::Base
   has_one :fine
 
   CHECK_OUT_PERIOD = 21
-  RENEWAL_DATE = 3
+  RENEWAL_COUNT = 3
 
 end

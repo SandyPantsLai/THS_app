@@ -1,22 +1,26 @@
-<h1>Check Outs</h1>
+<h2>Check Outs</h2>
 
 <% @check_outs.each do |check_out| %>
-  <% details = get_check_out_complete_details( check_out ) %>
 
   <div class="check_out_entry">
-    <h3><%= details.book.title %></h3>
-    <h6>by <%= details.book.last_name %>, <%= details.book.firsrt_name %></h6>
-    <h6>library code <%= details.book_copy.library_code %></h6>
-
-    <h4><%= details.user.last_name %>, <%= details.user.first_name %></h4>
+    <h3>Book Details</h3>
     <p>
-      email <%= details.user.email %><br />
-      phone <%= details.user.phone_number %><br />
+      <strong><%= check_out.book_copy.book.title %></strong><br />
+      by: <%= check_out.book_copy.book.last_name %>, <%= check_out.book_copy.book.first_name %><br />
+      library code: <%= check_out.book_copy.library_code %>
     </p>
 
+    <h3>Borrower Details</h3>
     <p>
-      Checked out on: <strong><%= check_out.checkout_date %></strong>
-      Due on: <strong><%= check_out.due_date %> <%= (OVERDUE) if details.overdue %></strong>
+      <strong><%= check_out.user.last_name %>, <%= check_out.user.first_name %></strong><br />
+      email: <%= check_out.user.email %><br />
+      phone: <%= check_out.user.phone_number %><br />
+    </p>
+
+    <h3>Transaction Details</h3>
+    <p>
+      checked out on: <strong><%= check_out.checkout_date.to_s %></strong><br />
+      due on: <strong><%= check_out.due_date.to_s %> <%= (OVERDUE) if DateTime.now > check_out.due_date %></strong>
     </p>
   </div>
 
