@@ -2,10 +2,11 @@ Rails.application.routes.draw do
 
 resources :holds
 resources :books
+resources :check_outs, only: [ :index, :new, :create, :edit, :update ]
 
-  
+
   root 'books#index'
-  
+
   resources :books
   resources :users, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]

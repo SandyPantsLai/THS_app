@@ -1,0 +1,23 @@
+<h1>Check Outs</h1>
+
+<% @check_outs.each do |check_out| %>
+  <% details = get_check_out_complete_details( check_out ) %>
+
+  <div class="check_out_entry">
+    <h3><%= details.book.title %></h3>
+    <h6>by <%= details.book.last_name %>, <%= details.book.firsrt_name %></h6>
+    <h6>library code <%= details.book_copy.library_code %></h6>
+
+    <h4><%= details.user.last_name %>, <%= details.user.first_name %></h4>
+    <p>
+      email <%= details.user.email %><br />
+      phone <%= details.user.phone_number %><br />
+    </p>
+
+    <p>
+      Checked out on: <strong><%= check_out.checkout_date %></strong>
+      Due on: <strong><%= check_out.due_date %> <%= (OVERDUE) if details.overdue %></strong>
+    </p>
+  </div>
+
+<% end %>
