@@ -38,6 +38,10 @@ class BooksController < ApplicationController
     else
       Book.all
     end
+
+    if request.xhr?
+      render @books
+    end
   end
 
   def delete
