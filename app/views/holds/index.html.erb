@@ -1,0 +1,17 @@
+<h1>Holds </h1>
+<%= link_to "Add a new hold", new_hold_path %>
+<% holds = @holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
+<% holds.each do |hold| %>
+<% title = Book.find(hold.book_id).title %>
+<div class="hold_list">
+  <p>Book: <%= link_to title, book_path(hold.book_id) %></p>
+  <% if hold.pickup_expiry %>
+    <p>Pickup by: <%= hold.pickup_expiry %></p>
+  <% else %>
+    <p>You are #REPLACE THIS in line.</p>
+  <% end %>
+  <%= link_to 'Edit', edit_hold_path(hold) %>
+  <%= link_to 'Delete', edit_hold_path(hold), method: :delete, confirm: "Are you sure you want to delete #{title}?" %>
+</div>
+<% end %>
+</div>

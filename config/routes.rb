@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+resources :holds
+resources :books
+
   
   root 'books#index'
   
