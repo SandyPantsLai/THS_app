@@ -10,7 +10,7 @@
   <% else %>
     <p>You are #REPLACE THIS in line.</p>
   <% end %>
-  <%= link_to 'Delete', edit_hold_path(hold), method: :delete, confirm: "Are you sure you want to delete #{title}?" %>
+  <%= link_to 'Delete', book_hold_path(hold), method: :delete, confirm: "Are you sure you want to delete #{title}?" %>
 </div>
 <% end %>
 </div>

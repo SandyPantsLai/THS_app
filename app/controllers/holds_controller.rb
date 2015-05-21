@@ -17,10 +17,10 @@ class HoldsController < ApplicationController
   end
 
   def create
-    @hold = Hold.new(hold_params)
+    @hold = Hold.new(book_id: params[:book_id])
 
-    if @hold.update(hold_params)
-      redirect_to hold_path(@hold)
+    if @hold.save
+      redirect_to book_path(@hold.book_id)
     else
       render :new
     end
@@ -30,11 +30,5 @@ class HoldsController < ApplicationController
     @hold = hold.find(params[:id])
     @hold.destroy
     redirect_to hold_path
-  end
-
-  private
-
-  def hold_params
-    params.require(:hold).permit(:book_id)
   end
 end

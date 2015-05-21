@@ -1,5 +1,5 @@
 <h1>Hold Confirmation</h1>
 
 <p>Are you sure you want to reserve <%= Book.find(@hold.book_id).title %> ?</p>
-<%= button_to'Confirm Hold', book_holds_path, method: :post %>
+<%= button_to'Confirm Hold', book_holds_path(@hold.book_id), method: :post %>
 <%= link_to 'Back', book_path(@hold.book_id) %>
