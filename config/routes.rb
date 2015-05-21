@@ -7,7 +7,7 @@ resources :books
   root 'books#index'
   
   resources :books
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show, :edit, :destroy]
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'user_sessions#new', :as => :login
