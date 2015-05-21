@@ -25,9 +25,9 @@
 
         <% if @check_out.fine %>
           <% if @check_out.fine.settlement_date %>
-            fine amount settled on <%= @check_out.fine.settlement_date.to_s %>
+            fine amount settled on <strong><%= @check_out.fine.settlement_date.to_s %></strong>
           <% else %>
-            outstanding fine of <%= @check_out.fine.amount / 100.0 %>
+            outstanding fine of <strong><%= @check_out.fine.amount / 100.0 %></strong>
           <% end %>
         <% end %>
 
