@@ -39,13 +39,13 @@ class BooksController < ApplicationController
       params[:search].split.each do |s|
         @books << Book.where("LOWER(title) LIKE LOWER(?) OR LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", "%#{s}%", "%#{s}%", "%#{s}%").all
       end
+      @books.flatten!
       @books.uniq!
     else
       @books = Book.all
     end
-
     if request.xhr?
-      render @books
+      render :partial => "book", :collection => @books
     end
   end
 
