@@ -10,7 +10,7 @@
 		<div id="wrapper">
 			<header><h1>Hermetic Library Awesome</h1></header>
 
-			<nav class="main-nav">
+			<nav>
 			  <% if current_user %>
 					<%= link_to "Add Book", new_book_path %>
 			   	<%= link_to "Logout", :logout, method: :post %>
@@ -23,9 +23,12 @@
 			  <p id="notice"><%= flash[:notice] %></p>
 			  <p id="alert"><%= flash[:alert] %></p>
 			</div>
-			  
-			<%= yield %>
-			
-			</div><!-- end #wrapper -->
+
+			<div id="main-content">
+
+  			<%= yield %>
+
+			</div><!-- end #main-content -->
+		</div><!-- end #wrapper -->
 	</body>
 </html>
