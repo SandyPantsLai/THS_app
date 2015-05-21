@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'books#index'
 
   resources :books do
-    resources :holds, except: [:index]
+    resources :holds, except: [:index, :edit]
   end
   resources :check_outs
   resources :users, only: [:new, :create]

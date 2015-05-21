@@ -9,10 +9,6 @@ class HoldsController < ApplicationController
 
   def show
     @hold = Hold.find(params[:id])
-
-    if current_user
-      @review = @hold.reviews.build
-    end
   end
 
   def new
