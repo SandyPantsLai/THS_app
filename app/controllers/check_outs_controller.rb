@@ -40,8 +40,20 @@ class CheckOutsController < ApplicationController
   def update
     @check_out = CheckOut.find( params[ :id ] )
 
-    if @check_out.update( return_date: DateTime.now )
-      redirect_to check_outs_path
+    return_date = DateTime.now
+    fine_amount = get_fine_amount( @check_out, return_date )
+
+    if fine_amount > 0
+      fine = Fine.new
+      fine.amount = fine_amount
+    end
+
+    if @check_out.update( return_date: return_date, fine: fine )
+      if fine
+        redirect_to check_out_path( @check_out )
+      else
+        redirect_to check_outs_path
+      end
     else
       render check_out_path( @check_out )
     end
@@ -51,5 +63,11 @@ class CheckOutsController < ApplicationController
   def check_out_params
     params.require( :check_out ).permit( :user_id, :book_copy_id )
   end
+
+  def get_fine_amount( check_out, return_date )
+    days_due =  ( return_date.to_time.to_i - check_out.due_date.to_time.to_i ) / Fine::DAYS_IN_SECONDS
+    days_due <= 0 ? 0 : ( days_due * Fine::DAILY_FINE_AMOUNT )
+  end
+
 
 end

@@ -21,18 +21,35 @@
       checked out on: <strong><%= @check_out.checkout_date.to_s %></strong><br />
 
       <% if @check_out.return_date %>
-        returned on: <strong><%= @check_out.return_date.to_s %></strong>
+        returned on: <strong><%= @check_out.return_date.to_s %></strong><br />
+
+        <% if @check_out.fine %>
+          <% if @check_out.fine.settlement_date %>
+            fine amount settled on <%= @check_out.fine.settlement_date.to_s %>
+          <% else %>
+            outstanding fine of <%= @check_out.fine.amount / 100.0 %>
+          <% end %>
+        <% end %>
+
       <% else %>
-        due on: <strong><%= @check_out.due_date.to_s %> <%= (OVERDUE) if DateTime.now > @check_out.due_date %></strong>
+        due on:
+        <strong>
+          <%= @check_out.due_date.to_s %>
+          <% if DateTime.now.to_time.to_i > @check_out.due_date.to_time.to_i %>
+            (BOOK IS DUE)
+          <% end %>
+        </strong>
       <% end %>
     </li>
 
   </ul>
 
 
-  <%= link_to "Back to Check Out Index", check_outs_path %> |
+  <%= link_to "Back to Check Out Index", check_outs_path %>
 
   <% if !@check_out.return_date %>
-    <%= link_to "Return Book", check_out_path( @check_out ), method: :patch %>
+    | <%= link_to "Return Book", check_out_path( @check_out ), method: :patch %>
+  <% elsif @check_out.fine && !@check_out.fine.settlement_date %>
+    | <%= link_to "Settle Fine", check_out_fine_path( @check_out, @check_out.fine ), method: :patch %>
   <% end %>
 </div>

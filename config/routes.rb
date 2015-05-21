@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'fines/update'
+
 resources :holds
 resources :books
-resources :check_outs, only: [ :index, :show, :new, :create, :update ]
+
+resources :check_outs, only: [ :index, :show, :new, :create, :update ] do
+  resources :fines, only: [ :update ]
+end
 
 
   root 'books#index'
