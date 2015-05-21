@@ -34,7 +34,7 @@ class BooksController < ApplicationController
 
   def index
     @books = if params[:search]
-      Book.where("LOWER(title) LIKE LOWER(?)", "%#{params[:search]}%")
+      Book.where("LOWER(title) LIKE LOWER(?) OR LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
     else
       Book.all
     end
