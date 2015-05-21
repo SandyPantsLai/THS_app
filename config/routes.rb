@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
   root 'books#index'
 
-  resources :books
+  resources :books do
+    resources :holds, except: [:index]
+  end
   resources :check_outs
-  resources :holds
   resources :users, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
+
+  get 'holds' => 'holds#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
