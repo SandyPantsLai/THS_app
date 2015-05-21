@@ -1,6 +1,10 @@
 class HoldsController < ApplicationController
   def index
+    if current_user.role = "admin"
       @holds = Hold.all
+    else
+      @holds = Hold.where(user_id: current_user.id)
+    end
   end
 
   def show
@@ -13,6 +17,7 @@ class HoldsController < ApplicationController
 
   def new
     @hold = Hold.new
+    @hold.book_id = params[:book_id]
   end
 
   def create
