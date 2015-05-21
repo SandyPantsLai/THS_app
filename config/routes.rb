@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 resources :holds
 resources :books
-resources :check_outs, only: [ :index, :new, :create, :edit, :update ]
+resources :check_outs, only: [ :index, :show, :new, :create, :update ]
 
 
   root 'books#index'

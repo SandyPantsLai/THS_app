@@ -1,0 +1,38 @@
+<h2>Check Out Details</h2>
+
+<div class="check_out_entry">
+  <ul>
+    <li>
+      <strong>Book</strong><br />
+      <%= @check_out.book_copy.book.title %><br />
+      by: <%= @check_out.book_copy.book.last_name %>, <%= @check_out.book_copy.book.first_name %><br />
+      library code: <%= @check_out.book_copy.library_code %>
+    </li>
+
+    <li>
+      <strong>Borrower</strong><br />
+      <%= @check_out.user.last_name %>, <%= @check_out.user.first_name %><br />
+      email: <%= @check_out.user.email %><br />
+      phone: <%= @check_out.user.phone_number %>
+    </li>
+
+    <li>
+      <strong>Transaction</strong><br />
+      checked out on: <strong><%= @check_out.checkout_date.to_s %></strong><br />
+
+      <% if @check_out.return_date %>
+        returned on: <strong><%= @check_out.return_date.to_s %></strong>
+      <% else %>
+        due on: <strong><%= @check_out.due_date.to_s %> <%= (OVERDUE) if DateTime.now > @check_out.due_date %></strong>
+      <% end %>
+    </li>
+
+  </ul>
+
+
+  <%= link_to "Back to Check Out Index", check_outs_path %> |
+
+  <% if !@check_out.return_date %>
+    <%= link_to "Return Book", check_out_path( @check_out ), method: :patch %>
+  <% end %>
+</div>

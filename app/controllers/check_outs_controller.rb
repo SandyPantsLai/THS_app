@@ -1,8 +1,6 @@
 class CheckOutsController < ApplicationController
 
   def index
-    @details = {}
-
     if ( params[ :user_id ] )
       if ( params[ :due_only ] )
         @check_outs = CheckOut.where( { user_id: params[ :user_id ], due_date: nil } )
@@ -14,14 +12,14 @@ class CheckOutsController < ApplicationController
     else
       @check_outs = CheckOut.all
     end
+  end
 
+  def show
+    @check_out = CheckOut.find( params[ :id ] )
   end
 
   def new
     @check_out = CheckOut.new
-  end
-
-  def edit
   end
 
   def create
@@ -40,6 +38,13 @@ class CheckOutsController < ApplicationController
   end
 
   def update
+    @check_out = CheckOut.find( params[ :id ] )
+
+    if @check_out.update( return_date: DateTime.now )
+      redirect_to check_outs_path
+    else
+      render check_out_path( @check_out )
+    end
   end
 
   private
