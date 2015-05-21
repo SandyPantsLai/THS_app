@@ -1,15 +1,22 @@
 <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-<p>Role: <%= @user.role %></p>
-<p>Email: <%= @user.email %></p>
-<p>Phone Number: <%= @user.phone_number %></p>
 
 <nav>
 	<ul>			  	
 		<% if current_user.role == 'admin' %>
-			<!--<li><#%= link_to "Checkout", checkout_out_path %></li>-->						
-			<li><%= link_to "User Profiles", user_path %></li> 
-		<% else current_user.role == 'user' %>
-			<li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li> 
+			<li><%= link_to 'Catalogue', books_path %></li>
+			<li><%= link_to "Checkouts" %></li>
+			<li><%= link_to "Fines" %></li>						
+			<li><%= link_to "User Profiles", users_path %></li> 
+		<% else current_user.role == 'user' %> 
+			<li><%= link_to 'Catalogue', books_path %></li>
 		<% end %>
 	</ul>
 </nav>
+
+<p>
+Role: <%= @user.role %><br />
+Email: <%= @user.email %><br />
+Phone Number: <%= @user.phone_number %>
+</p>
+
+<%= link_to "Edit Profile", edit_user_path(current_user.id) %>
