@@ -26,19 +26,6 @@ class HoldsController < ApplicationController
     end
   end
 
-  def edit
-    @hold = hold.find(params[:id])
-  end
-
-  def update
-    @hold = hold.find(params[:id])
-    if @hold.update_attributes(hold_params)
-      redirect_to hold_path(@hold)
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @hold = hold.find(params[:id])
     @hold.destroy
