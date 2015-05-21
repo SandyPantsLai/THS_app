@@ -6,8 +6,7 @@
 <h1><%= @book.title %></h1>
 <h3><%= @book.page_count %></h3>
 <p><%= @book.description %></p>
-<p><%= copies_count%> copies, <%= copies_count - checked_out %> available to checkout.</p>
-<%= link_to "Borrow this book", new_check_out_path unless checked_out == copies_count  %>
+<p><%= copies_count%> copies, <%= copies_count - checked_out - Hold.where(book_id: @book.id).count %> available to checkout.</p>
 <%= link_to "Place a hold", new_hold_path(book_id: @book.id) %>
 <p><%= link_to "Back to library", books_path %></p>
 <p><%= link_to "Edit book", edit_book_path %></p>
