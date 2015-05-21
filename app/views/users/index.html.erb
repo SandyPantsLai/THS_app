@@ -1,0 +1,9 @@
+<h2>Users</h2>
+
+<% if current_user %>
+ <div id="current_users"> Currently active users: <%= current_users_list %></div>
+<% end %>
+
+<div>
+  <%= render @users %>
+</div>
