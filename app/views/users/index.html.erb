@@ -1,4 +1,7 @@
 <h2>Users</h2>
 
-<%= render partial: "user" %>
-
+<% @users.each do |user| %>
+	<h3><%= link user.first_name %> <%= user.last_name %></h3>
+	<p><%= user.role %></p>
+	<p><%= link_to user.email %></p>
+<% end %>

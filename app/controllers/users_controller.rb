@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 	# this controller handle user sign ups
-	def new
+	 
+  def index
+    @users = User.all
+  end
+  def new
 		@user = User.new
 	end
 
