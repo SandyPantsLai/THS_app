@@ -37,26 +37,30 @@ class CheckOutsController < ApplicationController
     end
   end
 
-  def update
-    @check_out = CheckOut.find( params[ :id ] )
+  def check_in
+    check_out = CheckOut.find( params[ :id ] )
+    attributes = {}
 
-    return_date = DateTime.now
-    fine_amount = get_fine_amount( @check_out, return_date )
+    attributes[ :return_date ] = DateTime.now
+    fine_amount = get_fine_amount( check_out, attributes[ :return_date ] )
 
     if fine_amount > 0
-      fine = Fine.new
-      fine.amount = fine_amount
+      attributes[ :fine ] = Fine.new
+      attributes[ :fine ].amount = fine_amount
     end
 
-    if @check_out.update( return_date: return_date, fine: fine )
-      if fine
-        redirect_to check_out_path( @check_out )
-      else
-        redirect_to check_outs_path
-      end
-    else
-      render check_out_path( @check_out )
-    end
+    update_check_out( check_out, attributes )
+  end
+
+  def renew
+    check_out = CheckOut.find( params[ :id ] )
+    due_date = check_out.due_date
+    attributes = {}
+
+    attributes[ :due_date ] = DateTime.new( due_date.year, due_date.month, due_date.day + CheckOut::CHECK_OUT_PERIOD )
+    attributes[ :renewal ] = check_out.renewal - 1
+
+    update_check_out( check_out, attributes )
   end
 
   private
@@ -69,5 +73,16 @@ class CheckOutsController < ApplicationController
     days_due <= 0 ? 0 : ( days_due * Fine::DAILY_FINE_AMOUNT )
   end
 
+  def update_check_out( check_out, attributes )
+    if check_out.update( attributes )
+      if attributes[ :fine ]
+        redirect_to check_out_path( check_out )
+      else
+        redirect_to check_outs_path
+      end
+    else
+      render check_out_path( check_out )
+    end
+  end
 
 end

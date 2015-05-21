@@ -1,23 +1,23 @@
 Rails.application.routes.draw do
 
-  get 'fines/update'
-
-resources :holds
-resources :books
-
-resources :check_outs, only: [ :index, :show, :new, :create, :update ] do
-  resources :fines, only: [ :update ]
-end
-
-
   root 'books#index'
 
+  resources :holds
   resources :books
+
+  resources :check_outs, only: [ :index, :show, :new, :create ] do
+    resources :fines, only: [ :update ]
+  end
+
+  patch 'check_outs/:id/check_in' => 'check_outs#check_in', as: :check_out_check_in
+  patch 'check_outs/:id/renew' => 'check_outs#renew', as: :check_out_renew
+
   resources :users, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

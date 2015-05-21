@@ -48,7 +48,12 @@
   <%= link_to "Back to Check Out Index", check_outs_path %>
 
   <% if !@check_out.return_date %>
-    | <%= link_to "Return Book", check_out_path( @check_out ), method: :patch %>
+    | <%= link_to "Return Book", check_out_check_in_path( @check_out ), method: :patch %>
+
+    <% if DateTime.now.to_time.to_i < @check_out.due_date.to_time.to_i && @check_out.renewal > 0 %>
+      | <%= link_to "Renew Book", check_out_renew_path( @check_out ), method: :patch %>
+    <% end %>
+
   <% elsif @check_out.fine && !@check_out.fine.settlement_date %>
     | <%= link_to "Settle Fine", check_out_fine_path( @check_out, @check_out.fine ), method: :patch %>
   <% end %>

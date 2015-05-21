@@ -7,4 +7,7 @@ class CheckOut < ActiveRecord::Base
   CHECK_OUT_PERIOD = 7
   RENEWAL_COUNT = 1
 
+  MODE_RENEW = "renew"
+  MODE_RETURN = "return"
+
 end
