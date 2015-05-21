@@ -6,6 +6,7 @@ class UserSessionsController < ApplicationController
   def create
 
     if @user = login(params[:email], params[:password])
+      session[:id] = @user.id #test
       redirect_back_or_to(:books, notice: 'Login successful')
     else
       flash.now[:alert] = 'Login failed'

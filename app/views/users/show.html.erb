@@ -1,0 +1,7 @@
+<h2><%= @user.first_name %> <%= @user.last_name %></h2>
+<p>
+  <%= link_to "Edit Profile", edit_user_path(current_user.id) %> &nbsp |
+  <%= link_to "Create a Project", new_project_path %>
+</p>
+<p>Email: <%= @user.email %></p>
+<p>Phone Number: <%= @user.phone_number %></p>
