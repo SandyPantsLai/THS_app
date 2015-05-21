@@ -33,10 +33,15 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = if params[:search]
-      Book.where("LOWER(title) LIKE LOWER(?) OR LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    @books = []
+    if params[:search]
+
+      params[:search].split.each do |s|
+        @books << Book.where("LOWER(title) LIKE LOWER(?) OR LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", "%#{s}%", "%#{s}%", "%#{s}%").all
+      end
+      @books.uniq!
     else
-      Book.all
+      @books = Book.all
     end
 
     if request.xhr?
