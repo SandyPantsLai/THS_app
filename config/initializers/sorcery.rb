@@ -1,16 +1,8 @@
-# The first thing you need to configure is which modules you need in your app.
-# The default is nothing which will include only core features (password encryption, login/logout).
-# Available submodules are: :user_activation, :http_basic_auth, :remember_me,
-# :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.configure do |config|
-
-Rails.application.config.sorcery.submodules = [:remember_me]
-Rails.application.config.sorcery.submodules = [:session_timeout]
 
 Rails.application.config.sorcery.configure do |config|
-  config.session_timeout = 1.hour
-  config.session_timeout_from_last_action = true # session timeout is calculated from the last valid activity. By default this is false.
-end
+
+  Rails.application.config.sorcery.submodules = [:remember_me, :session_timeout, :activity_logging]
+
 
   # -- core --
   # What controller action to call for non-authenticated users. You can also
@@ -463,7 +455,7 @@ end
     # user.provider_uid_attribute_name =
   end
 
-  # This line must come after the 'user config' block.
-  # Define which model authenticates with sorcery.
+  config.session_timeout = 1.hour
+  config.session_timeout_from_last_action = true
   config.user_class = "User"
 end
