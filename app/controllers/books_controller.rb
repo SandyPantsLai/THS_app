@@ -8,8 +8,8 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @holds = Hold.where(book_id: @book.id).sort_by{|hold| hold.pickup_expiry || Time.now + 100.years}
     @copies = BookCopy.where(book_id: @book.id)
-    @copies_count = @copies.count
     @checked_out = 0
     @due_dates = []
     @copies.each do |copy|
@@ -19,7 +19,7 @@ class BooksController < ApplicationController
         @due_dates << @checkout.due_date
       end
     end
-    @copies_available = @copies_count - @checked_out - Hold.where(book_id: @book.id).where("pickup_expiry IS NOT NULL").count
+    @copies_available = @copies.count - @checked_out - Hold.where(book_id: @book.id).where("pickup_expiry IS NOT NULL").count
   end
 
   def edit

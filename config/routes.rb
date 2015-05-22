@@ -9,13 +9,13 @@ Rails.application.routes.draw do
   patch 'check_outs/:id/renew' => 'check_outs#renew', as: :check_out_renew
 
   resources :books do
-    resources :holds, only: [:new, :create, :destroy]
+    resources :holds, only: [:new, :create]
   end
-  get 'holds' => 'holds#index'
+  resources :holds, only: [:index, :destroy]
   get 'myholds' => 'holds#my_holds'
 
   resources :check_outs
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'user_sessions#new', :as => :login

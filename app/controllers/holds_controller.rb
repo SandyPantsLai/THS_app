@@ -15,10 +15,29 @@ class HoldsController < ApplicationController
   end
 
   def create
-    @hold = Hold.new(book_id: params[:book_id], user_id: current_user.id)
+    @copies = BookCopy.where(book_id: params[:book_id])
+    @checked_out = 0
+    @copies.each do |copy|
+      @checkout = CheckOut.find_by(book_copy_id: copy.id)
+      if @checkout
+        @checked_out += 1
+      end
+    end
+
+    if @copies.count - @checked_out - Hold.where(book_id: params[:book_id]).where("pickup_expiry IS NOT NULL").count == 0
+      pickup_expiry = nil
+    else
+      pickup_expiry = Time.now + 7.days
+    end
+
+    @hold = Hold.new(book_id: params[:book_id], user_id: current_user.id, pickup_expiry: pickup_expiry)
 
     if @hold.save
-      flash[:notice] = "You are #{Hold.where(book_id: @hold.book_id).count} in line."
+      if pickup_expiry == nil
+        flash[:notice] = "You are ##{Hold.where(book_id: @hold.book_id).count} in line."
+      else
+        flash[:notice] = "You have until #{pickup_expiry.strftime("%A, %b %e, %Y")} to pick up your book."
+      end
       redirect_to book_path(@hold.book_id)
     else
       flash[:alert] = "We were unable to confirm your hold due to these errors: #{@hold.errors.full_messages}"
@@ -27,8 +46,9 @@ class HoldsController < ApplicationController
   end
 
   def destroy
-    @hold = hold.find(params[:id])
+    @hold = Hold.find(params[:id])
     @hold.destroy
+    flash[:notice] = "Your hold has been cancelled."
     redirect_to holds_path
   end
 
