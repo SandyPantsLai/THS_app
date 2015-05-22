@@ -18,7 +18,7 @@ User.create!(
 User.create!(
     first_name: "Mere",
     last_name: "Thing",
-    email: "minion@@ths.com",
+    email: "minion@ths.com",
     password: '4321',
     password_confirmation: '4321',
     role: 'user'
