@@ -1,7 +1,16 @@
+Rails.application.config.sorcery.submodules = [:activity_logging, :remember_me, :session_timeout]
 
 Rails.application.config.sorcery.configure do |config|
+  config.session_timeout = 1.hour
+  config.session_timeout_from_last_action = true 
+  
+  config.user_config do |user| 
+    user.remember_me_for = 1.week
+  end
+  
+  config.user_class = "User"
 
-  Rails.application.config.sorcery.submodules = [:remember_me, :session_timeout, :activity_logging]
+end
 
 
   # -- core --
@@ -32,6 +41,9 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- session timeout --
+
+  
+
   # How long in seconds to keep the session alive.
   # Default: `3600`
   #
@@ -170,7 +182,10 @@ Rails.application.config.sorcery.configure do |config|
   # config.salesforce.user_info_mapping = {:email => "email"}
 
   # --- user config ---
-  config.user_config do |user|
+
+    
+    
+
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -453,9 +468,4 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `:uid`
     #
     # user.provider_uid_attribute_name =
-  end
-
-  config.session_timeout = 1.hour
-  config.session_timeout_from_last_action = true
-  config.user_class = "User"
-end
+  
