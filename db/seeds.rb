@@ -6,8 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+10.times do
+   Subject.create(name: Faker::Lorem.word)
+end
+
 100.times do
-  Book.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, title: Faker::Lorem.sentence.capitalize, subject: Faker::Lorem.word, published: rand(1900..2015), publisher: Faker::Company.name, page_count: rand(50..2000), price: rand(5..150), description: Faker::Lorem.paragraph, cover_image: Faker::Avatar.image, isbn: rand(1000000000..9999999999999))
+  Book.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, title: Faker::Lorem.sentence.capitalize, published: rand(1900..2015), publisher: Faker::Company.name, page_count: rand(50..2000), price: rand(5..150), description: Faker::Lorem.paragraph, subject_id: rand(1..10), cover_image: Faker::Avatar.image, isbn: rand(1000000000..9999999999999))
 end
 
 300.times do
@@ -29,3 +33,4 @@ end
   hold.pickup_expiry = Faker::Date.forward(rand(0..7))
   hold.save
 end
+
