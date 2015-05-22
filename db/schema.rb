@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150522154013) do
-=======
-ActiveRecord::Schema.define(version: 20150521033133) do
->>>>>>> b77003cb9717457ead809c432a74d5f27c059229
+ActiveRecord::Schema.define(version: 20150522170122) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -43,6 +39,13 @@ ActiveRecord::Schema.define(version: 20150521033133) do
     t.integer  "subject_id"
   end
 
+  create_table "booksearches", force: :cascade do |t|
+    t.string   "keywords"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "check_outs", force: :cascade do |t|
     t.datetime "checkout_date"
     t.datetime "due_date"
@@ -68,6 +71,13 @@ ActiveRecord::Schema.define(version: 20150521033133) do
     t.datetime "pickup_expiry"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subjects", force: :cascade do |t|
