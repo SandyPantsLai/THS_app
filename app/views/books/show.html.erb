@@ -1,12 +1,18 @@
 <h1><%= @book.title %></h1>
 <h3><%= @book.page_count %></h3>
 <p><%= @book.description %></p>
-<p><%= @copies_count%> copies,  <%= @copies_available  %> available to checkout. (<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
-<ul>Currently checkedout copies are due back:
-<% @due_dates.sort.each do |due_date| %>
-  <li><%= due_date.strftime("%A, %b %e, %Y") %></li>
+<p><%= @copies.count%> copies,  <%= @copies_available  %> available to checkout. (<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
+<% unless @due_dates == [] %>
+  <ul>Currently checked out copies are due back:
+  <% @due_dates.sort.each do |due_date| %>
+    <li><%= due_date.strftime("%A, %b %e, %Y") %></li>
+  <% end %>
+  </ul>
 <% end %>
-</ul>
-<%= link_to "Place a hold", new_book_hold_path(book_id: @book.id) %>
+<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
+  <%= "You have this book on hold.  You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %>
+<% else %>
+  <%= link_to "Place a hold", new_book_hold_path(book_id: @book.id) %>
+<% end %>
 <p><%= link_to "Back to library", books_path %></p>
 <p><%= link_to "Edit book", edit_book_path %></p>
