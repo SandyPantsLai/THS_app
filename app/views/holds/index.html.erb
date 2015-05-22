@@ -12,12 +12,13 @@
     <%= puts "This user has #{Hold.where(user_id: hold.user_id).where("pickup_expiry IS NOT NULL").count} holds available for pickup." %>
   <% end %>
   <% title = Book.find(hold.book_id).title %>
+  <% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %>
   <div class="hold_list">
     <p>Book: <%= link_to title, book_path(hold.book_id) %></p>
     <% if hold.pickup_expiry %>
       <p>Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></p>
     <% else %>
-      <p>You are <%= Hold.where(book_id: hold.book_id).order(hold.created_at).find_index(hold.user_id) + 1 %> in line.</p>
+      <p>You are #<%= queue %> in line.</p>
     <% end %>
   <%= button_to 'Cancel hold', hold_path(hold), method: :delete %>
   </div>
