@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520030905) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150522154013) do
+=======
+ActiveRecord::Schema.define(version: 20150521033133) do
+>>>>>>> b77003cb9717457ead809c432a74d5f27c059229
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -24,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150520030905) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.string   "subject"
     t.integer  "published"
     t.string   "publisher"
     t.integer  "page_count"
@@ -37,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150520030905) do
     t.datetime "updated_at",  null: false
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "subject_id"
   end
 
   create_table "check_outs", force: :cascade do |t|
@@ -66,6 +70,12 @@ ActiveRecord::Schema.define(version: 20150520030905) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                        null: false
     t.string   "crypted_password"
@@ -77,9 +87,15 @@ ActiveRecord::Schema.define(version: 20150520030905) do
     t.integer  "phone_number"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.string   "role"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
+    t.string   "last_login_from_ip_address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
 
 end

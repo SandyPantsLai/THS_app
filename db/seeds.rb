@@ -6,8 +6,35 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+<<<<<<< HEAD
+10.times do
+   Subject.create(name: Faker::Lorem.word)
+=======
+User.create!(
+    first_name: "Johnny",
+    last_name: "Adminseed",
+    email: "god@ths.com",
+    password: '1234',
+    password_confirmation: '1234',
+    role: 'admin'
+)
+
+User.create!(
+    first_name: "Mere",
+    last_name: "Thing",
+    email: "minion@ths.com",
+    password: '4321',
+    password_confirmation: '4321',
+    role: 'user'
+)
+
+10.times do
+	User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.phone_number, password: '4321', password_confirmation: '4321', role: 'user')
+>>>>>>> b77003cb9717457ead809c432a74d5f27c059229
+end
+
 100.times do
-  Book.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, title: Faker::Lorem.sentence.capitalize, subject: Faker::Lorem.word, published: rand(1900..2015), publisher: Faker::Company.name, page_count: rand(50..2000), price: rand(5..150), description: Faker::Lorem.paragraph, cover_image: Faker::Avatar.image, isbn: rand(1000000000..9999999999999))
+  Book.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, title: Faker::Lorem.sentence.capitalize, published: rand(1900..2015), publisher: Faker::Company.name, page_count: rand(50..2000), price: rand(5..150), description: Faker::Lorem.paragraph, subject_id: rand(1..10), cover_image: Faker::Avatar.image, isbn: rand(1000000000..9999999999999))
 end
 
 300.times do
@@ -29,3 +56,4 @@ end
   hold.pickup_expiry = Faker::Date.forward(rand(0..7))
   hold.save
 end
+
