@@ -16,6 +16,7 @@ class HoldsController < ApplicationController
       @hold = Hold.new
       @hold.book_id = params[:book_id]
     else
+      flash[:alert] = "Please log in to hold your book."
       redirect_to new_user_session_path
   end
 
@@ -23,8 +24,10 @@ class HoldsController < ApplicationController
     @hold = Hold.new(book_id: params[:book_id], user_id: current_user.id)
 
     if @hold.save
+      flash[:notice] = "You are #{Hold.where(book_id: @hold.book_id).count} in line."
       redirect_to book_path(@hold.book_id)
     else
+      flash[:alert] = "We were unable to confirm your hold due to these errors: #{@hold.errors.full_messages}"
       render :new
     end
   end
