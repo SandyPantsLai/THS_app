@@ -1,6 +1,6 @@
 class HoldsController < ApplicationController
   def index
-    if current_user.role = "admin"
+    if current_user.role == "admin" || current_user.role == "volunteer"
       @holds = Hold.all
     else
       @holds = Hold.where(user_id: current_user.id)
@@ -12,12 +12,15 @@ class HoldsController < ApplicationController
   end
 
   def new
-    @hold = Hold.new
-    @hold.book_id = params[:book_id]
+    if current_user
+      @hold = Hold.new
+      @hold.book_id = params[:book_id]
+    else
+      redirect_to new_user_session_path
   end
 
   def create
-    @hold = Hold.new(book_id: params[:book_id])
+    @hold = Hold.new(book_id: params[:book_id], user_id: current_user.id)
 
     if @hold.save
       redirect_to book_path(@hold.book_id)

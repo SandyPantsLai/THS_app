@@ -1,7 +1,7 @@
 <h1><%= @book.title %></h1>
 <h3><%= @book.page_count %></h3>
 <p><%= @book.description %></p>
-<p><%= @copies_count%> copies,  <%= @copies_available  %> available to checkout. (<%= Hold.where(book_id: @book_id).count %> on hold, <%= @checked_out %> checked out.)</p>
+<p><%= @copies_count%> copies,  <%= @copies_available  %> available to checkout. (<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
 <ul>Currently checkedout copies are due back:
 <% @due_dates.sort.each do |due_date| %>
   <li><%= due_date.strftime("%A, %b %e, %Y") %></li>
