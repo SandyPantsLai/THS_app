@@ -46,8 +46,9 @@ class HoldsController < ApplicationController
   end
 
   def destroy
-    @hold = hold.find(params[:id])
+    @hold = Hold.find(params[:id])
     @hold.destroy
+    flash[:notice] = "Your hold has been cancelled."
     redirect_to holds_path
   end
 
