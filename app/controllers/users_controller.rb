@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+
   def new
 		@user = User.new
 	end
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 			@user.role = 'user'
 			if @user.save
-				redirect_to root_url, notice: "You have signed up"
+				redirect_to root_url, notice: "Sweet gravy user created"
 			else
 				render 'new'
 			end
@@ -45,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :role)
   end
 
 end

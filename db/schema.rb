@@ -75,9 +75,9 @@ ActiveRecord::Schema.define(version: 20150520203828) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "phone_number"
-    t.string   "role"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
