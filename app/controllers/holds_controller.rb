@@ -1,4 +1,6 @@
 class HoldsController < ApplicationController
+  before_action :require_login
+
   def index
     if current_user.role == "admin" || current_user.role == "volunteer"
       @holds = Hold.all
@@ -7,17 +9,9 @@ class HoldsController < ApplicationController
     end
   end
 
-  def show
-    @hold = Hold.find(params[:id])
-  end
-
   def new
-    if current_user
-      @hold = Hold.new
-      @hold.book_id = params[:book_id]
-    else
-      flash[:alert] = "Please log in to hold your book."
-      redirect_to new_user_session_path
+    @hold = Hold.new
+    @hold.book_id = params[:book_id]
   end
 
   def create
@@ -35,6 +29,6 @@ class HoldsController < ApplicationController
   def destroy
     @hold = hold.find(params[:id])
     @hold.destroy
-    redirect_to hold_path
+    redirect_to holds_path
   end
 end
