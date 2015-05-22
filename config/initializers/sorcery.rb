@@ -1,16 +1,17 @@
-# The first thing you need to configure is which modules you need in your app.
-# The default is nothing which will include only core features (password encryption, login/logout).
-# Available submodules are: :user_activation, :http_basic_auth, :remember_me,
-# :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.configure do |config|
-
-Rails.application.config.sorcery.submodules = [:remember_me]
-Rails.application.config.sorcery.submodules = [:session_timeout]
+Rails.application.config.sorcery.submodules = [:activity_logging, :remember_me, :session_timeout]
 
 Rails.application.config.sorcery.configure do |config|
   config.session_timeout = 1.hour
-  config.session_timeout_from_last_action = true # session timeout is calculated from the last valid activity. By default this is false.
+  config.session_timeout_from_last_action = true 
+  
+  config.user_config do |user| 
+    user.remember_me_for = 1.week
+  end
+  
+  config.user_class = "User"
+
 end
+
 
   # -- core --
   # What controller action to call for non-authenticated users. You can also
@@ -40,6 +41,9 @@ end
 
 
   # -- session timeout --
+
+  
+
   # How long in seconds to keep the session alive.
   # Default: `3600`
   #
@@ -178,7 +182,10 @@ end
   # config.salesforce.user_info_mapping = {:email => "email"}
 
   # --- user config ---
-  config.user_config do |user|
+
+    
+    
+
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -461,9 +468,4 @@ end
     # Default: `:uid`
     #
     # user.provider_uid_attribute_name =
-  end
-
-  # This line must come after the 'user config' block.
-  # Define which model authenticates with sorcery.
-  config.user_class = "User"
-end
+  

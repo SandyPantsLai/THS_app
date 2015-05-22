@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   root 'books#index'
 
+  resources :check_outs, only: [ :index, :show, :new, :create ] do
+    resources :fines, only: [ :update ]
+  end
+
+  patch 'check_outs/:id/check_in' => 'check_outs#check_in', as: :check_out_check_in
+  patch 'check_outs/:id/renew' => 'check_outs#renew', as: :check_out_renew
+
   resources :books do
     resources :holds, only: [:new, :create, :destroy]
   end
