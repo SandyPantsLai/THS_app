@@ -6,10 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-<<<<<<< HEAD
+
 10.times do
    Subject.create(name: Faker::Lorem.word)
-=======
+end
+
 User.create!(
     first_name: "Johnny",
     last_name: "Adminseed",
@@ -30,7 +31,6 @@ User.create!(
 
 10.times do
 	User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.phone_number, password: '4321', password_confirmation: '4321', role: 'user')
->>>>>>> b77003cb9717457ead809c432a74d5f27c059229
 end
 
 100.times do
