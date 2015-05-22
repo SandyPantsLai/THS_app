@@ -1,24 +1,11 @@
 <h2><%= @user.first_name %> <%= @user.last_name %></h2>
 
-<nav>
-	<ul>			  	
-		<% if current_user.role == 'admin' %>
-			<li><%= link_to 'Catalogue', books_path %></li>
-			<li><%= link_to "Add Book", new_book_path %></li>
-			<li><%= link_to "Checkouts", new_check_out_path %></li>
-			<li><%= link_to "Fines" %></li>						
-			<li><%= link_to "User Profiles", users_path %></li>
-			<li><%= link_to "Add User", new_user_path %></li> 
-		<% else current_user.role == 'user' %> 
-			<li><%= link_to 'Catalogue', books_path %></li>
-		<% end %>
-	</ul>
-</nav>
+<%= render 'admin_nav' %>
 
 <p>
-Role: <%= @user.role %><br />
-Email: <%= @user.email %><br />
-Phone Number: <%= @user.phone_number %>
+	Role: <%= @user.role %><br />
+	Email: <%= @user.email %><br />
+	Phone Number: <%= @user.phone_number %>
 </p>
 
 <%= link_to "Edit Profile", edit_user_path(current_user.id) %>

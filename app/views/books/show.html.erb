@@ -3,8 +3,8 @@
 <% checked_out = 0 %>
 <% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
 
-<h1><%= @book.title %></h1>
-<h3><%= @book.page_count %></h3>
+<h3><%= @book.title %></h3>
+<P><%= @book.page_count %></p>
 <p><%= @book.description %></p>
 <p><%= copies_count%> copies, <%= copies_count - checked_out - Hold.where(book_id: @book.id).count %> available to checkout.</p>
 <%= link_to "Place a hold", new_book_hold_path(book_id: @book.id) %>
