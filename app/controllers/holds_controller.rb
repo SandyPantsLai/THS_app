@@ -31,4 +31,9 @@ class HoldsController < ApplicationController
     @hold.destroy
     redirect_to holds_path
   end
+
+  def my_holds
+    @holds = Hold.where(user_id: current_user.id)
+    render :index
+  end
 end

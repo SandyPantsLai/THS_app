@@ -1,7 +1,9 @@
 <h1>Holds </h1>
-<%= link_to "Add a new hold", new_hold_path %>
 <% holds = @holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
 <% holds.each do |hold| %>
+<% if current_user.role == 'admin' || 'volunteer' %>
+  <%= link_to 'View My Holds', myholds_path %>
+<% end %>
 <% title = Book.find(hold.book_id).title %>
 <div class="hold_list">
   <p>Book: <%= link_to title, book_path(hold.book_id) %></p>

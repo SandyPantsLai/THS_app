@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :holds, only: [:new, :create, :destroy]
   end
   get 'holds' => 'holds#index'
+  get 'myholds' => 'holds#my_holds'
 
   resources :check_outs
   resources :users, only: [:new, :create]
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
