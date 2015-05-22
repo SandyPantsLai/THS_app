@@ -23,13 +23,13 @@ body {}
 }
 header { width: 1080px;}
 
-nav.main-nav { margin-bottom: 60px;}
-nav.main-nav ul {
+nav { margin-bottom: 60px;}
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-nav.main-nav a:link { 
+nav a:link { 
 		float: left;
     display: block;
     margin-right: 10px;
