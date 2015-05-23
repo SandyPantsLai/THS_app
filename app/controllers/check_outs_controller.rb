@@ -50,6 +50,11 @@ class CheckOutsController < ApplicationController
     end
 
     update_check_out( check_out, attributes )
+
+    if check_out.return_date
+      hold = Hold.where(book_id: BookCopy.find(check_out.book_copy_id).book_id).where("pickup_expiry IS NOT NULL").first
+      hold.pickup_expiry = Time.now + 7.days
+    end
   end
 
   def renew
