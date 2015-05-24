@@ -1,7 +1,8 @@
 @import "normalize";
 
 @import "bourbon";
+@import "base/grid-settings"; // must be imported before neat
 @import "neat";
 @import "base/base";
-
+@import "base/layout";
 @import "styles";
