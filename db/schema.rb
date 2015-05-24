@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150521033133) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150522154013) do
+=======
+ActiveRecord::Schema.define(version: 20150522170122) do
+>>>>>>> 3d52b1f3943f825f6b97291f44401e8d2a98235a
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -24,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150521033133) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.string   "subject"
     t.integer  "published"
     t.string   "publisher"
     t.integer  "page_count"
@@ -37,6 +40,14 @@ ActiveRecord::Schema.define(version: 20150521033133) do
     t.datetime "updated_at",  null: false
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "subject_id"
+  end
+
+  create_table "booksearches", force: :cascade do |t|
+    t.string   "keywords"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "check_outs", force: :cascade do |t|
@@ -64,6 +75,19 @@ ActiveRecord::Schema.define(version: 20150521033133) do
     t.datetime "pickup_expiry"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -8,6 +8,18 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @holds = Hold.where(book_id: @book.id).sort_by{|hold| hold.pickup_expiry || Time.now + 100.years}
+    @copies = BookCopy.where(book_id: @book.id)
+    @checked_out = 0
+    @due_dates = []
+    @copies.each do |copy|
+      @checkout = CheckOut.find_by(book_copy_id: copy.id)
+      if @checkout
+        @checked_out += 1
+        @due_dates << @checkout.due_date
+      end
+    end
+    @copies_available = @copies.count - @checked_out - Hold.where(book_id: @book.id).where("pickup_expiry IS NOT NULL").count
   end
 
   def edit
@@ -33,20 +45,22 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = []
-    if params[:search]
+    @search = Book.search(params[:q])
+    @books = @search.result
 
-      params[:search].split.each do |s|
-        @books << Book.where("LOWER(title) LIKE LOWER(?) OR LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", "%#{s}%", "%#{s}%", "%#{s}%").all
-      end
-      @books.flatten!
-      @books.uniq!
-    else
-      @books = Book.all
-    end
-    if request.xhr?
-      render :partial => "book", :collection => @books
-    end
+    # @books = []
+    # if params[:search]
+    #   params[:search].split.each do |s|
+    #     @books << Book.where("LOWER(title) LIKE LOWER(?) OR LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", "%#{s}%", "%#{s}%", "%#{s}%")
+    #   end
+    #   @books.flatten!
+    #   @books.uniq!
+    # else
+    #   @books = Book.all
+    # end
+    # if request.xhr?
+    #   render :partial => "book", :collection => @books
+    # end
   end
 
   def delete
