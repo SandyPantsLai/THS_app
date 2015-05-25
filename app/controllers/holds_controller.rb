@@ -47,6 +47,8 @@ class HoldsController < ApplicationController
 
   def destroy
     @hold = Hold.find(params[:id])
+    next_hold = Hold.where(book_id: @hold.book_id).where("pickup_expiry IS NULL").first
+    next_hold.pickup_expiry = Time.now + 7.days
     @hold.destroy
     flash[:notice] = "Your hold has been cancelled."
     redirect_to holds_path

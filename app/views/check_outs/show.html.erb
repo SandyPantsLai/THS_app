@@ -48,7 +48,7 @@
 
   <%= link_to "Back to Check Out Index", check_outs_path %>
 
-  <% if current_user.role == 'admin' || current_user.role == 'volunteer' %>
+  <% if current_user && ( current_user.role == 'admin' || current_user.role == 'volunteer' ) %>
     <% if !@check_out.return_date %>
       | <%= link_to "Return Book", check_out_check_in_path( @check_out ), method: :patch %>
 

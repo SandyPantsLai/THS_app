@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   get 'myholds' => 'holds#my_holds'
 
   resources :check_outs
-  resources :users, only: [:new, :create, :show]
+
+  resources :users, only: [:new, :create, :show, :edit, :index]
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'user_sessions#new', :as => :login
