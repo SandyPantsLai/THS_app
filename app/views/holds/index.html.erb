@@ -1,7 +1,11 @@
 <h1>Holds </h1>
 <% holds = @holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
 <% if current_user.role == 'admin' || current_user.role == 'volunteer' %>
-  <%= link_to 'View My Holds', myholds_path %>
+  <% unless @mine %>
+    <%= link_to 'View My Holds', myholds_path %>
+  <% else %>
+    <%= link_to 'View Holds For All Users', holds_path %>
+  <% end %>
 <% end %>
 <p>There are <%= @holds.where("pickup_expiry IS NOT NULL").count %> holds available for pickup.</p>
 <% holds.each do |hold| %>
