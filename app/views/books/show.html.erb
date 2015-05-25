@@ -1,18 +1,35 @@
-<h1><%= @book.title %></h1>
-<h3><%= @book.page_count %></h3>
-<p><%= @book.description %></p>
-<p><%= @copies.count%> copies,  <%= @copies_available  %> available to checkout. (<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
-<% unless @due_dates == [] %>
-  <ul>Currently checked out copies are due back:
-  <% @due_dates.sort.each do |due_date| %>
-    <li><%= due_date.strftime("%A, %b %e, %Y") %></li>
-  <% end %>
-  </ul>
-<% end %>
-<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
-  <%= "You have this book on hold.  You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %>
-<% else %>
-  <%= link_to "Place a hold", new_book_hold_path(book_id: @book.id) %>
-<% end %>
-<p><%= link_to "Back to library", books_path %></p>
-<p><%= link_to "Edit book", edit_book_path %></p>
+<div class="book">
+
+	<% copies = BookCopy.where(book_id: @book.id)%>
+	<% copies_count = copies.count %>
+	<% checked_out = 0 %>
+
+	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
+
+		<h3 class="title"><%= @book.title %></h3>
+		<P class="count"><%= @book.page_count %></p>
+		<p class="description"><%= @book.description %></p>
+		<p class="copies"><%= @copies.count%> copies,  <%= @copies_available  %> available to checkout. (<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
+
+	<% unless @due_dates == [] %>
+	  
+	  <ul>Currently checked out copies are due back:
+	  	<% @due_dates.sort.each do |due_date| %>
+	    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
+	  	<% end %>
+	  </ul>
+
+	<% end %>
+
+	<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
+	  <p> <%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p> 
+	<% else %>
+	  <p><%= link_to "Place a hold", new_book_hold_path(book_id: @book.id) %></p> 
+	<% end %>
+
+	<ul>
+		<li><%= link_to "Back to Catalogue", books_path %></li>
+	  <li><%= link_to "Edit book", edit_book_path %></li>
+	</ul>
+
+</div><!-- end .book -->
