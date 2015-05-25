@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'books#index
+  root 'books#index'
 
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
