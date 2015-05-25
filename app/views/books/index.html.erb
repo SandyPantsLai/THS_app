@@ -1,9 +1,10 @@
 <div class="catalogue">
 
 	<h2>Catalogue</h2>
-	
 	<%= render 'search' %>
+  <h1><small><%= page_entries_info @books %></small></h1>
 
 	<%= render @books %>
 
+<%= paginate @books %>
 </div><!-- end .catalogue -->
