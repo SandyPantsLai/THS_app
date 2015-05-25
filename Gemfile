@@ -16,7 +16,6 @@ gem 'ransack'
 gem 'whenever', :require => false
 gem 'better_errors'
 gem 'sorcery'
-gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'
