@@ -59,13 +59,21 @@ class CheckOutsController < ApplicationController
 
   def renew
     check_out = CheckOut.find( params[ :id ] )
-    due_date = check_out.due_date
-    attributes = {}
+    book = BookCopy.find(check_out.book_copy_id)
 
-    attributes[ :due_date ] = DateTime.new( due_date.year, due_date.month, due_date.day + CheckOut::CHECK_OUT_PERIOD )
-    attributes[ :renewal ] = check_out.renewal - 1
+    if holds = Hold.where(book_id: book.book_id).where("pickup_expiry IS NULL")
+      holds.first.pickup_expiry = Time.now + 7.days
+      flash[:alert] = "#{book.title} could not be renewed because there are holds by other users."
+      redirect_to check_outs_path
+    else
+      due_date = check_out.due_date
+      attributes = {}
 
-    update_check_out( check_out, attributes )
+      attributes[ :due_date ] = DateTime.new( due_date.year, due_date.month, due_date.day + CheckOut::CHECK_OUT_PERIOD )
+      attributes[ :renewal ] = check_out.renewal - 1
+
+      update_check_out( check_out, attributes )
+    end
   end
 
   private
