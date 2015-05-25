@@ -1,3 +1,5 @@
+<!-- signup user form -->
+
 <%= form_for @user do |f| %>
 
 	<div class="field">
@@ -30,6 +32,6 @@
 	   <%= f.password_field :password_confirmation %>
 	</div>
 
-	<div class="actions"><%= f.submit "Create User" %></div>
+	<div class="submit"><%= f.submit "Create User" %></div>
 
 <% end %>

@@ -1,17 +1,13 @@
-<h2><%= @user.first_name %> <%= @user.last_name %></h2>
+<div class="user">
 
-<%= render 'admin_nav' %>
+	<h2><%= @user.first_name %> <%= @user.last_name %></h2>
 
-<p>
-	Role: <%= @user.role %><br />
-	Email: <%= @user.email %><br />
-	Phone Number: <%= @user.phone_number %>
-</p>
+	<%= render 'admin_nav' %>
 
-<nav class="user-nav">
-	<ul>
-		<li><%= link_to "Check Outs", check_outs_path( user_id: @user.id, due_only: "true" ) %></li>
-		<li><%= link_to "Holds", holds_path( user_id: @user.id ) %></li>
-		<li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
-	</ul>
-</nav>
+	<p class="role">Role: <%= @user.role %></p>
+	<p class="email">Email: <%= @user.email %></p>
+	<p class="phone">Phone Number: <%= @user.phone_number %></p>
+
+	<%= render 'user_nav' %>
+
+</div>

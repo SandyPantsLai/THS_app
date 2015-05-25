@@ -1,7 +1,4 @@
-<div class"alert">
-	<%= flash[ :notice ] if flash[ :notice ] %>
-	<%= flash[ :alert ] if flash[ :alert ] %>
-</div>
+<!-- edit user information form -->
 
 <%= form_for @user do |f| %>
 
@@ -35,6 +32,11 @@
 	   <%= f.password_field :password_confirmation %>
 	</div>
 
-	<div class="actions"><%= f.submit "Save changes" %></div>
+	<div class="submit"><%= f.submit "Save changes" %></div>
+
+	<div class"alert">
+		<%= flash[ :notice ] if flash[ :notice ] %>
+		<%= flash[ :alert ] if flash[ :alert ] %>
+	</div>
 
 <% end %>
