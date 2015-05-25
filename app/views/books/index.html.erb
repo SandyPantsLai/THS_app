@@ -1,18 +1,8 @@
 <div class="catalogue">
 
 	<h2>Catalogue</h2>
-
-	<%= search_form_for @search do |f| %>
-	  
-	  <div class="search">
-			<%= f.label :title_or_first_name_or_last_name_cont, "Search" %>
-		  <%= f.text_field :title_or_first_name_or_last_name_cont %>
-		  <%= f.collection_select :subject_id_eq, Subject.all, :id, :name, include_blank: true %>
-		 
-	 		<div class="actions"><%= f.submit "Submit" %></div>
-		</div><!-- end .search -->
-
-	<% end %>
+	
+	<%= render 'search' %>
 
 	<%= render @books %>
 

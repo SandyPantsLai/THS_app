@@ -1,8 +1,22 @@
-.catalogue {
+// catalogue
+
+.catalogue { 
 	@include outer-container;
 	margin-top: $nav-height;
 }
 
-.search {
+// book
 
-}
+.book {} 
+h2.title {}
+p.author {}
+p.pages
+p.description {}
+p.subject {}
+p.count {}
+p.copies {}
+
+// search
+
+.catalogue-search {} 
+.submit {} 
