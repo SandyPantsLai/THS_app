@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+
   helper :application
   default from: "Toronto Hermetic Society Library Services <god@ths.com>",
           return_path: 'god@ths.com',
@@ -9,5 +10,17 @@ class UserMailer < ApplicationMailer
     @hold = hold
     @title = Book.find(@hold.book_id).title
     mail(to: @user.email, subject: 'Your hold is available for pickup')
+  end
+
+  def welcome_email(user)
+    @user = user
+    @url  = 'http://example.com/login'
+    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  end
+
+  def late_email(user)
+    @user = user
+    @url = 'blahblahblah'
+    mail(to: @user.email, subject: 'Late Book Return')
   end
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :books do
     resources :holds, only: [:new, :create]
   end
+
   resources :holds, only: [:index, :destroy]
   get 'myholds' => 'holds#my_holds'
 

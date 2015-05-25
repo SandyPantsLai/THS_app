@@ -45,7 +45,7 @@ end
 end
 
 30.times do
-  Hold.create(user_id: rand(1..12), book_id: rand(2..99))
+  Hold.create(user_id: rand(1..12), book_id: rand(1..15))
 end
 
 2.times do
