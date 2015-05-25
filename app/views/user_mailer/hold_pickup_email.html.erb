@@ -8,6 +8,6 @@
     <p>Your hold for the book <%= Book.find(@hold.book_id).title %> is ready for pickup.</p>
     <p>Your book will be available for pickup until <%= @hold.pickup_expiry.strftime("%A, %b %e, %Y") %> before it is released to the next hold in queue.</p>
     <p>Cheers,</p>
-    <p>The Toronto Hermetic Society Libary</p>
+    <p>The Toronto Hermetic Society Libary Services</p>
   </body>
 </html>

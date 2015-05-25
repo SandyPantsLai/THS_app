@@ -1,5 +1,8 @@
 class UserMailer < ApplicationMailer
-  default from: 'god@ths.com'
+  helper :application
+  default from: "Toronto Hermetic Society Library Services <god@ths.com>",
+          return_path: 'god@ths.com',
+          sender: 'god@ths.com'
 
   def hold_pickup_email(hold)
     @user = User.find(hold.user_id)
