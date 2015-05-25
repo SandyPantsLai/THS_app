@@ -21,7 +21,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
 gem 'ransack'
 
 gem 'whenever', :require => false
@@ -32,7 +31,6 @@ gem 'whenever', :require => false
 # gem 'unicorn'
 
 # gem favorite things
-
 gem 'better_errors'
 gem 'sorcery'
 gem 'kaminari'
