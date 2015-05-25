@@ -5,4 +5,12 @@
 @import "neat";
 @import "base/base";
 @import "base/layout";
+
+// views
+
 @import "books";
+@import "check_outs";
+@import "fines";
+@import "holds";
+@import "user_sessions";
+@import "users";
