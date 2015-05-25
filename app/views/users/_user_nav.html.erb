@@ -1,4 +1,4 @@
-<nav class="user-nav">
+<nav class="user">
 	<ul>
 		<li><%= link_to "Check Outs", check_outs_path( user_id: @user.id, due_only: "true" ) %></li>
 		<li><%= link_to "Holds", holds_path( user_id: @user.id ) %></li>

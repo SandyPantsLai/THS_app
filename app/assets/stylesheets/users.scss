@@ -1,5 +1,17 @@
-.user {}
-.user h3.name {}
-.user p.role {}
-.user p.email {}
-p.user-id {}
+nav.admin {
+	height: $nav-height;
+}
+nav.user {
+	height: $nav-height;
+}
+.user {} // wrapper
+h3.name {}
+ul.user-info {
+	margin: rem(22) 0;
+}
+ul.user-info li {
+	float: none;
+}
+li.role {}
+li.email {}
+li.user-id {}

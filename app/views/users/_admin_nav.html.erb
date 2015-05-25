@@ -1,5 +1,5 @@
 <!-- User admin navigation -->
-<nav>
+<nav class="admin">
 	<ul>			  	
 		<% if current_user.role == 'admin' %>
 			<li><%= link_to 'Catalogue', books_path %></li>

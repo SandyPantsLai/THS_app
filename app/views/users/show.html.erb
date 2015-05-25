@@ -4,9 +4,11 @@
 
 	<%= render 'admin_nav' %>
 
-	<p class="role">Role: <%= @user.role %></p>
-	<p class="email">Email: <%= @user.email %></p>
-	<p class="phone">Phone Number: <%= @user.phone_number %></p>
+	<ul class="user-info">
+		<li class="role">Role: <%= @user.role %></li>
+		<li class="email">Email: <%= @user.email %></li>
+		<li class="phone">Phone Number: <%= @user.phone_number %></li>
+	</ul>	
 
 	<%= render 'user_nav' %>
 
