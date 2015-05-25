@@ -7,6 +7,7 @@ class UserMailer < ApplicationMailer
   def hold_pickup_email(hold)
     @user = User.find(hold.user_id)
     @hold = hold
-    mail(to: @user.email, subject: 'You have a hold available for pickup')
+    @title = Book.find(@hold.book_id).title
+    mail(to: @user.email, subject: 'Your hold is available for pickup')
   end
 end
