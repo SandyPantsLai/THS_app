@@ -55,7 +55,10 @@ class HoldsController < ApplicationController
   end
 
   def my_holds
-    @holds = Hold.where(user_id: current_user.id)
+    @mine = true
+    user_id = params[:user_id] || current_user.id
+    @holds = Hold.where(user_id: user_id)
     render :index
+    @mine = false
   end
 end
