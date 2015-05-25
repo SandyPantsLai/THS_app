@@ -1,9 +1,13 @@
 class CheckOutsController < ApplicationController
 
+  helper_method :can_renew?
+  helper_method :get_fine_amount
+
+
   def index
     if ( params[ :user_id ] )
       if ( params[ :due_only ] )
-        @check_outs = CheckOut.where( { user_id: params[ :user_id ], due_date: nil } )
+        @check_outs = CheckOut.where( { user_id: params[ :user_id ], return_date: nil } )
       else
         @check_outs = CheckOut.where( user_id: params[ :user_id ] )
       end
@@ -64,6 +68,23 @@ class CheckOutsController < ApplicationController
   end
 
   private
+  def can_renew?( book )
+    book_holds = Hold.where( book: book )
+    book_copies = BookCopy.where( book: book )
+
+    hold_count = book_holds.inject( 0 ) do |book_hold_count, book_hold|
+      book_hold_count += 1 if book_hold.pickup_expiry.to_time.to_i > DateTime.now.to_time.to_i
+      book_hold_count
+    end
+
+    checked_out_count = book_copies.inject( 0 ) do |book_copy_count, book_copy|
+      book_copy_count += 1 if CheckOut.where( { book_copy: book_copy, return_date: nil } ).any?
+      book_copy_count
+    end
+
+    hold_count <= book_copies.count - checked_out_count
+  end
+
   def check_out_params
     params.require( :check_out ).permit( :user_id, :book_copy_id )
   end

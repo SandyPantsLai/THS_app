@@ -21,6 +21,7 @@
       checked out on: <strong><%= @check_out.checkout_date.to_s %></strong><br />
 
       <% if @check_out.return_date %>
+        due on: <strong><%= @check_out.due_date.to_s %></strong><br />
         returned on: <strong><%= @check_out.return_date.to_s %></strong><br />
 
         <% if @check_out.fine %>
@@ -36,7 +37,7 @@
         <strong>
           <%= @check_out.due_date.to_s %>
           <% if DateTime.now.to_time.to_i > @check_out.due_date.to_time.to_i %>
-            (This book is overdue; running fine total is <%= number_to_currency( get_fine_amount( @check_out, DateTime.now ) / 100 ) %> )
+            (This book is overdue; running fine total is <%= number_to_currency( get_fine_amount( @check_out, DateTime.now ) / 100 ) %>)
           <% end %>
         </strong>
       <% end %>
@@ -47,12 +48,16 @@
 
   <%= link_to "Back to Check Out Index", check_outs_path %>
 
-  <% if @check_out.user.role == 'admin' || @check_out.user.role == 'volunteer' %>
+  <% if current_user.role == 'admin' || current_user.role == 'volunteer' %>
     <% if !@check_out.return_date %>
       | <%= link_to "Return Book", check_out_check_in_path( @check_out ), method: :patch %>
 
       <% if DateTime.now.to_time.to_i < @check_out.due_date.to_time.to_i && @check_out.renewal > 0 %>
-        | <%= link_to "Renew Book", check_out_renew_path( @check_out ), method: :patch %>
+        <% if can_renew?( @check_out.book ) %>
+          | <%= link_to "Renew Book", check_out_renew_path( @check_out ), method: :patch %>
+        <% else %>
+          There are holds placed on this book; it cannot be renewed.
+        <% end %>
       <% end %>
 
     <% elsif @check_out.fine && !@check_out.fine.settlement_date %>

@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150522154013) do
-=======
-ActiveRecord::Schema.define(version: 20150521033133) do
->>>>>>> b77003cb9717457ead809c432a74d5f27c059229
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
