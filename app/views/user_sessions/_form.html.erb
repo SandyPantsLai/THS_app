@@ -10,6 +10,11 @@
     <%= password_field_tag :password %>
   </div>
   
+	<div class="field">
+		<%= label_tag :remember_me %>
+		<%= check_box_tag :remember_me %>
+	</div>	
+
   <div class="submit"><%= submit_tag "Login" %></div>
 
 <% end %>

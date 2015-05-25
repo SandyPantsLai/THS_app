@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :check_outs
 
-  resources :users, only: [:new, :create, :show, :edit, :index]
+  resources :users, only: [:index, :new, :create, :show, :edit, :update]
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'user_sessions#new', :as => :login

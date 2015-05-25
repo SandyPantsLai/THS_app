@@ -5,17 +5,17 @@ class UserSessionsController < ApplicationController
 
   def create
 
-    if @user = login(params[:email], params[:password])
-      session[:id] = @user.id #test
-      redirect_back_or_to(:books, notice: 'Thank God you are in')
+    if @user = login(params[:email], params[:password], params[:remember])
+      session[:id] = @user.id 
+      redirect_back_or_to(:books, notice: 'Logged In')
     else
-      flash.now[:alert] = 'Login failed'
+      flash.now[:alert] = 'Login Failed'
       render action: 'new'
     end
   end
 
   def destroy
     logout
-    redirect_to(root_url, notice: 'Log out successful')
+    redirect_to(root_url, notice: 'Logged Out')
   end
 end

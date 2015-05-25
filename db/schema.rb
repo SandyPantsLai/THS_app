@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522154013) do
+ActiveRecord::Schema.define(version: 20150525190722) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20150522154013) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "role"
