@@ -1,13 +1,18 @@
-<h2>Users</h2>
+<div class="user">
 
-<% if current_user %>
-	<p>Currently active users: <%= current_users_list %></p>
-<% end %>
+	<h2>Users</h2>
 
-<% @users.each do |user| %>
-	<h3><%= user.first_name %> <%= user.last_name %></h3>
-	<p><%= user.role %></p>
-	<p><%= user.email %></p>
-  <p>ID: <%= user.id %></p>
-  <br>
-<% end %>
+	<% if current_user %>
+		<p>Currently active users: <%= current_users_list %></p>
+	<% end %>
+
+	<% @users.each do |user| %>
+
+		<h3 class="name"><%= user.first_name %> <%= user.last_name %></h3>
+		<p class="role"><%= user.role %></p>
+		<p class="email"><%= user.email %></p>
+	  <p class="user-id">ID: <%= user.id %></p>
+
+	<% end %>
+
+</div>

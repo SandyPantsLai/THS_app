@@ -57,27 +57,20 @@ class CheckOutsController < ApplicationController
 
     if check_out.return_date
       hold = Hold.where(book_id: BookCopy.find(check_out.book_copy_id).book_id).where("pickup_expiry IS NOT NULL").first
-      hold.pickup_expiry = Time.now + 7.days
+      hold.pickup_expiry = Time.now + 7.days if hold
     end
   end
 
   def renew
     check_out = CheckOut.find( params[ :id ] )
-    book = BookCopy.find(check_out.book_copy_id)
 
-    if holds = Hold.where(book_id: book.book_id).where("pickup_expiry IS NULL")
-      holds.first.pickup_expiry = Time.now + 7.days
-      flash[:alert] = "#{book.title} could not be renewed because there are holds by other users."
-      redirect_to check_outs_path
-    else
-      due_date = check_out.due_date
-      attributes = {}
+    due_date = check_out.due_date
+    attributes = {}
 
-      attributes[ :due_date ] = DateTime.new( due_date.year, due_date.month, due_date.day + CheckOut::CHECK_OUT_PERIOD )
-      attributes[ :renewal ] = check_out.renewal - 1
+    attributes[ :due_date ] = DateTime.new( due_date.year, due_date.month, due_date.day + CheckOut::CHECK_OUT_PERIOD )
+    attributes[ :renewal ] = check_out.renewal - 1
 
-      update_check_out( check_out, attributes )
-    end
+    update_check_out( check_out, attributes )
   end
 
   private
@@ -105,8 +98,10 @@ class CheckOutsController < ApplicationController
   def update_check_out( check_out, attributes )
     if check_out.update( attributes )
       if attributes[ :fine ]
+        flash[:notice] = "Success!"
         redirect_to check_out_path( check_out )
       else
+        flash[:alert] = "The action could not be performed do to #{@check_out.errors.full_messages}"
         redirect_to check_outs_path
       end
     else

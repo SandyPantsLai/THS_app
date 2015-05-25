@@ -1,0 +1,33 @@
+<% holds = @holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
+
+<% if current_user.role == 'admin' || current_user.role == 'user' %>
+  <p><%= link_to 'View my Holds', myholds_path %></p> 
+<% end %>
+
+<p>There are <%= @holds.where("pickup_expiry IS NOT NULL").count %> holds available for pickup.</p>
+
+<% holds.each do |hold| %>
+  
+  <% if current_user.role == 'admin' || 'user' %>
+    <%= "User:" %>
+    <% user = User.find(hold.user_id) %>
+    <h3><%= link_to "#{user.last_name}, #{user.first_name}", user_path(user) %></h3> 
+    <p><%= puts "This user has #{Hold.where(user_id: hold.user_id).where("pickup_expiry IS NOT NULL").count} holds available for pickup." %></p> 
+  <% end %>
+
+  <h4><% title = Book.find(hold.book_id).title %></h4> 
+  <p><% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %></p> 
+
+  <div class="hold-list">
+    <p>Book: <%= link_to title, book_path(hold.book_id) %></p>
+    <% if hold.pickup_expiry %>
+      <p>Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></p>
+    <% else %>
+      <p>You are #<%= queue %> in line.</p>
+    <% end %>
+  
+    <div class="submit"><%= button_to 'Cancel hold', hold_path(hold), method: :delete %></div> 
+  
+  </div>
+
+<% end %>
