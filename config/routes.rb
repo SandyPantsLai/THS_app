@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'books#index'
+  root 'books#index
 
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :check_outs
 
-  resources :users, only: [:index, :new, :create, :show, :edit, :update]
+  resources :users
   resources :user_sessions, only: [:new, :create, :destroy]
 
   get 'login' => 'user_sessions#new', :as => :login
