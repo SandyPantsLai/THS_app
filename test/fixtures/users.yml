@@ -5,14 +5,14 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  email:  MyString
+  email:  MyString1
   first_name: MyString
   last_name: MyString
   phone_number: MyString
 # column: value
 #
 two:
-  email:  MyString
+  email:  MyString2
   first_name: MyString
   last_name: MyString
   phone_number: MyString
