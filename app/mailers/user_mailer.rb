@@ -1,26 +1,24 @@
 class UserMailer < ApplicationMailer
 
-  helper :application
-  default from: "Toronto Hermetic Society Library Services <god@ths.com>",
-          return_path: 'god@ths.com',
-          sender: 'god@ths.com'
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.user_mailer.activation_needed_email.subject
+  #
+  def activation_needed_email(user)
+    @greeting = "Hi"
 
-  def hold_pickup_email(hold)
-    @user = User.find(hold.user_id)
-    @hold = hold
-    @title = Book.find(@hold.book_id).title
-    mail(to: @user.email, subject: 'Your hold is available for pickup')
+    mail to: "to@example.org"
   end
 
-  def welcome_email(user)
-    @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
-  end
+  # Subject can be set in your I18n file at config/locales/en.yml
+  # with the following lookup:
+  #
+  #   en.user_mailer.activation_success_email.subject
+  #
+  def activation_success_email(user)
+    @greeting = "Hi"
 
-  def late_email(user)
-    @user = user
-    @url = 'blahblahblah'
-    mail(to: @user.email, subject: 'Late Book Return')
+    mail to: "to@example.org"
   end
 end
