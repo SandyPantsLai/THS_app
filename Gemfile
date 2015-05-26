@@ -9,13 +9,14 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'autoprefixer-rails'	
+gem 'autoprefixer-rails'
 gem 'bourbon'
 gem 'neat'
 gem 'ransack'
 gem 'whenever', :require => false
 gem 'better_errors'
 gem 'sorcery'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'

@@ -46,6 +46,7 @@ class BooksController < ApplicationController
 
   def index
     @search = Book.search(params[:q])
+<<<<<<< HEAD
     @books = @search.result || []
 
     # @books = []
@@ -61,6 +62,9 @@ class BooksController < ApplicationController
     # if request.xhr?
     #   render :partial => "book", :collection => @books
     # end
+=======
+    @books = @search.result.order(:title).page params[:page]
+>>>>>>> 0c322ce466d0c6e8b3915b377215d298012d44b0
   end
 
   def delete
