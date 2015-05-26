@@ -1,16 +1,17 @@
 class UserSessionsController < ApplicationController
 	# This controller handles the login
+  
   def new
+    @user = User.new
   end
 
   def create
-
-    if @user = login(params[:email], params[:password], params[:remember])
-      session[:id] = @user.id 
-      redirect_back_or_to(:books, notice: 'Logged In')
-    else
-      flash.now[:alert] = 'Login Failed'
-      render action: 'new'
+    respond_to do |format|
+      if @user = login(params[:email],params[:password],params[:remember])
+        format.html { redirect_back_or_to(:users, :notice => 'Login Successfull') }
+      else
+        format.html { flash.now[:alert] = "Login Failed"; render :action => "new" }
+      end
     end
   end
 

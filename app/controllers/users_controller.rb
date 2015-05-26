@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 			@user.role = 'user'
 			if @user.save
-				redirect_to root_url, notice: "Sweet gravy user created"
+				redirect_to root_url, notice: "User created"
 			else
 				render 'new'
 			end

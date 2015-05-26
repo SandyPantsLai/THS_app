@@ -16,7 +16,7 @@ User.create!(
     email: "god@ths.com",
     password: '1234',
     password_confirmation: '1234',
-    role: 'admin'
+    role: 'admin',
 )
 
 User.create!(
@@ -25,7 +25,7 @@ User.create!(
     email: "minion@ths.com",
     password: '4321',
     password_confirmation: '4321',
-    role: 'user'
+    role: 'user',
 )
 
 10.times do
