@@ -38,12 +38,17 @@ gem 'kaminari'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'factory_girl'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'favorite_things'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'faker'
+end
+
+group :test do
+    gem 'factory_girl_rails'
+    gem 'minitest-rails-capybara'
+    gem 'minitest-reporters'
 end
 
