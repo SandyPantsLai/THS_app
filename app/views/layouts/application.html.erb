@@ -19,10 +19,17 @@
 				  <% if current_user == nil %>
 						<li><%= link_to "Login", :login %></li>				  	
 				  <% elsif current_user.role == 'admin' %>					
-				  	<li><%= link_to "Admin Panel", user_path(current_user.id) %></li> 
-				   	<li><%= link_to "Logout", :logout, method: :post %></li> 
+						<li><%= link_to "Catalogue", books_path %></li>
+						<li><%= link_to "Add Book", new_book_path %></li>
+						<li><%= link_to "User Holds" %></li>
+						<li><%= link_to "User Checkouts", new_check_out_path %></li>
+						<li><%= link_to "User Fines" %></li>
+						<li><%= link_to "User Profiles", users_path %></li>
+						<li><%= link_to "Add User", new_user_path %></li>
+						<li><%= link_to "Edit Admin Profile", edit_user_path(current_user.id) %></li>
+						<li><%= link_to "Logout", :logout, method: :post %></li> 
 				  <% else current_user.role == 'user' %>
-				  	<li><%= link_to "User Profile", user_path(current_user.id) %></li> 
+				  	<li><%= link_to "Profile", user_path(current_user.id) %></li> 
 				   	<li><%= link_to "Logout", :logout, method: :post %></li> 
 				  <% end %>
 				  </ul>

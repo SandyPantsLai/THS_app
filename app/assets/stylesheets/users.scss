@@ -4,14 +4,16 @@ nav.admin {
 nav.user {
 	height: $nav-height;
 }
-.user {} // wrapper
-h3.name {}
+.user {
+	margin-top: $nav-height;
+} // wrapper
 ul.user-info {
-	margin: rem(22) 0;
+	margin-top: 30px;
 }
 ul.user-info li {
 	float: none;
+	margin: 0 0;
 }
 li.role {}
 li.email {}
-li.user-id {}
+li.phone-number {}

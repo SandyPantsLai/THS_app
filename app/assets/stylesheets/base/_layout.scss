@@ -19,14 +19,9 @@ header {
 		line-height: $nav-height;
 	}
 }
-h1 { font-size: rem(32);}
-h2 { font-size: rem(26);}
-h3 { font-size: rem(22);}
-h4 {}
-.main-nav {
-	margin-top: rem(10);
-	height: $nav-height;
-	width: 100%;
+ul.main-nav li:hover > ul {
+    visibility:visible;
+    opacity:1;
 }
 li { 
 	float: left; 
