@@ -6,7 +6,7 @@ Rails.application.config.sorcery.configure do |config|
   config.session_timeout_from_last_action = false 
   
   config.user_config do |user| 
-
+    user.user_activation_mailer = UserMailer
   end
   
   config.user_class = "User"
