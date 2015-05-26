@@ -14,7 +14,7 @@
     <% if current_user.role == 'admin' || current_user.role == 'volunteer' %>
       <p class="user"> User: <% user = hold.user %>
       <%= link_to "#{user.last_name}, #{user.first_name}", user_path(user) %></p>
-      <%= puts "This user has #{Hold.where(user_id: hold.user_id).where("pickup_expiry IS NOT NULL").count} holds available for pickup." %>
+      <%= "This user has #{Hold.where(user_id: hold.user_id).where("pickup_expiry IS NOT NULL").count} holds available for pickup." %>
     <% end %>
 
     <% title = Book.find(hold.book_id).title %>
