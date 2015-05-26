@@ -37,7 +37,7 @@
         <strong>
           <%= @check_out.due_date.to_s %>
           <% if DateTime.now.to_time.to_i > @check_out.due_date.to_time.to_i %>
-            (This book is overdue; running fine total is <%= number_to_currency( get_fine_amount( @check_out, DateTime.now ) / 100 ) %>)
+            (This book is overdue; running fine total is <%= number_to_currency( @check_out.get_fine_amount( DateTime.now ) / 100 ) %>)
           <% end %>
         </strong>
       <% end %>
