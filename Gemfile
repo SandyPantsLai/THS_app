@@ -19,10 +19,16 @@ gem 'sorcery'
 
 group :development, :test do
   gem 'byebug'
-  gem 'factory_girl'
+  # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'favorite_things'
   gem 'spring'
   gem 'faker'
+end
+
+group :test do
+    gem 'factory_girl_rails'
+    gem 'minitest-rails-capybara'
+    gem 'minitest-reporters'
 end
 

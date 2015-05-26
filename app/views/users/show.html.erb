@@ -24,7 +24,7 @@ Phone Number: <%= @user.phone_number %>
 <nav class="user-nav">
 	<ul>
 		<li><%= link_to "Check Outs", check_outs_path( user_id: @user.id, due_only: "true" ) %></li>
-		<li><%= link_to "Holds", myholds_path( user_id: @user.id ) %></li>
+		<li><%= link_to "Holds", holds_path %></li>
 		<li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
 	</ul>
 </nav>
