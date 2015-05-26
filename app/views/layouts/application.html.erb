@@ -11,7 +11,7 @@
 	
 	<body>
 		<div id="wrapper">
-		
+		<% if false %>
 			<header><h1>Hermetic Library Awesome</h1></header>
 			
 			<nav class="main-nav">
@@ -34,6 +34,68 @@
 				  <% end %>
 				  </ul>
 			</nav>
+		<% end %>
+
+		<header class="navigation" role="banner">
+		  <div class="navigation-wrapper">
+		    <a href="javascript:void(0)" class="logo">
+		      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
+		    </a>
+		    
+		    <nav role="navigation">
+		      <ul id="js-navigation-menu" class="navigation-menu show">
+		      	<% if current_user.role == 'admin' %>
+			        <li class="nav-link"><a href="javascript:void(0)">Library</a>
+			        	<ul class="submenu">
+					        <li class="nav-link"><%= link_to "Catalogue", books_path %></li>
+					        <li class="nav-link"><%= link_to "Add Book", new_book_path %></li>
+					        <li class="nav-link"><%= link_to "User Holds" %></li>
+					        <li class="nav-link"><%= link_to "User Checkouts", new_check_out_path %></li>
+					        <li class="nav-link"><%= link_to "User Fines" %></li>
+					      </ul>
+					    </li>
+					    <li class="nav-link"><a href="javascript:void(0)">Users</a>
+								<ul class="submenu">
+					        <li class="nav-link"><%= link_to "User Profiles", users_path %></li>
+					        <li class="nav-link"><%= link_to "Add User", new_user_path %></li>
+					        <li class="nav-link"><%= link_to "Edit Admin Profile", edit_user_path(current_user.id) %></li>
+					      </ul>
+					    </li>
+					    <li class="nav-link"><%= link_to "Logout", :logout, method: :post %></li>
+					  <% elsif current_user.role == 'user' %>
+							<li class="nav-link"><a href="javascript:void(0)">Library</a>
+			        	<ul class="submenu">
+					        <li class="nav-link"><%= link_to "Catalogue", books_path %></li>
+					        <li class="nav-link"><%= link_to "Add Book" %></li>
+					        <li class="nav-link"><%= link_to "Holds" %></li>
+					        <li class="nav-link"><%= link_to "Checkouts" %></li>
+					        <li class="nav-link"><%= link_to "Fines" %></li>
+					      </ul>
+					    </li>
+					    <li class="nav-link"><a href="javascript:void(0)">Users</a>
+								<ul class="submenu">
+					        <li class="nav-link"><%= link_to "Profile", users_path %></li>
+					        <li class="nav-link"><%= link_to "Edit", edit_user_path(current_user.id) %></li>
+					      </ul>
+					    </li>
+					    <li class="nav-link"><%= link_to "Logout", :logout, method: :post %></li>
+					  <% else current_user == nil %>
+							<li><%= link_to "Login", :login %></li>	
+						<% end %>
+		      </ul>
+		    </nav>
+		    <div class="navigation-tools">
+		      <div class="search-bar">
+		        <form role="search">
+		          <input type="search" placeholder="Enter Search" />
+		          <button type="submit">
+		            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
+		          </button>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+		</header>
 
   		<%= yield %>
 
