@@ -12,7 +12,6 @@ feature "HoldsList" do
     @holds = [@hold1, @hold2, @hold3, @hold4]
   end
 
-
   scenario "holds index page displays a list of USERS's holds if the user is NOT an admin" do
     visit holds_path
     page.has_content?("user")
