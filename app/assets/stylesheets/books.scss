@@ -1,3 +1,22 @@
-// Place all the styles related to the books controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// catalogue
+
+.catalogue { 
+	@include outer-container;
+	margin-top: $nav-height;
+}
+
+// book
+
+.book {} 
+h2.title {}
+p.author {}
+p.pages
+p.description {}
+p.subject {}
+p.count {}
+p.copies {}
+
+// search
+
+.catalogue-search {} 
+.submit {} 

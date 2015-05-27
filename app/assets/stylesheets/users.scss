@@ -1,3 +1,17 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+nav.admin {
+	height: $nav-height;
+}
+nav.user {
+	height: $nav-height;
+}
+.user {} // wrapper
+h3.name {}
+ul.user-info {
+	margin: rem(22) 0;
+}
+ul.user-info li {
+	float: none;
+}
+li.role {}
+li.email {}
+li.user-id {}

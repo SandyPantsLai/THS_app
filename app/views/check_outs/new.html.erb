@@ -1,16 +1,8 @@
-<h2>Check Out Book</h2>
+<div class="check-out">
 
-<%= form_for @check_out do |f| %>
-  <%= f.label :user_id, "User Id" %><br />
-  <%= f.text_field :user_id %><br />
-  <br />
+	<h2>Check Out Book</h2>
 
-  <%= f.label :book_copy_id, "Book Copy Id" %><br />
-  <%= f.text_field :book_copy_id %><br />
-  <br />
+	<%= render 'checkout' %>
 
-  <%= f.submit "Check Out Book" %>
-<% end %>
-
-
+</div><!-- end .check-out -->
 

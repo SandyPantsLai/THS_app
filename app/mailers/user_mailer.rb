@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+
   helper :application
   default from: "Toronto Hermetic Society Library Services <god@ths.com>",
           return_path: 'god@ths.com',
@@ -16,7 +17,7 @@ class UserMailer < ApplicationMailer
     @user = checkout.user
     @check_out = check_out
     @book = checkout.book_copy.book
-
     mail( to: @user.email, subject: "#{@book.title} is now overdue" )
   end
+
 end
