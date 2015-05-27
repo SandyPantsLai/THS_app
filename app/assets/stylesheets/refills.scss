@@ -19,7 +19,7 @@ header.navigation {
   $navigation-submenu-width: 12em;
   $horizontal-bar-mode: $large-screen;
 
-  background-color: #fff;
+  background-color: $navigation-background;
   border-bottom: 1px solid darken($navigation-background, 10);
   max-height: $navigation-height;
   width: 100%;
@@ -120,7 +120,7 @@ header.navigation {
     }
 
     a {
-      color: #333;
+      color: $navigation-color;
       display: inline-block;
       font-weight: 400;
       text-decoration: none;
