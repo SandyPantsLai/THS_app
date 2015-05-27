@@ -20,7 +20,6 @@ header.navigation {
   $horizontal-bar-mode: $large-screen;
 
   background-color: $navigation-background;
-  border-bottom: 1px solid darken($navigation-background, 10);
   max-height: $navigation-height;
   width: 100%;
   z-index: 999;
@@ -100,7 +99,9 @@ header.navigation {
   }
 
   // The nav items
-
+  .title { 
+    padding-left: $navigation-padding;
+  }
   ul li.nav-link {
     background: $navigation-background;
     display: block;
@@ -274,7 +275,7 @@ header.navigation {
   }
 
   .sign-up {
-    @include button(flat, $action-color);
+    @include button(flat, $dark-gray);
     display: inline;
     float: right;
     font-size: 0.8em;
