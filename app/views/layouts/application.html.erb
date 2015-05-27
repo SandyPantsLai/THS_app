@@ -11,19 +11,16 @@
 	
 	<body>
 		<div id="wrapper">
-
 			<header class="navigation" role="banner">
 			  <div class="navigation-wrapper">
-			    <a href="javascript:void(0)" class="logo">
-			      <%= image_tag "icons/hangloose.png" %>
-			    </a>
+			    <a href="javascript:void(0)" class="logo"><%= image_tag "icons/hangloose.png" %></a>
 			    <nav role="navigation">
 			      <ul id="js-navigation-menu" class="navigation-menu show">
-			      	<li class="nav-link">Hermetic Library Awesome</li>
+								<li class="nav-link"><%= link_to 'Hermetic Library Awesome', root_url %></li>
 			      	<% if current_user == nil %>
 								<li class="nav-link"><%= link_to "Login", :login, :method => :get %></li> 
-			      	<% elsif current_user.role == 'admin' %>
-			      		<li class="nav-link"><%= link_to "Logout", :logout, method: :post %></li>
+			      	<% elsif current_user.role == 'admin' %>	
+			      		<li class="nav-link"><%= link_to "Logout", :logout, :method => :post %></li>
 				        <li class="nav-link more"><a href="javascript:void(0)">Library</a>
 				        	<ul class="submenu">
 						        <li><%= link_to "Catalogue", books_path %></li>
@@ -42,7 +39,7 @@
 						    </li>
 						    <li class="nav-link more">
 						  <% else current_user.role == 'user' %>
-								<li class="nav-link"><%= link_to "Logout", :logout, method: :post %></li>
+								<li class="nav-link"><%= link_to "Logout", :logout, :method => :post %></li>
 								<li class="nav-link"><a href="javascript:void(0)">Library</a>
 				        	<ul class="submenu">
 						        <li class="nav-link"><%= link_to "Catalogue", books_path %></li>
