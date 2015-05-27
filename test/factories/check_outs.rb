@@ -4,5 +4,6 @@ FactoryGirl.define do
     due_date { checkout_date + 7.days }
     user
     book_copy
+    renewal 1
   end
 end

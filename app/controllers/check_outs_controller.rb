@@ -38,7 +38,7 @@ class CheckOutsController < ApplicationController
   end
 
   def check_in
-    check_out = CheckOut.find( params[ :id ] )
+    check_out = @check_out
     attributes = {}
 
     attributes[ :return_date ] = DateTime.now
