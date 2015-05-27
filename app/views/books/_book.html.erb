@@ -5,5 +5,5 @@
 	<p class="pages">Pages: <%= book.page_count %></p>
 	<p class="description">Description: <%= book.description %></p>
 	<p class="subject">Subject: <%= book.subject.name %></p>
-
+  <p class="qr"><%= image_tag book.qr_code.url if book.qr_code %></p>
 </div><!-- end .book -->
