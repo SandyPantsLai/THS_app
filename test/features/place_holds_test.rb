@@ -17,7 +17,7 @@ feature "PlaceHolds" do
 
   scenario "a user CANNOT place a hold on a book if they already have an active hold for it" do
     visit book_path(@hold1.book)
-    page.has_no_link?("Place a hold")
+    assert page.has_no_link?("Place a hold")
   end
 
   scenario "a user can place a hold on a book if they do not already have an active hold for it" do
@@ -31,7 +31,7 @@ feature "PlaceHolds" do
     visit book_path(@hold2.book)
     click_link "Place a hold"
     click_button "Confirm Hold"
-    page.has_content?("You have until #{Hold.last.pickup_expiry.strftime("%A, %b %e, %Y")} to pick up your book.")
+    assert page.has_content?("You have until #{Hold.last.pickup_expiry.strftime("%A, %b %e, %Y")} to pick up your book.")
   end
 
 end

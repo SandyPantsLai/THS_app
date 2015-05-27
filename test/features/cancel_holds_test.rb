@@ -20,6 +20,6 @@ feature "CancelHolds" do
 
   scenario "If a hold with a pickup_expiry is cancelled, the next hold in queue is updated with a pickup_expiry" do
     page.find('.cancel').click
-    assert @hold2.pickup_expiry
+    refute Hold.last.pickup_expiry == nil
   end
 end
