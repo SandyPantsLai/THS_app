@@ -28,8 +28,9 @@
 						        <li><%= link_to "User Fines" %></li>
 						      </ul>
 						    </li>
-						    <li class="nav-link more"><a href="javascript:void(0)">Users</a>
+						    <li class="nav-link more"><a href="javascript:void(0)">Profiles</a>
 									<ul class="submenu">
+										<li class="nav-link"><%= link_to "Admin Profile", user_path %></li>
 						        <li class="nav-link"><%= link_to "User Profiles", users_path %></li>
 						        <li class="nav-link"><%= link_to "Add User", new_user_path %></li>
 						        <li class="nav-link"><%= link_to "Edit Admin Profile", edit_user_path(current_user.id) %></li>
@@ -46,9 +47,9 @@
 						        <li class="nav-link"><%= link_to "Fines" %></li>
 						      </ul>
 						    </li>
-						    <li class="nav-link more"><a href="javascript:void(0)">Users</a>
+						    <li class="nav-link more"><a href="javascript:void(0)">Profile</a>
 									<ul class="submenu">
-						        <li class="nav-link"><%= link_to "Profile", users_path %></li>
+						        <li class="nav-link"><%= link_to "Profile", user_path %></li>
 						        <li class="nav-link"><%= link_to "Edit", edit_user_path(current_user.id) %></li>
 						      </ul>
 						    </li>
