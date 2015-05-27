@@ -45,4 +45,13 @@ feature "CheckOutBook" do
     click_button "Check Out Book"
     assert page.has_text?("This book is on hold for another user.")
   end
+
+  scenario "A book cannot be renewed if it has already been renewed once by user" do
+    @check_out = (create :check_out, user: @user, renewal: 0)
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: "4321"
+    click_button "Login"
+    visit check_out_path(@check_out)
+    assert page.has_no_link?(check_out_renew_path( @check_out ))
+  end
 end
