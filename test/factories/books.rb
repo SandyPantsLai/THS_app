@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :book do
-    title Faker::Lorem.sentence.capitalize
+    sequence(:title) { |n| "Title for Book #{n}" }
   end
 end

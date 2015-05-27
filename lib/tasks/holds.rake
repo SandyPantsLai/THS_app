@@ -5,7 +5,7 @@ namespace :holds do
     holds = Hold.where("pickup_expiry IS NOT NULL").where("pickup_expiry <= ?", 1.day.ago.end_of_day)
     holds.each do |hold|
       next_hold = Hold.where(book_id: hold.book_id).where("pickup_expiry IS NULL").first
-      next_hold.pickup_expiry = Time.now + 7.days
+      next_hold.update(pickup_expiry: Time.now + 7.days) if next_hold
       hold.destroy
     end
   end
