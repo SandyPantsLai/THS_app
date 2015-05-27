@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   end
 
   resources :holds, only: [:index, :destroy]
-  get 'myholds' => 'holds#my_holds'
 
   resources :check_outs
 
+  # User associated routes
+
   resources :users
   resources :user_sessions, only: [:new, :create, :destroy]
+  resources :reset_passwords, only: [:new, :create, :update, :edit]
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
