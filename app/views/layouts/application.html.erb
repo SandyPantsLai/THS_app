@@ -59,7 +59,7 @@
 		      </ul>
 		    </nav>
 		    <% if current_user == nil %>
-						<%= button_to "Login", :login, method: :post %>
+						<%= button_to "Login", :login, :method => :get %>
 					<% elsif current_user.role == 'admin' %>	
 						<%= button_to "Logout", :logout, method: :post %>
 					<% else current_user.role == 'user' %>
