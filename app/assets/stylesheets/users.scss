@@ -1,9 +1,11 @@
+/* this is being handled by Refills
 nav.admin {
 	height: $nav-height;
 }
 nav.user {
 	height: $nav-height;
 }
+*/
 .user {
 	margin-top: $nav-height;
 } // wrapper
@@ -17,3 +19,4 @@ ul.user-info li {
 li.role {}
 li.email {}
 li.phone-number {}
+
