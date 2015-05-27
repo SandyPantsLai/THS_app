@@ -1,7 +1,6 @@
 class CheckOutsController < ApplicationController
 
   helper_method :can_renew?
-  helper_method :get_fine_amount
 
 
   def index
@@ -46,7 +45,7 @@ class CheckOutsController < ApplicationController
     attributes = {}
 
     attributes[ :return_date ] = DateTime.now
-    fine_amount = get_fine_amount( check_out, attributes[ :return_date ] )
+    fine_amount = check_out.get_fine_amount( attributes[ :return_date ] )
 
     if fine_amount > 0
       attributes[ :fine ] = Fine.new
@@ -88,11 +87,6 @@ class CheckOutsController < ApplicationController
 
   def check_out_params
     params.require( :check_out ).permit( :user_id, :book_copy_id )
-  end
-
-  def get_fine_amount( check_out, return_date )
-    days_due =  ( return_date.to_time.to_i - check_out.due_date.to_time.to_i ) / Fine::DAYS_IN_SECONDS
-    days_due <= 0 ? 0 : ( days_due * Fine::DAILY_FINE_AMOUNT )
   end
 
   def update_check_out( check_out, attributes )

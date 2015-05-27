@@ -5,6 +5,7 @@ class UserMailer < ApplicationMailer
           return_path: 'god@ths.com',
           sender: 'god@ths.com'
 
+
   def hold_pickup_email(hold)
     @user = User.find(hold.user_id)
     @hold = hold
@@ -12,15 +13,11 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Your hold is available for pickup')
   end
 
-  def welcome_email(user)
-    @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  def overdue_email( check_out )
+    @user = checkout.user
+    @check_out = check_out
+    @book = checkout.book_copy.book
+    mail( to: @user.email, subject: "#{@book.title} is now overdue" )
   end
 
-  def late_email(user)
-    @user = user
-    @url = 'blahblahblah'
-    mail(to: @user.email, subject: 'Late Book Return')
-  end
 end

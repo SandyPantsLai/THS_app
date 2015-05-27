@@ -1,0 +1,8 @@
+Hi <%= @user.first_name %>,
+
+The book "<%= @book.title %>" by <%= @book.first_name %> <%= @book.last_name %> which you borrowed on <%= @check_out.checkout_date.strftime("%A, %b %e, %Y") %> was due on <%= @check_out.due_date.strftime("%A, %b %e, %Y") %>. You have now incurred a total of <%= number_to_currency( @check_out.get_fine_amount( DateTime.now ) / 100 ) %> in fines, which you need to settle when you return the book.
+
+We ask that you return the book as soon as possible to avoid further fines.
+
+Cheers,
+The Toronto Hermetic Society Libary Services

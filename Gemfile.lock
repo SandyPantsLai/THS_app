@@ -38,7 +38,7 @@ GEM
       tzinfo (~> 1.1)
     ansi (1.5.0)
     arel (6.0.0)
-    autoprefixer-rails (5.1.11)
+    autoprefixer-rails (5.2.0)
       execjs
       json
     awesome_print (1.6.1)
@@ -251,17 +251,10 @@ DEPENDENCIES
   favorite_things
   jbuilder (~> 2.0)
   jquery-rails
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  kaminari
->>>>>>> 0c322ce466d0c6e8b3915b377215d298012d44b0
-  neat
-=======
   kaminari
   minitest-rails-capybara
   minitest-reporters
->>>>>>> SandyPantsLai-tests
+  neat
   rails (= 4.2.1)
   ransack
   sass-rails (~> 5.0)

@@ -21,3 +21,7 @@
 every :day, at: '12am' do
   rake 'holds:update_hold_queue'
 end
+
+every :day, at: '1am' do
+  rake 'check_outs:send_overdue_email'
+end

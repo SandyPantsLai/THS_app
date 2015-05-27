@@ -1,48 +1,58 @@
 <div class="checked-book">
-    
+
   <h3 class="title"><%= @check_out.book_copy.book.title %></h3>
-  <p class="author">By <%= @check_out.book_copy.book.last_name %>, <%= @check_out.book_copy.book.first_name %></p> 
-  <p class="library-code">library code: <%= @check_out.book_copy.library_code %></p> 
-  
+  <p class="author">By <%= @check_out.book_copy.book.last_name %>, <%= @check_out.book_copy.book.first_name %></p>
+  <p class="library-code">Library code: <%= @check_out.book_copy.library_code %></p>
+
 
   <h4 class="burrower">Borrower</h4>
-  <p class="name"><%= @check_out.user.last_name %>, <%= @check_out.user.first_name %></p> 
+  <p class="name"><%= @check_out.user.last_name %>, <%= @check_out.user.first_name %></p>
   <p class="email">Email: <%= @check_out.user.email %></p>
   <p class="phone">Phone: <%= @check_out.user.phone_number %></p>
 
-  <h4>Transaction</h4> 
-  <p>checked out on: <strong><%= @check_out.checkout_date.to_s %></strong></p> 
+  <h4>Transaction</h4>
+  <p>Checked out on: <strong><%= @check_out.checkout_date.strftime("%A, %b %e, %Y") %></strong></p>
 
   <% if @check_out.return_date %>
-    <p>Returned on: <strong><%= @check_out.return_date.to_s %></strong></p> 
-    <% if @check_out.fine %>   
+    <p>Due on: <strong><%= @check_out.due_date.strftime("%A, %b %e, %Y") %></strong></p>
+    <p>Returned on: <strong><%= @check_out.return_date.strftime("%A, %b %e, %Y") %></strong></p>
+
+    <% if @check_out.fine %>
       <% if @check_out.fine.settlement_date %>
-      <p>Fine amount settled on <strong><%= @check_out.fine.settlement_date.to_s %></strong></p> 
+      <p>Fine amount settled on <strong><%= @check_out.fine.settlement_date.strftime("%A, %b %e, %Y") %></strong></p>
     <% else %>
-      <p>Outstanding fine of <strong><%= @check_out.fine.amount / 100.0 %></strong></p> 
+      <p>Outstanding fine of <strong><%= number_to_currency( @check_out.fine.amount / 100.0 ) %></strong></p>
     <% end %>
   <% end %>
 
   <% else %>
-    <p>Due on: 
-      <%= @check_out.due_date.to_s %>
+    <p>Due on:
+      <strong>
+      <%= @check_out.due_date.strftime("%A, %b %e, %Y") %>
       <% if DateTime.now.to_time.to_i > @check_out.due_date.to_time.to_i %>
-        (BOOK IS DUE)
+        (This book is overdue; running fine total is <%= number_to_currency( @check_out.get_fine_amount( DateTime.now ) / 100 ) %>)
+      <% end %>
+      </strong>
     </p>
-    <% end %>
   <% end %>
 
-  <ul>
-    <% if !@check_out.return_date %>
-      <li><%= link_to "Return Book", check_out_check_in_path( @check_out ), method: :patch %></li> 
-    
-    <% if DateTime.now.to_time.to_i < @check_out.due_date.to_time.to_i && @check_out.renewal > 0 %>
-      <li><%= link_to "Renew Book", check_out_renew_path( @check_out ), method: :patch %></li> 
-    <% end %>
+  <% if current_user && ( current_user.role == 'admin' || current_user.role == 'volunteer' ) %>
+    <ul>
+      <% if !@check_out.return_date %>
+        <li><%= link_to "Return Book", check_out_check_in_path( @check_out ), method: :patch %></li>
 
-    <% elsif @check_out.fine && !@check_out.fine.settlement_date %>
-      <li><%= link_to "Settle Fine", check_out_fine_path( @check_out, @check_out.fine ), method: :patch %></li>
-    <% end %>
-  </ul>
+        <% if DateTime.now.to_time.to_i < @check_out.due_date.to_time.to_i && @check_out.renewal > 0 %>
+          <% if can_renew?( @check_out.book ) %>
+            <li><%= link_to "Renew Book", check_out_renew_path( @check_out ), method: :patch %></li>
+          <% elsif %>
+            <li>There are holds placed on this book; it cannot be renewed.</li>
+          <% end %>
+        <% end %>
+
+      <% elsif @check_out.fine && !@check_out.fine.settlement_date %>
+        <li><%= link_to "Settle Fine", check_out_fine_path( @check_out, @check_out.fine ), method: :patch %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
 </div><!-- end .checked-book -->
