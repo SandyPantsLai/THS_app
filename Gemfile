@@ -17,6 +17,9 @@ gem 'whenever', :require => false
 gem 'better_errors'
 gem 'sorcery'
 gem 'kaminari'
+gem 'dragonfly'
+gem 'qrio'
+gem 'rqrcode_png'
 
 group :development, :test do
   gem 'byebug'

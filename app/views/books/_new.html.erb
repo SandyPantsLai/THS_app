@@ -8,8 +8,8 @@
   </div>
 
   <div class="field">
-    <%= book.label :subject %><br />
-    <%= book.text_area :subject %>
+    <%= book.label :subject_id %><br />
+    <%= book.collection_select :subject_id, Subject.all, :id, :name, include_blank: true %>
   </div>
 
   <div class="field">
@@ -36,17 +36,17 @@
     <%= book.label :description %><br />
     <%= book.text_field :description %>
   </div>
-  
+
   <div class="field">
     <%= book.label :cover_image %><br />
     <%= book.text_field :cover_image %>
   </div>
-  
+
   <div class="field">
     <%= book.label :isbn %><br />
     <%= book.text_field :isbn %>
   </div>
-  
+
   <div class="submit"><%= book.submit %></div>
-  
+
 <% end %>
