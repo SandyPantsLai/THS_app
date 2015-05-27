@@ -2,3 +2,7 @@
 #wrapper {
 	@include outer-container;
 }
+.main-content {
+	padding: $main-content-padding;
+	margin: rem(60) 0;
+}
