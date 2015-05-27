@@ -3,4 +3,9 @@ class UserMailerPreview < ActionMailer::Preview
   def hold_pickup_email_preview
     UserMailer.hold_pickup_email(Hold.where("pickup_expiry IS NOT NULL").first)
   end
+
+  def overdue_email_preview
+    date = 1.day.ago
+    UserMailer.overdue_email( CheckOut.where( return_date: nil, due_date: ( date.beginning_of_day..date.end_of_day ) ).first )
+  end
 end
