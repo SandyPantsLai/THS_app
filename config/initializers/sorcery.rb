@@ -1,4 +1,4 @@
-Rails.application.config.sorcery.submodules = [:activity_logging, :remember_me, :session_timeout, :user_activation]
+Rails.application.config.sorcery.submodules = [:activity_logging, :remember_me, :session_timeout, :user_activation, :brute_force_protection]
 
 Rails.application.config.sorcery.configure do |config|
   

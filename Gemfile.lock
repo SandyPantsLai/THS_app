@@ -252,10 +252,10 @@ DEPENDENCIES
   favorite_things
   jbuilder (~> 2.0)
   jquery-rails
-  neat
   kaminari
   minitest-rails-capybara
   minitest-reporters
+  neat
   rails (= 4.2.1)
   ransack
   refills
