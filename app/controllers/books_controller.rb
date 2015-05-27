@@ -46,7 +46,25 @@ class BooksController < ApplicationController
 
   def index
     @search = Book.search(params[:q])
+<<<<<<< HEAD
+    @books = @search.result || []
+
+    # @books = []
+    # if params[:search]
+    #   params[:search].split.each do |s|
+    #     @books << Book.where("LOWER(title) LIKE LOWER(?) OR LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)", "%#{s}%", "%#{s}%", "%#{s}%")
+    #   end
+    #   @books.flatten!
+    #   @books.uniq!
+    # else
+    #   @books = Book.all
+    # end
+    # if request.xhr?
+    #   render :partial => "book", :collection => @books
+    # end
+=======
     @books = @search.result.order(:title).page params[:page]
+>>>>>>> 0c322ce466d0c6e8b3915b377215d298012d44b0
   end
 
   def delete
