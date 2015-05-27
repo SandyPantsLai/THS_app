@@ -5,13 +5,11 @@ feature "PlaceHolds" do
     @user1 = create(:user)
     @user2 = create(:user)
     @hold1 = create(:hold, user: @user1)
-    @hold2 = create(:hold, user: @user2)
+    @hold2 = create(:hold, user: @user2, pickup_expiry: Time.now + 2.days)
     @copy1 = create(:book_copy, book: @hold2.book)
     @copy2 = create(:book_copy, book: @hold2.book)
-    @hold2.pickup_expiry = Time.now + 2.days
     @book = create(:book)
     visit login_path
-    page.has_content?("user")
     fill_in "Email", with: @user1.email
     fill_in "Password", with: "4321"
     click_button "Login"

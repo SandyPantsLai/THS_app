@@ -27,7 +27,7 @@
       <% else %>
         <p>You are #<%= queue %> in line.</p>
       <% end %>
-      <%= button_to 'Cancel hold', hold_path(hold), method: :delete %>
+      <%= button_to 'Cancel hold', hold_path(hold), method: :delete, class: "cancel" %>
     </div>
   <% end %>
 </div>

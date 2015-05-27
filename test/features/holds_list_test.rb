@@ -14,7 +14,6 @@ feature "HoldsList" do
 
   scenario "holds index page displays a list of USERS's holds if the user is NOT an admin" do
     visit holds_path
-    page.has_content?("user")
     fill_in "Email", with: @user2.email
     fill_in "Password", with: "4321"
     click_button "Login"
