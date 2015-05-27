@@ -14,7 +14,7 @@ feature "CheckInBook" do
     click_button "Login"
     visit check_out_path(@check_out)
     click_link "Return Book"
-    refute @check_out.return_date == nil
+    refute CheckOut.find(1).return_date == nil
   end
 
   scenario "A normal user cannot check in a book" do
@@ -22,10 +22,17 @@ feature "CheckInBook" do
     fill_in "Password", with: "4321"
     click_button "Login"
     visit check_out_path(@check_out)
-    click_link "Return Book"
-    assert @check_out.return_date == nil
+    assert page.has_no_link? "Return Book"
   end
 
   scenario "If a book is checked in with holds with a null pickup_expiry, the next hold is updated with a pickup_expiry" do
+    @admin = create(:admin)
+    @hold = create(:hold, book: Book.find(@check_out.book_copy.book_id))
+    fill_in "Email", with: @admin.email
+    fill_in "Password", with: "1234"
+    click_button "Login"
+    visit check_out_path(@check_out)
+    click_link "Return Book"
+    refute Hold.first.pickup_expiry == nil
   end
 end

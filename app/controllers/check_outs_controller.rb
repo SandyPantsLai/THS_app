@@ -38,7 +38,7 @@ class CheckOutsController < ApplicationController
   end
 
   def check_in
-    check_out = @check_out
+    check_out = CheckOut.find( params[ :id ] )
     attributes = {}
 
     attributes[ :return_date ] = DateTime.now
@@ -50,11 +50,6 @@ class CheckOutsController < ApplicationController
     end
 
     update_check_out( check_out, attributes )
-
-    if check_out.return_date
-      hold = Hold.where(book_id: BookCopy.find(check_out.book_copy_id).book_id).where("pickup_expiry IS NOT NULL").first
-      hold.pickup_expiry = Time.now + 7.days if hold
-    end
   end
 
   def renew
@@ -81,15 +76,22 @@ class CheckOutsController < ApplicationController
 
   def update_check_out( check_out, attributes )
     if check_out.update( attributes )
+      update_hold(check_out)
+
       if attributes[ :fine ]
-        flash[:notice] = "Success!"
         redirect_to check_out_path( check_out )
       else
-        flash[:alert] = "The action could not be performed do to #{@check_out.errors.full_messages}"
         redirect_to check_outs_path
       end
     else
       render check_out_path( check_out )
+    end
+  end
+
+  def update_hold(check_out)
+    if check_out.return_date
+      hold = Hold.where(book_id: check_out.book_copy.book_id).where("pickup_expiry IS NULL").first
+      hold.update(pickup_expiry: Time.now + 7.days) if hold
     end
   end
 

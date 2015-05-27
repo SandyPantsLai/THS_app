@@ -28,8 +28,7 @@ feature "CheckOutBook" do
     visit new_check_out_path
     fill_in "User Id", with: @user.id
     fill_in "Book Copy Id", with: @copy.id
-    click_button "Check Out Book"
-    assert page.has_text?("Please see an admin to check out a book.")
+    assert page.has_no_button? "Check Out Book"
   end
 
   scenario "A book holds cannot be checked out unless current patron has a hold ready for pickup" do
