@@ -6,9 +6,13 @@
 
 	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
 
-		<h3 class="title"><%= @book.title %></h3>
-		<P class="count"><%= @book.page_count %></p>
-		<p class="description"><%= @book.description %></p>
+		<h3><%= @book.title %></h3>
+		<P><strong>Pages:</strong> <%= @book.page_count %></p>
+		<p><strong>Author:</strong> <%= @book.first_name %> <%= @book.last_name %></p>
+		<p><strong>Subject:</strong> <%= @book.subject.name %></p>
+		<div class="book-description">
+			<p><%= @book.description %></p>
+		</div>
 		<p class="copies"><%= @copies.count%> copies,  <%= @copies_available  %> available to checkout. (<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
 
 	<% unless @due_dates == [] %>
