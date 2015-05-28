@@ -21,6 +21,7 @@ gem 'kaminari'
 gem 'dragonfly'
 gem 'qrio'
 gem 'rqrcode_png'
+gem 'googlebooks', '~> 0.0.9'
 
 group :development, :test do
   gem 'byebug'
