@@ -22,4 +22,25 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Reset Your THS Library Password")
   end
+
+  helper :application
+  default from: "Toronto Hermetic Society Library Services <god@ths.com>",
+          return_path: 'god@ths.com',
+          sender: 'god@ths.com'
+
+
+  def hold_pickup_email(hold)
+    @user = User.find(hold.user_id)
+    @hold = hold
+    @title = Book.find(@hold.book_id).title
+    mail(to: @user.email, subject: 'Your hold is available for pickup')
+  end
+
+  def overdue_email( check_out )
+    @user = checkout.user
+    @check_out = check_out
+    @book = checkout.book_copy.book
+    mail( to: @user.email, subject: "#{@book.title} is now overdue" )
+  end
+
 end

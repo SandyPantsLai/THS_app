@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'books#index'
+  
+  root 'user_sessions#new'
+  
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
   end
@@ -12,9 +14,10 @@ Rails.application.routes.draw do
   end
 
   resources :holds, only: [:index, :destroy]
-  get 'myholds' => 'holds#my_holds'
 
   resources :check_outs
+
+  # User associated routes
 
   resources :users
   resources :user_sessions, only: [:new, :create, :destroy]

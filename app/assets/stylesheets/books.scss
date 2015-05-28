@@ -1,22 +1,21 @@
 // catalogue
-
 .catalogue { 
 	@include outer-container;
-	margin-top: $nav-height;
+	padding: 0 rem(20); 
 }
-
+.book-card {
+	border-top: $base-border;
+	margin: rem(20) 0;
+	padding: rem(30) 0 rem(20) 0;
+}
 // book
 
 .book {} 
-h2.title {}
-p.author {}
-p.pages
-p.description {}
-p.subject {}
-p.count {}
-p.copies {}
-
-// search
-
-.catalogue-search {} 
-.submit {} 
+.book-description {
+	padding-top: rem(20);
+}
+.book-links {
+	border-top: $base-border;
+	margin: rem(30) 0;
+	padding: rem(30) 0 rem(20) 0;
+}

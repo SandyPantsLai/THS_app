@@ -1,32 +1,10 @@
 // this file handles the structure of the website
 #wrapper {
 	@include outer-container;
-	padding-top: $nav-height;
 }
-header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-color: $base-font-color;
-	color: $base-background-color;
-	text-align: center;
-	overflow: hidden;
-	& > h1 {
-		margin: 0;
-		height: $nav-height;
-		line-height: $nav-height;
-	}
+.main-content {
+	padding: $main-content-padding;
+	margin-bottom: rem(100);
 }
-ul.main-nav li:hover > ul {
-    visibility:visible;
-    opacity:1;
-}
-li { 
-	float: left; 
-	margin-left: 10px;
-	display: block;
-}
-p {}
-.submit {} // this maybe handeled in _forms.scss
-.alert {}
+.left { float: left;}
+.right { float: right;}
