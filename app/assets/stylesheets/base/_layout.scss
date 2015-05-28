@@ -1,38 +1,15 @@
 // this file handles the structure of the website
-
 #wrapper {
 	@include outer-container;
-	padding-top: $nav-height;
 }
-header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background-color: $base-font-color;
-	color: $base-background-color;
-	text-align: center;
-	overflow: hidden;
-	& > h1 {
-		margin: 0;
-		height: $nav-height;
-		line-height: $nav-height;
-	}
+.main-content {
+	padding: $main-content-padding;
+	margin-bottom: rem(100);
 }
-h1 { font-size: rem(32);}
-h2 { font-size: rem(26);}
-h3 { font-size: rem(22);}
-h4 {}
-.main-nav {
-	margin-top: rem(10);
-	height: $nav-height;
-	width: 100%;
+.left { float: left;}
+.right { float: right;}
+.qrscanner {
+  width: 200px;
+  height: 200px;
+  background-color: red;
 }
-li { 
-	float: left; 
-	margin-left: 10px;
-	display: block;
-}
-p {}
-.submit {} // this maybe handeled in _forms.scss
-.alert {}

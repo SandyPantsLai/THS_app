@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150528035052) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "role"
@@ -90,8 +90,12 @@ ActiveRecord::Schema.define(version: 20150528035052) do
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
     t.string   "stripe_id"
+    t.string   "activation_state"
+    t.string   "activation_token"
+    t.datetime "activation_token_expires_at"
   end
 
+  add_index "users", ["activation_token"], name: "index_users_on_activation_token"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"

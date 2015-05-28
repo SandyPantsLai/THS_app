@@ -6,36 +6,22 @@
 		<meta name="viewport" content="initial-scale-1.0,width=device-width">
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	  </script>
+	  <script src="http://wolframhempel.github.io/photobooth-js/photobooth_min.js"></script>
 	  <%= csrf_meta_tags %>
 	</head>
 
 	<body>
 		<div id="wrapper">
 
-			<header><h1>Hermetic Library Awesome</h1></header>
+			<%= render 'users/main_nav' %>
 
-			<nav class="main-nav">
-				<ul>
-				  <% if current_user == nil %>
-						<li><%= link_to "Login", :login %></li>
-				  <% elsif current_user.role == 'admin' %>
-				  	<li><%= link_to "Admin Panel", user_path(current_user.id) %></li>
-				   	<li><%= link_to "Logout", :logout, method: :post %></li>
-				  <% else current_user.role == 'user' %>
-				  	<li><%= link_to "User Profile", user_path(current_user.id) %></li>
-				   	<li><%= link_to "Logout", :logout, method: :post %></li>
-				  <% end %>
-				  </ul>
-			</nav>
+  		<div class="main-content">
 
-			<div class="alert">
-			  <p id="notice"><%= flash[:notice] %></p>
-			  <p id="alert"><%= flash[:alert] %></p>
-			</div>
+  			<%= yield %>
 
-  		<%= yield %>
-
-			</div><!-- end #main-content -->
+			</div><!-- end .main-content -->
 		</div><!-- end #wrapper -->
 	</body>
 </html>
