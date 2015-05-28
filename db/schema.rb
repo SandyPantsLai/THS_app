@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 20150528035052) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address"
-    t.string   "stripe_id"
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
+    t.string   "stripe_id"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"

@@ -214,14 +214,11 @@ GEM
       i18n
       polyamorous (~> 1.2)
     rdoc (4.2.0)
-<<<<<<< HEAD
+    refills (0.1.0)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-=======
-    refills (0.1.0)
->>>>>>> upstream/master
     rqrcode (0.4.2)
     rqrcode_png (0.1.5)
       chunky_png
