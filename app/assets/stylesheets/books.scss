@@ -12,11 +12,8 @@
 .book-description {
 	padding-top: rem(20);
 }
-p.subject {}
-p.count {}
-p.copies {}
-
-// search
-
-.catalogue-search {} 
-.submit {} 
+.book-links {
+	border-top: $base-border;
+	margin: rem(30) 0;
+	padding: rem(30) 0 rem(20) 0;
+}
