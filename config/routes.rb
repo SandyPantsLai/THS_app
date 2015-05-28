@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :check_outs
 
+  resources :google_books
+
   # User associated routes
 
   resources :users
