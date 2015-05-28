@@ -1,22 +1,25 @@
+// Structure
+$main-content-padding: rem(20);
+
 // Typography
-$base-font-family: $helvetica;
-$heading-font-family: $base-font-family;
+$base-font-family: Avenir, Helvetica;
+$heading-font-family: Avenir, Helvetica;
 
 // Font Sizes
 $base-font-size: 1em;
 
 // Line height
-$base-line-height: 1.5;
+$base-line-height: 1.4;
 $heading-line-height: 1.2;
 
 // Other Sizes
 $base-border-radius: 3px;
 $base-spacing: $base-line-height * 1em;
-$small-spacing: $base-spacing / 2;
+$small-spacing: $base-spacing / 3;
 $base-z-index: 0;
 
 // Colors
-$blue: #477dca;
+$blue: #000033;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
@@ -28,12 +31,12 @@ $action-color: $blue;
 
 // Border
 $base-border-color: $light-gray;
-$base-border: 1px solid $base-border-color;
+$base-border: 1px dotted $light-gray;
 
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
 
 // Navigation
-
 $nav-height: 50px;
+

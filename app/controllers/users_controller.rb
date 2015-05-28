@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	# this controller handle user sign ups
-	 
+
   def index
     @users = User.all
   end
@@ -33,6 +33,18 @@ class UsersController < ApplicationController
 
 	def show
     @user = User.find(params[:id])
+
+    check_outs = CheckOut.where( user: @user )
+
+    @current_check_outs = check_outs.where( return_date: nil ).order( :checkout_date )
+    @past_check_outs = check_outs.where( return_date: !nil ).order( :return_date )
+
+    @holds = Hold.where( user: @user )
+
+    @total_fine = check_outs.inject( 0 ) do | sum, check_out |
+      sum += ( !check_out.fine.nil? && check_out.fine.settlement_date.nil? ) ? check_out.fine.amount : 0
+      sum
+    end
   end
 
 	def edit

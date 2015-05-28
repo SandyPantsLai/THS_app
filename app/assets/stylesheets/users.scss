@@ -1,13 +1,16 @@
+/* this is being handled by Refills
 nav.admin {
 	height: $nav-height;
 }
 nav.user {
 	height: $nav-height;
 }
+*/
+
 .user {
-	margin-top: $nav-height;
+	@include outer-container;
 } // wrapper
-ul.user-info {
+.user ul.user-info {
 	margin-top: 30px;
 }
 ul.user-info li {
@@ -17,3 +20,4 @@ ul.user-info li {
 li.role {}
 li.email {}
 li.phone-number {}
+

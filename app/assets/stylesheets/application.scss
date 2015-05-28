@@ -8,9 +8,9 @@
 
 // views
 
+@import "refills";
+@import "users";
 @import "books";
-@import "check_outs";
 @import "fines";
 @import "holds";
 @import "user_sessions";
-@import "users";
