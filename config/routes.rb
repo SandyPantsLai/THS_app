@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :holds, only: [:index, :destroy]
+  get 'myholds' => 'holds#my_holds'
 
   resources :check_outs
 
