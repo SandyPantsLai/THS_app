@@ -276,11 +276,7 @@ header.navigation {
   }
 
   .sign-up {
-<<<<<<< HEAD
-    @include button(flat, $action-color);
-=======
     @include button(flat, $dark-gray);
->>>>>>> 2a95cd66163bacd112109cd29ae9ba3cc3acae0d
     display: inline;
     float: right;
     font-size: 0.8em;
