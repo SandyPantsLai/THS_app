@@ -1,9 +1,5 @@
 class CheckOutsController < ApplicationController
 
-  helper_method :can_renew?
-  helper_method :get_fine_amount
-
-
   def index
     if ( params[ :user_id ] )
       if ( params[ :due_only ] )
@@ -46,7 +42,7 @@ class CheckOutsController < ApplicationController
     attributes = {}
 
     attributes[ :return_date ] = DateTime.now
-    fine_amount = get_fine_amount( check_out, attributes[ :return_date ] )
+    fine_amount = check_out.get_fine_amount( attributes[ :return_date ] )
 
     if fine_amount > 0
       attributes[ :fine ] = Fine.new
@@ -54,11 +50,6 @@ class CheckOutsController < ApplicationController
     end
 
     update_check_out( check_out, attributes )
-
-    if check_out.return_date
-      hold = Hold.where(book_id: BookCopy.find(check_out.book_copy_id).book_id).where("pickup_expiry IS NOT NULL").first
-      hold.pickup_expiry = Time.now + 7.days if hold
-    end
   end
 
   def renew
@@ -74,38 +65,28 @@ class CheckOutsController < ApplicationController
   end
 
   private
-  def can_renew?( book )
-    hold_count = Hold.where( book: book ).count
-    book_copies = BookCopy.where( book: book )
-
-    checked_out_count = book_copies.inject( 0 ) do |book_copy_count, book_copy|
-      book_copy_count += 1 if CheckOut.where( { book_copy: book_copy, return_date: nil } ).any?
-      book_copy_count
-    end
-
-    hold_count <= book_copies.count - checked_out_count
-  end
-
   def check_out_params
     params.require( :check_out ).permit( :user_id, :book_copy_id )
   end
 
-  def get_fine_amount( check_out, return_date )
-    days_due =  ( return_date.to_time.to_i - check_out.due_date.to_time.to_i ) / Fine::DAYS_IN_SECONDS
-    days_due <= 0 ? 0 : ( days_due * Fine::DAILY_FINE_AMOUNT )
-  end
-
   def update_check_out( check_out, attributes )
     if check_out.update( attributes )
+      update_hold(check_out)
+
       if attributes[ :fine ]
-        flash[:notice] = "Success!"
         redirect_to check_out_path( check_out )
       else
-        flash[:alert] = "The action could not be performed do to #{@check_out.errors.full_messages}"
         redirect_to check_outs_path
       end
     else
       render check_out_path( check_out )
+    end
+  end
+
+  def update_hold(check_out)
+    if check_out.return_date
+      hold = Hold.where(book_id: check_out.book_copy.book_id).where("pickup_expiry IS NULL").first
+      hold.update(pickup_expiry: Time.now + 7.days) if hold
     end
   end
 

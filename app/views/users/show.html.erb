@@ -5,10 +5,36 @@
 	<li class="phone-number"><%= user.phone_number %></li>
 </ul>
 
-<nav class="user-nav">
-	<ul>
-		<li><%= link_to "Check Outs", check_outs_path( user_id: @user.id, due_only: "true" ) %></li>
-		<li><%= link_to "Holds", myholds_path( user_id: @user.id ) %></li>
-		<li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
-	</ul>
-</nav>
+<section>
+	<h3>Fines</h3>
+	<p>Total fine is <%= number_to_currency( @total_fine / 100.0 ) %></p>
+</section>
+
+<section>
+	<h3>Holds</h3>
+	<%= render partial: '/holds/holds', locals: {  user_holds: @holds } %>
+</section>
+
+<section>
+	<h3>Current Check Outs</h3>
+
+	<% if @current_check_outs.any? %>
+		<% @current_check_outs.each do |check_out| %>
+			<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
+		<% end %>
+	<% elsif %>
+		No current check outs for this user
+	<% end %>
+</section>
+
+<section>
+	<h3>Past Check Outs</h3>
+
+	<% if @past_check_outs.any? %>
+		<% @past_check_outs.each do |check_out| %>
+			<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
+		<% end %>
+	<% elsif %>
+		No past check outs for this user
+	<% end %>
+</section>
