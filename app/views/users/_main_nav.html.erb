@@ -1,11 +1,13 @@
+<!-- enjoy the noise x -->
 <header class="navigation" role="banner">
 	<div class="navigation-wrapper">
-	  <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+	  <a href="javascript:void(0)" class="navigation-menu-button right" id="js-mobile-menu">Menu</a>
+	  <a href="" class="navigation-menu-button left" id="js-mobile-menu">Hermetic Library Awesome</a>
 	  <nav role="navigation">
 	    <ul id="js-navigation-menu" class="navigation-menu show">
-					<li class="nav-link title"><%= link_to 'Hermetic Library Awesome', root_url %></li>
 	    	<% if current_user == nil %> 
 	    	<% elsif current_user.role == 'admin' %>	
+	        <li class="nav-link title"><%= link_to 'Hermetic Library Awesome', root_url %></li>
 	        <li class="nav-link more"><a href="javascript:void(0)">Library</a>
 	        	<ul class="submenu">
 			        <li><%= link_to "Catalogue", books_path %></li>
@@ -43,8 +45,8 @@
 				<% end %>
 	    </ul>
 	  </nav>
-	  <div class="navigation-tools">
-	    <!--<div class="search-bar">
+	  <!--<div class="navigation-tools">
+	    <div class="search-bar">
 	      <form role="search">
 	        <input type="search" placeholder="Enter Search" />
 	        <button type="submit">
@@ -52,12 +54,14 @@
 	        </button>
 	      </form>
 	    </div>-->
-	    <% if current_user == nil %>
-	    	<%= link_to "Login", :login, :method => :get, class: "sign-up" %> 
-	    <% elsif current_user.role == 'admin' %>	
-	    	<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
-	    <% else current_user.role == 'user' %>
-				<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
+	    <% if false %>
+		    <% if current_user == nil %>
+		    	<%= link_to "Login", :login, :method => :get, class: "sign-up" %> 
+		    <% elsif current_user.role == 'admin' %>	
+		    	<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
+		    <% else current_user.role == 'user' %>
+					<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
+				<% end %>
 			<% end %>
 	  </div>
 	</div>

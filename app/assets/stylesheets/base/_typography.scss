@@ -7,11 +7,6 @@ body {
   line-height: $base-line-height;
 }
 
-h1 { font-size: rem(32);}
-h2 { font-size: rem(26);}
-h3 { font-size: rem(22);}
-h4 { font-size: rem(16);}
-
 h1,
 h2,
 h3,
@@ -23,6 +18,11 @@ h6 {
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
 }
+
+h1 { font-size: rem(32);}
+h2 { font-size: rem(26);}
+h3 { font-size: rem(22);}
+h4 { font-size: rem(16);}
 
 p {
   margin: 0 0 $small-spacing;
