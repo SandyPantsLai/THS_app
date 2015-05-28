@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  
   root 'user_sessions#new'
+  
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
   end

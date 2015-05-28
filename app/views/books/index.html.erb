@@ -1,10 +1,24 @@
 <div class="catalogue">
 
 	<h2>Catalogue</h2>
+
 	<%= render 'search' %>
-  <h1><small><%= page_entries_info @books %></small></h1>
+  
+  <p><%= page_entries_info @books %></p>
+	
+	<% @books.each do |book| %>
 
-	<%= render @books %>
+		<div class="book-card">
+				
+			<h3 class="title"><%= link_to book.title, "/books/#{book.id}" %></h3>
+			<p class="author">Author: <%= book.first_name %> <%= book.last_name %></p>
+			<p class="description">Description: <%= book.description %></p>
+			<p class="subject">Subject: <%= book.subject.name %></p>
+			
+		</div>
+	
+	<% end %>
 
-<%= paginate @books %>
+	<%= paginate @books %>
+
 </div><!-- end .catalogue -->

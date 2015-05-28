@@ -1,15 +1,14 @@
 // catalogue
 
-.catalogue {
-
+.catalogue {}
+.book-card {
+	border-top: $base-border;
 }
-
 // book
 
 .book {
 	margin: rem(20) 0;
 	padding: rem(20) 0;
-	border-bottom: $base-border;
 } 
 h2.title {}
 p.author {}
