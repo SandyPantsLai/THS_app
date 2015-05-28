@@ -8,7 +8,7 @@ nav.user {
 */
 
 .user {
-	margin-top: $nav-height;
+	@include outer-container;
 } // wrapper
 .user ul.user-info {
 	margin-top: 30px;

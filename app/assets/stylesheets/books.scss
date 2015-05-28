@@ -1,6 +1,8 @@
 // catalogue
-
-.catalogue {}
+.catalogue { 
+	@include outer-container;
+	padding: 0 rem(20); 
+}
 .book-card {
 	border-top: $base-border;
 	margin: rem(20) 0;
