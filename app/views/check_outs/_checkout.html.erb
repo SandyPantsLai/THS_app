@@ -14,4 +14,14 @@
 
   <div class="submit"><%= f.submit "Check Out Book" %></div>
 
+  <div class="qrscanner" style="width: 200px, height:200px, background-color:red"></div>
+<script type="text/javascript">
+
+$('.qrscanner').photobooth().on("image",function( event, dataUrl ){
+  $( "#gallery" ).append( '<img src="' + dataUrl + '" >');
+});
+
+$( '.qrscanner' ).photobooth();
+</script>
+
 <% end %>
