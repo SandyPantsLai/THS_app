@@ -10,8 +10,6 @@ class ChargesController < ApplicationController
 
   def create
     # Get the credit card details submitted by the form
-    Stripe.api_key = "sk_test_gTH1VjVzQY3iFpr10fYocO0L"
-
     @amount = 1000
 
     # Create a Customer
@@ -23,7 +21,6 @@ class ChargesController < ApplicationController
 
     # Save the customer ID in your database so you can use it later
     current_user.update(stripe_id: customer.id)
-    binding.pry
     # Charge the Customer (no card info is stored, card is charged using token)
     charge = Stripe::Charge.create(
           :customer => current_user.stripe_id,
