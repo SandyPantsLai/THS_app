@@ -201,6 +201,7 @@ GEM
       i18n
       polyamorous (~> 1.2)
     rdoc (4.2.0)
+    refills (0.1.0)
     rqrcode (0.4.2)
     rqrcode_png (0.1.5)
       chunky_png
@@ -271,6 +272,7 @@ DEPENDENCIES
   qrio
   rails (= 4.2.1)
   ransack
+  refills
   rqrcode_png
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
