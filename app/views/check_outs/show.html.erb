@@ -2,7 +2,7 @@
 
   <h2>Checked Out Books</h2>
 
-  <%= render 'checked_book' %>
+  <%= render partial: 'checked_book', locals: { check_out: @check_out } %>
 
   <p><%= link_to "Back to Check Out Index", check_outs_path %></p>
 </div>
