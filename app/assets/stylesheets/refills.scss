@@ -29,7 +29,6 @@ header.navigation {
     @include outer-container;
     position: relative;
     z-index: 9999;
-    margin-bottom: rem(10);
   }
 
   .logo {
@@ -100,6 +99,7 @@ header.navigation {
   }
 
   // The nav items
+
   .title { 
     padding-left: $navigation-padding;
   }
