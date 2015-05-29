@@ -41,10 +41,6 @@ User.create!(
 	User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.phone_number, password: '4321', password_confirmation: '4321', role: 'user')
 end
 
-100.times do
-  Book.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, title: Faker::Lorem.sentence.capitalize, published: rand(1900..2015), publisher: Faker::Company.name, page_count: rand(50..2000), price: rand(5..150), description: Faker::Lorem.paragraph, subject_id: rand(1..10), cover_image: Faker::Avatar.image, isbn: rand(1000000000..9999999999999))
-end
-
 300.times do
   BookCopy.create(book_id: rand(2..99))
 end
