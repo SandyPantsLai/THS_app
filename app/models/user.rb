@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
 
-  has_many :burrowed_books, through: :checkout, class_name: 'book_copy' 
-	has_many :held_books, through: :checkout, class_name: 'book' 
-	has_many :fines, through: :checkout 
+  has_many :burrowed_books, through: :checkout, class_name: 'book_copy'
+	has_many :held_books, through: :checkout, class_name: 'book'
+	has_many :fines, through: :checkout
+  has_many :member_fees
 
 end
