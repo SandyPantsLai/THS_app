@@ -1,12 +1,11 @@
-<!-- Lucas can you display this as a horizontal list or table? -->
 <tr class="transaction-item">
   <% @transactions.each do |t| %>
-    <% if t.class_name == "member-fee" %>
+    <% if t.class == MemberFee %>
         <td class="member-fee">
           <% if t.amount == 1000 %>
-            <%= created_at.strftime("%A") + " Monthly Membership Fee" %>
+            <%= t.created_at.strftime("%A") + " Monthly Membership Fee" %>
           <% else %>
-            <%= created_at.strftime("%Y") + " Annual Membership Fee" %>
+            <%= t.created_at.strftime("%Y") + " Annual Membership Fee" %>
           <% end %>
         </td>
     <% else %>
