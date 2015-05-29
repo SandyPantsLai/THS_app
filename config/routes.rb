@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'deposits/index'
+
+  get 'deposits/edit'
+
+  get 'deposits/update'
+
+  get 'deposits/destroy'
+
+  get 'deposits/initial_deposit'
+
   root 'user_sessions#new'
 
   resources :check_outs, only: [ :index, :show, :new, :create ] do
