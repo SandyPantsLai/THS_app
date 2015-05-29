@@ -1,3 +1,5 @@
+require 'json'
+
 class ChargesController < ApplicationController
   before_action :require_login
 
@@ -43,5 +45,21 @@ class ChargesController < ApplicationController
     rescue Stripe::CardError => e
       flash[:alert] = e.message
       redirect_to charges_path
+  end
+
+  def show
+    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+  end
+
+  def confirm_refund
+    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+  end
+
+  def refund
+    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @charge.refunds.create
+    render :show
   end
 end

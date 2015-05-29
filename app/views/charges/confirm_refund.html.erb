@@ -1,0 +1,12 @@
+<div class="holds">
+
+  <h2>Refund Confirmation</h2>
+
+  <p>Are you sure you want to refund this transaction?</p>
+  <%= render "transactions/transaction" %>
+  <ul>
+    <li><%= button_to'Confirm Refund', refund_path(@charge_id), method: :post %></li>
+    <li><%= link_to 'Back', charges_path(@charge.id) %></li>
+  </ul>
+
+</div>
