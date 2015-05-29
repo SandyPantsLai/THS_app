@@ -1,6 +1,7 @@
-<%= form_tag(@search_google :method => "get") do %>
+<%= form_tag method: "search_google" do %>
   
-  <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
-  <%= submit_tag "Search", :name => nil %>
+  <%= label_tag(:query, "Google Book Search:") %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
 
 <% end %>

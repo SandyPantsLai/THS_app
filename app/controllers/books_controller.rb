@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit]
 
   def index
+    @books = Book.all
     @search = Book.search(params[:q])
     @books = @search.result.order(:title).page params[:page]
   end
@@ -79,7 +80,7 @@ class BooksController < ApplicationController
         }
       end
     end
-    render "google_results"
+    render "results"
   end
 
   private
