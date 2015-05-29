@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   patch 'check_outs/:id/check_in' => 'check_outs#check_in', as: :check_out_check_in
   patch 'check_outs/:id/renew' => 'check_outs#renew', as: :check_out_renew
 
+  
   resources :books do
     resources :holds, only: [:new, :create]
   end
+
+  post 'books/search_google' => 'books#search_google', as: :book_search_google
 
   resources :holds, only: [:index, :destroy]
   get 'myholds' => 'holds#my_holds'

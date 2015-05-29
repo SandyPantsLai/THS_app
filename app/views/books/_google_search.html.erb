@@ -1,4 +1,4 @@
-<%= form_tag method: "search_google" do %>
+<%= form_tag book_search_google_path method: "post" do %>
   
   <%= label_tag(:query, "Google Book Search:") %>
   <%= text_field_tag(:query) %>

@@ -58,25 +58,27 @@ class BooksController < ApplicationController
 
   def search_google
     if params[:query]
-      query = GGI.escape(params[:query])
+      query = CGI.escape(params[:query])
       @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query)
-      @filtered_results = @results.map do |item|
+      @filtered_results = {}
+      @filtered_results['totalItems']  = @results['totalItems']
+      @filtered_results['volumes'] = @results['items'].map do |item|
         {
           # number of returned volumes from the search
-          totalItems: item ["totalItems"],
+          #totalItems: item ["totalItems"],
           # returned individual item data
           title: item["volumeInfo"]["title"],
-          subtitle: item ["volumeInfo"]["subtitle"],
-          authors: item ["volumeInfo"]["authors"],
-          publisher: item ["volumeInfo"]["publisher"],
-          published_date: item ["volumeInfo"]["publishedDate"],
-          description: item ["volumeInfo"]["description"],
-          page_count: item ["volumeInfo"]["pageCount"],
-          categories: item ["volumeInfo"]["categories"],
-          cover_image: item ["volumeInfo"]["imageLinks"]["thumbnail"],
+          subtitle: item["volumeInfo"]["subtitle"],
+          authors: item["volumeInfo"]["authors"],
+          publisher: item["volumeInfo"]["publisher"],
+          published_date: item["volumeInfo"]["publishedDate"],
+          description: item["volumeInfo"]["description"],
+          page_count: item["volumeInfo"]["pageCount"],
+          categories: item["volumeInfo"]["categories"],
+          cover_image: item["volumeInfo"]["imageLinks"]["thumbnail"],
           #isbn
-          type: item ["volumeInfo"]["industryIdentifiers"]["type"],
-          identifier: item ["volumeInfo"]["industryIdentifiers"]["identifier"]
+          type: item["volumeInfo"]["industryIdentifiers"].map {|f| f["type"]},
+          identifier: item["volumeInfo"]["industryIdentifiers"].map {|e| e["identifier"]}
         }
       end
     end

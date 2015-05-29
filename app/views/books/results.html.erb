@@ -1,7 +1,18 @@
 
-<% @filtered_results.each do |result| %>
+<% @filtered_results["volumes"].each do |result| %>
 
-<% form_for Book.new do |f| %>
+	<%= form_for Book.new do |f| %>
 
-	f.text_field :title, value: result["title"]
+		<%= f.text_field :title, value: result[:title] %>
+		<%= f.text_field :subtitle, value: result[:subtitle] %>
+		<%= f.text_field :authors, value: result[:authors] %>
+		<%= f.text_field :publisher, value: result[:publisher] %>
+		<%= f.text_field :published_date, value: result[:published_date] %>
+		<%= f.text_field :description, value: result[:description] %>
+		<%= f.text_field :type, value: result[:type] %>
+		<%= f.text_field :identifier, value: result[:identifier] %>
+		
+	<% end %>
+
+<% end %>
 
