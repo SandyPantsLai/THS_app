@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527203219) do
+ActiveRecord::Schema.define(version: 20150529170311) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20150527203219) do
     t.datetime "return_date"
   end
 
+  create_table "deposits", force: :cascade do |t|
+    t.integer  "amount"
+    t.integer  "user_id"
+    t.datetime "settlement_date"
+    t.integer  "charge_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "fines", force: :cascade do |t|
     t.integer  "amount"
     t.datetime "settlement_date"
@@ -65,6 +74,15 @@ ActiveRecord::Schema.define(version: 20150527203219) do
     t.datetime "pickup_expiry"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "member_fees", force: :cascade do |t|
+    t.integer  "amount"
+    t.integer  "user_id"
+    t.datetime "settlement_date"
+    t.integer  "charge_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -98,6 +116,9 @@ ActiveRecord::Schema.define(version: 20150527203219) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "stripe_id"
+    t.integer  "current_deposit"
+    t.string   "membership"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"
