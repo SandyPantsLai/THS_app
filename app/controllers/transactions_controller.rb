@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  before_action :require_login
+
   def index
   end
 
@@ -6,5 +8,8 @@ class TransactionsController < ApplicationController
   end
 
   def update
+  end
+
+  def destroy
   end
 end

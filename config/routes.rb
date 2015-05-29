@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
-  
-  get 'transactions/index'
-
-  get 'transactions/edit'
-
-  get 'transactions/update'
 
   root 'user_sessions#new'
-  
+
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
   end
@@ -24,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :check_outs
 
+  resources :transactions, except: [:new, :create, :show]
+
   # User associated routes
 
   resources :users
@@ -38,7 +34,7 @@ Rails.application.routes.draw do
       get :activate
     end
   end
-  
+
   resources :charges
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
