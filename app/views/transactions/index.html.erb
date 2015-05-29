@@ -1,2 +1,13 @@
-<h1>Transactions#index</h1>
-<p>Find me in app/views/transactions/index.html.erb</p>
+<h1>Transactions</h1>
+<div class="transactions">
+  <table id="transactions-table">
+  <tr>
+    <th scope="col">Date</th>
+    <th scope="col">Description</th>
+    <th scope="col">Amount</th>
+    <th scope="col">Paid</th>
+  </tr>
+    <%= render :transaction  %>
+  </table>
+</div>
+

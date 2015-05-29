@@ -1,10 +1,6 @@
 class ChargesController < ApplicationController
   before_action :require_login
 
-  def index
-    #lists a user's payment history or all user history if admin
-  end
-
   def new
     # @payment = Payment.find(params[:payment_id])
     # @charge_for = current_user.fines.sum + current_user.member_fees.sum

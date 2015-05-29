@@ -1,0 +1,19 @@
+<!-- Lucas can you display this as a horizontal list or table? -->
+<tr class="transaction-item">
+  <% @transactions.each do |t| %>
+    <td><%= t.created_at %></td>
+    <td>
+      <% if t.check_out_id >
+        <%= "Fine for " link_to t.check_out.book_copy.book.title %>
+      <% else %>
+        <% if t.amount == 1000 %>
+          <%= created_at.strftime("%A") + " Monthly Membership Fee" %>
+        <% else %>
+          <%= created_at.strftime("%Y") + " Annual Membership Fee" %>
+        <% end %>
+      <% end %>
+    </td>
+    <td><%= t.amount %></td>
+    <td><%= t.settlement_date || link_to "Pay Now", new_charge_path %></td>
+  <% end %>
+</tr>

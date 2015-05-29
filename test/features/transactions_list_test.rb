@@ -14,7 +14,7 @@ feature "TransactionsList" do
     fill_in "Email", with: @user.email
     fill_in "Password", with: "4321"
     click_button "Login"
-    visit charges_path
+    visit transactions_path
   end
 
   #items include fines (overdue and damage/lost), deposit top ups and member fees
@@ -23,6 +23,6 @@ feature "TransactionsList" do
     assert page.has_content?(@member_fee2.amount)
     assert page.has_no_content?(@fine1.amount)
     assert page.has_no_content?(@member_fee2.amount)
-    assert page.has_link?("Pay Amount Owing")
+    assert page.has_link?(new_charge_path)
   end
 end
