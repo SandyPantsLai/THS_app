@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   resources :check_outs
 
+  resources :fines
+
+  resources :member_fees, except: :show
+
   resources :transactions, except: [:new, :create, :show]
 
   # User associated routes
