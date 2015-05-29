@@ -4,6 +4,7 @@ class CreateMemberFees < ActiveRecord::Migration
       t.integer :amount
       t.integer :user_id
       t.datetime :settlement_date
+      t.integer :charge_id
 
       t.timestamps null: false
     end

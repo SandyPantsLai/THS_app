@@ -1,16 +1,7 @@
 <!-- Lucas can you display this as a horizontal list or table? -->
 <tr class="transaction-item">
   <% @transactions.each do |t| %>
-    <td><%= t.class_name == "fine" %></td>
-      <% if t.check_out_id %>
-         <td class="fine">
-          <%= "Fine for " link_to t.check_out.book_copy.book.title %>
-         </td>
-      <% elsif t.class_name =="deposit"%>
-        <td class="deposit">
-          <%= "Deposit Top Up" %>
-        </td>
-      <% else %>
+    <% if t.class_name == "member-fee" %>
         <td class="member-fee">
           <% if t.amount == 1000 %>
             <%= created_at.strftime("%A") + " Monthly Membership Fee" %>
@@ -18,8 +9,24 @@
             <%= created_at.strftime("%Y") + " Annual Membership Fee" %>
           <% end %>
         </td>
-      <% end %>
+    <% else %>
+        <td class="deposit">
+          <%= "Deposit top up to $40" %>
+        </td>
+
+    <% end %>
     <td><%= t.amount %></td>
-    <td><%= t.settlement_date || link_to "Pay Now", new_charge_path %></td>
+    <td><%= t.settlement_date || "UNPAID" %></td>
+    <td>
+      <% if t.settlement_date %>
+        <% if t.charge_id %>
+          <%= link_to "Card", charge_path(t.charge_id) %>
+        <% else %>
+          <%= "Cash" %>
+        <% end %>
+      <% else %>
+        <% link_to "Pay Now", new_charge_path %>
+      <% end %>
+    </td>
   <% end %>
 </tr>
