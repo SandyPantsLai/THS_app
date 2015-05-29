@@ -2,11 +2,8 @@ Rails.application.routes.draw do
 
   root 'user_sessions#new'
 
-<<<<<<< HEAD
   resources :fines, only: [ :index ]
 
-=======
->>>>>>> 72b72aed37913a06f888d02f423f13e9aedf8002
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
   end
@@ -14,15 +11,16 @@ Rails.application.routes.draw do
   patch 'check_outs/:id/check_in' => 'check_outs#check_in', as: :check_out_check_in
   patch 'check_outs/:id/renew' => 'check_outs#renew', as: :check_out_renew
 
+  
   resources :books do
     resources :holds, only: [:new, :create]
   end
 
+  post 'books/search_google' => 'books#search_google', as: :book_search_google
+
   resources :holds, only: [:index, :destroy]
   get 'myholds' => 'holds#my_holds'
 
-<<<<<<< HEAD
-=======
   resources :check_outs
 
   resources :fines
@@ -32,9 +30,8 @@ Rails.application.routes.draw do
   resources :transactions, except: [:new, :create, :show]
 
   resources :deposits
->>>>>>> 72b72aed37913a06f888d02f423f13e9aedf8002
-  # User associated routes
 
+  # User associated routes
   resources :users
   get 'users/:id/transactions' => 'transactions#user_transactions', :as => :user_transactions
   resources :user_sessions, only: [:new, :create, :destroy]
@@ -49,8 +46,6 @@ Rails.application.routes.draw do
     end
   end
 
-<<<<<<< HEAD
-=======
   resources :charges
   get 'confirm_refund' => 'charges#confirm_refund'
   get 'refund' => 'charges#refund'
@@ -108,5 +103,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
->>>>>>> 72b72aed37913a06f888d02f423f13e9aedf8002
+
 end

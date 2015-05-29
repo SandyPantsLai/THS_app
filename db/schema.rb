@@ -92,7 +92,11 @@ ActiveRecord::Schema.define(version: 20150529193724) do
   end
 
   create_table "users", force: :cascade do |t|
+<<<<<<< HEAD
+    t.string   "email",                                       null: false
+=======
     t.string   "email",                                           null: false
+>>>>>>> 9657bbd466997927be771c4edf954977c6ee9d54
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -110,6 +114,12 @@ ActiveRecord::Schema.define(version: 20150529193724) do
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
+    t.integer  "failed_logins_count",             default: 0
+    t.datetime "lock_expires_at"
+    t.string   "unlock_token"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
     t.string   "stripe_id"
     t.integer  "current_deposit"
     t.string   "membership"
@@ -120,5 +130,7 @@ ActiveRecord::Schema.define(version: 20150529193724) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token"
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token"
 
 end

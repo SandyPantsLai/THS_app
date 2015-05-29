@@ -21,6 +21,7 @@ gem 'kaminari'
 gem 'dragonfly'
 gem 'qrio'
 gem 'rqrcode_png'
+gem 'httparty'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :development, :test do

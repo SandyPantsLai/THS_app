@@ -2,6 +2,7 @@ class UserMailer < ActionMailer::Base
   
   default :from => "no-reply@thslibrary.com" # need to change this 
   
+  # user activation email
   def activation_needed_email(user)
     @user = user
     @url  = "http://0.0.0.0:3000/users/#{user.activation_token}/activate"
@@ -16,6 +17,7 @@ class UserMailer < ActionMailer::Base
          :subject => "Your THS Library Account is now Activated")
   end
   
+  # user reset password email
   def reset_password_email(user)
     @user = user
     @url  = "http://0.0.0.0:3000/password_resets/#{user.reset_password_token}/edit"
@@ -28,7 +30,7 @@ class UserMailer < ActionMailer::Base
           return_path: 'god@ths.com',
           sender: 'god@ths.com'
 
-
+  # user hold ready email
   def hold_pickup_email(hold)
     @user = User.find(hold.user_id)
     @hold = hold
@@ -36,6 +38,7 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Your hold is available for pickup')
   end
 
+  #user overdue warning email
   def overdue_email( check_out )
     @user = checkout.user
     @check_out = check_out

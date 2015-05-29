@@ -3,6 +3,7 @@
 	@include outer-container;
 }
 .main-content {
+	@include outer-container;
 	padding: $main-content-padding;
 	margin-bottom: rem(100);
 }
