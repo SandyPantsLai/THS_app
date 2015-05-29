@@ -1,11 +1,15 @@
 <!-- Lucas can you display this as a horizontal list or table? -->
 <tr class="transaction-item">
   <% @transactions.each do |t| %>
-    <td><%= t.created_at %></td>
+    <td><%= t.class_name == "fine" %></td>
       <% if t.check_out_id %>
          <td class="fine">
           <%= "Fine for " link_to t.check_out.book_copy.book.title %>
          </td>
+      <% elsif t.class_name =="deposit"%>
+        <td class="deposit">
+          <%= "Deposit Top Up" %>
+        </td>
       <% else %>
         <td class="member-fee">
           <% if t.amount == 1000 %>
