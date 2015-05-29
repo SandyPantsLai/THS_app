@@ -13,8 +13,8 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 			@user.role = 'user'
 			if @user.save
-        MemberFeesController.new_membership(@user)
-        DepositsController.initial_deposit(@user)
+        MemberFee.new_membership(@user)
+        Deposit.initial_deposit(@user)
 				redirect_to user_url(@user), notice: "User created"
 			else
 				render 'new'

@@ -36,7 +36,7 @@ User.create!(
     password: '4321',
     password_confirmation: '4321',
     role: 'user',
-    current_deposit: 2750;
+    current_deposit: 2750,
 )
 
 10.times do
@@ -44,7 +44,8 @@ User.create!(
 end
 
 MemberFee.create(amount: 10000, user_id: 1, settlement_date: Time.now - 14.days)
-MemberFee.create(amount: 1000, user_id: 3, settlement_date: Time.now - 28.days)
+MemberFee.create(amount: 1000, user_id: 3, settlement_date: Time.now - 58.days, created_at: Time.now-58.days)
+MemberFee.create(amount: 1000, user_id: 3, created_at: Time.now - 28.days)
 
 Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 14.days)
 Deposit.create(amount: 4000, user_id: 3, settlement_date: Time.now - 28.days)

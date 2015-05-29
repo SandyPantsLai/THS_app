@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20150529170311) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                       null: false
+    t.string   "email",                        null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20150529170311) do
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
     t.string   "stripe_id"
-    t.integer  "current_deposit",              default: 4000
+    t.integer  "current_deposit"
     t.string   "membership"
   end
 

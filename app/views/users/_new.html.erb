@@ -34,7 +34,7 @@
 
 	<div class="field">
 		<%= f.label :membership, "How often would you like to pay for your membership?" %><br />
-		<%= f.select :user, :membership, [["$10 per month","monthly"],["$100 per year","annual"] %>
+		<%= f.select :membership, [["$10 per month", "monthly"],["$100 per year","annual"]] %>
 	</div>
 
 	<div class="submit"><%= f.submit "Create User" %></div>

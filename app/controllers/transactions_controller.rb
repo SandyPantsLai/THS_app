@@ -7,6 +7,7 @@ class TransactionsController < ApplicationController
       @transactions = Deposits.all + MemberFees.all
     else
       @transactions = current_user.deposits + current_user.member_fees
+    end
   end
 
   def edit
