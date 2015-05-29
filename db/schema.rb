@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529120740) do
+ActiveRecord::Schema.define(version: 20150529170311) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150529120740) do
     t.datetime "activation_token_expires_at"
     t.string   "stripe_id"
     t.integer  "current_deposit",              default: 4000
+    t.string   "membership"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"

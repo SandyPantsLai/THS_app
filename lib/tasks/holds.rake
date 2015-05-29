@@ -13,13 +13,13 @@ namespace :holds do
 
   desc "Sends an email to users who have holds available for pickup"
 
-  task send_hold_pickup_email: => :environment do
+  task :send_hold_pickup_email => :environment do
 
     date = 7.days.from_now
 
     new_hold_pickups = Hold.where( pickup_expiry: ( date.beginning_of_day..date.end_of_day ) )
 
-    new_hold_pickups do |hold|
+    new_hold_pickups.each do |hold|
       UserMailer.hold_pickup_email(hold)
     end
 

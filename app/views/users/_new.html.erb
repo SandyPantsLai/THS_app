@@ -5,7 +5,7 @@
 	<div class="field">
 		<%= f.label :first_name %><br />
 		<%= f.text_field :first_name %>
-	</div>	
+	</div>
 
 	<div clas="field">
 		<%= f.label :last_name %><br />
@@ -26,10 +26,15 @@
 	   <%= f.label :password %><br />
 	   <%= f.password_field :password %>
 	</div>
-	
+
 	<div class="field">
 	   <%= f.label :password_confirmation %><br />
 	   <%= f.password_field :password_confirmation %>
+	</div>
+
+	<div class="field">
+		<%= f.label :membership, "How often would you like to pay for your membership?" %><br />
+		<%= f.select :user, :membership, [["$10 per month","monthly"],["$100 per year","annual"] %>
 	</div>
 
 	<div class="submit"><%= f.submit "Create User" %></div>

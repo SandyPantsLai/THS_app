@@ -14,7 +14,11 @@
         <td><%= t.created_at.strftime("%b %e, %Y") %></td>
         <% if t.class == MemberFee %>
             <td class="member-fee">
-              <% if t.amount == 1000 %>
+              <% if t.user.membership == "monthly" && t.amount != 1000  %>
+                <%= t.created_at.strftime("%b") + " Initial Monthly Membership Fee - Prorated From Start of Month" %>
+              <% elsif t.user.membership == "annual" && t.amount != 10000 %>
+                <%= t.created_at.strftime("%b") + " Initial Annual Membership Fee - Prorated From Start of Month" %>
+              <% elsif t.amount == 1000 %>
                 <%= t.created_at.strftime("%b") + " Monthly Membership Fee" %>
               <% else %>
                 <%= t.created_at.strftime("%Y") + " Annual Membership Fee" %>

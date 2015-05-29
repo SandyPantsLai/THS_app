@@ -3,27 +3,32 @@
 <%= form_for @user do |f| %>
 
 	<% @user.errors.each do |d| %>
-		<p><%= d %></p> 
+		<p><%= d %></p>
 	<% end %>
-		
+
 	<div class="field">
 		<%= f.label :first_name %><br />
 		<%= f.text_field :first_name %>
-	</div>	
+	</div>
 
-	<div clas="field">
+	<div class="field">
 		<%= f.label :last_name %><br />
 		<%= f.text_field :last_name %>
 	</div>
 
-	<div clas="field">
+	<div class="field">
 		<%= f.label :email %><br />
 		<%= f.email_field :email %>
 	</div>
 
-	<div clas="field">
+	<div class="field">
 		<%= f.label :phone_number %><br />
 		<%= f.telephone_field :phone_number %>
+	</div>
+
+	<div class="field">
+		<%= f.label :membership, "Membership Billing" %>
+		<%= f.select :user, :membership, [["$10 per month","monthly"],["$100 per year","annual"] %>
 	</div>
 
 	<div class="submit"><%= f.submit "Save changes" %></div>
