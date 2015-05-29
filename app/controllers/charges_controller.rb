@@ -60,6 +60,17 @@ class ChargesController < ApplicationController
   def refund
     @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
     @charge.refunds.create
+    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+    @transactions.each do |t|
+      t.update(settlement_date: nil)
+    end
+
+    rescue Stripe::CardError => e
+    rescue Stripe::InvalidRequestError => e
+    rescue Stripe::StripeError => e
+      flash[:alert] = e.message
+      redirect_to charges_path(@charge.id)
+
     render :show
   end
 end
