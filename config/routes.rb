@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   # User associated routes
 
   resources :users
+  get 'users/:id/transactions' => 'transactions#user_transactions', :as => :user_transactions
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :reset_passwords, only: [:new, :create, :update, :edit]
 
@@ -40,6 +41,8 @@ Rails.application.routes.draw do
   end
 
   resources :charges
+  get 'confirm_refund' => 'charges#confirm_refund'
+  get 'refund' => 'charges#refund'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
