@@ -6,12 +6,15 @@
 		<meta name="viewport" content="initial-scale-1.0,width=device-width">
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	  </script>
+	  <script src="http://wolframhempel.github.io/photobooth-js/photobooth_min.js"></script>
 	  <%= csrf_meta_tags %>
 	</head>
 
 	<body>
 		<div id="wrapper">
-			
+
 			<%= render 'users/main_nav' %>
 
   		<div class="main-content">
