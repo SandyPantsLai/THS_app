@@ -1,0 +1,13 @@
+<% if t.settlement_date %>
+  <td><%= t.settlement_date.strftime("%b %e, %Y") %></td>
+  <td>
+    <% if t.charge_id %>
+      <%= link_to "Card", charge_path(t.charge_id) %>
+    <% else %>
+      <%= "Cash" %>
+    <% end %>
+  </td>
+<% else %>
+  <td>UNPAID</td>
+  <td><%= link_to "Pay Owing", new_charge_path, class: "pay-owing" %></td>
+<% end %>
