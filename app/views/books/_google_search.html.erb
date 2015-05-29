@@ -1,0 +1,7 @@
+<%= form_tag book_search_google_path method: "post" do %>
+  
+  <%= label_tag(:query, "Google Book Search:") %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
+
+<% end %>

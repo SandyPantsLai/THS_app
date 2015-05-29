@@ -7,10 +7,10 @@ class UserSessionsController < ApplicationController
 
   def create
     respond_to do |format|
-      if @user = login(params[:email],params[:password],params[:remember])
-        format.html { redirect_back_or_to(:users, :notice => 'Login Successfull') }
+      if @user = login(params[:email], params[:password], params[:remember_me])
+        format.html {redirect_to books_path(:notice => "Login Successful")}
       else
-        format.html { flash.now[:alert] = "Login Failed"; render :action => "new" }
+        format.html {flash.now[:alert] = "E-mail and/or password is incorrect"; render :action => 'new'}
       end
     end
   end

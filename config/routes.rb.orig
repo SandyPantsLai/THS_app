@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  root 'books#index'
 
+  root 'user_sessions#new'
+
+<<<<<<< HEAD
+  resources :fines, only: [ :index ]
+
+=======
+>>>>>>> stripe
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
   end
@@ -15,19 +21,39 @@ Rails.application.routes.draw do
   resources :holds, only: [:index, :destroy]
   get 'myholds' => 'holds#my_holds'
 
+<<<<<<< HEAD
+=======
   resources :check_outs
 
-  resources :users, only: [:new, :create, :edit, :show]
+  resources :fines
 
-  resources :users, only: [:new, :create, :show, :edit, :index]
+  resources :member_fees, except: :show
 
+  resources :transactions, except: [:new, :create, :show]
+
+  resources :deposits
+>>>>>>> stripe
+  # User associated routes
+
+  resources :users
+  get 'users/:id/transactions' => 'transactions#user_transactions', :as => :user_transactions
   resources :user_sessions, only: [:new, :create, :destroy]
+  resources :reset_passwords, only: [:new, :create, :update, :edit]
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
-end
+  resources :users do
+    member do
+      get :activate
+    end
+  end
 
+<<<<<<< HEAD
+=======
+  resources :charges
+  get 'confirm_refund' => 'charges#confirm_refund'
+  get 'refund' => 'charges#refund'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -82,3 +108,5 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+>>>>>>> stripe
+end

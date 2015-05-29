@@ -5,6 +5,7 @@ class CheckOut < ActiveRecord::Base
   has_one :fine
 
   CHECK_OUT_PERIOD = 7
+  MAX_CHECK_OUT = 5
   RENEWAL_COUNT = 1
 
   MODE_RENEW = "renew"

@@ -2,7 +2,13 @@
 
 	<h2>Check Out Book</h2>
 
-	<%= render 'checkout' %>
+  <% if flash[ :error ] %>
+    <div>
+      <%= flash[ :error ] %>
+    </div>
+  <% end %>
+
+  <%= render 'checkout' %>
 
 </div><!-- end .check-out -->
 

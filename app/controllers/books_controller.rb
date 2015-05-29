@@ -2,32 +2,10 @@ class BooksController < ApplicationController
   # this filter requires the user to login before they can create new book
   before_action :require_login, only: [:new, :create, :edit]
 
-  def search_google
-    if params[:query]
-      query = GGI.escape(params[:query])
-      @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query)
-      @filtered_results = @results.map do |item|
-        {
-          # number of returned volumes from the search
-          totalItems: item ["totalItems"]
-          # returned individual item details
-          title: item["volumeInfo"]["title"],
-          subtitle: item ["volumeInfo"]["subtitle"],
-          author: item ["volumeInfo"]["authors"],
-          publisher: item ["volumeInfo"]["publisher"],
-          publishedDate: item ["volumeInfo"]["publishedDate"],
-          description: item ["volumeInfo"]["description"],
-          type: item ["volumeInfo"]["type"],
-          identifier: item ["volumeInfo"]["identifier"],
-          image: item ["volumeInfo"]["imageLinks"]["thumbnail"]
-        }
-      end
-    end
-    render "google_results"
-  end
-
-  def new
-    @book = Book.new
+  def index
+    @books = Book.all
+    @search = Book.search(params[:q])
+    @books = @search.result.order(:title).page params[:page]
   end
 
   def show
@@ -46,17 +24,12 @@ class BooksController < ApplicationController
     @copies_available = @copies.count - @checked_out - Hold.where(book_id: @book.id).where("pickup_expiry IS NOT NULL").count
   end
 
-  def edit
-    @book = Book.find(params[:id])
+  def new
+    @books = Book.new
   end
 
-  def update
+  def edit
     @book = Book.find(params[:id])
-    if @book.update_attributes(book_params)
-      redirect_to book_path(@book)
-    else
-      render :edit
-    end
   end
 
   def create
@@ -68,9 +41,13 @@ class BooksController < ApplicationController
     end
   end
 
-  def index
-    @search = Book.search(params[:q])
-    @books = @search.result.order(:title).page params[:page]
+  def update
+    @book = Book.find(params[:id])
+    if @book.update_attributes(book_params)
+      redirect_to book_path(@book)
+    else
+      render :edit
+    end
   end
 
   def delete
@@ -79,8 +56,39 @@ class BooksController < ApplicationController
     redirect_to books_url
   end
 
-    private
+  def search_google
+    if params[:query]
+      query = CGI.escape(params[:query])
+      @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query)
+      @filtered_results = {}
+      @filtered_results['totalItems']  = @results['totalItems']
+      @filtered_results['volumes'] = @results['items'].map do |item|
+        {
+          # number of returned volumes from the search
+          #totalItems: item ["totalItems"],
+          # returned individual item data
+          title: item["volumeInfo"]["title"],
+          subtitle: item["volumeInfo"]["subtitle"],
+          authors: item["volumeInfo"]["authors"],
+          publisher: item["volumeInfo"]["publisher"],
+          published_date: item["volumeInfo"]["publishedDate"],
+          description: item["volumeInfo"]["description"],
+          page_count: item["volumeInfo"]["pageCount"],
+          categories: item["volumeInfo"]["categories"],
+          cover_image: item["volumeInfo"]["imageLinks"]["thumbnail"],
+          #isbn
+          type: item["volumeInfo"]["industryIdentifiers"].map {|f| f["type"]},
+          identifier: item["volumeInfo"]["industryIdentifiers"].map {|e| e["identifier"]}
+        }
+      end
+    end
+    render "results"
+  end
+
+  private
+  
   def book_params
     params.require(:book).permit(:title, :author, :subject, :published, :publisher, :page_count, :price, :description, :cover_image, :isbn)
   end
+
 end

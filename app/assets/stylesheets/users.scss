@@ -10,6 +10,14 @@ nav.user {
 .user {
 	@include outer-container;
 } // wrapper
+.new-user {
+	@include outer-container;
+	max-width: $small-screen;
+}
+.edit-user {
+	@include outer-container;
+	max-width: $small-screen;
+}
 .user ul.user-info {
 	margin-top: 30px;
 }

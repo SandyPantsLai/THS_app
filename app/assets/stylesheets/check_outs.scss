@@ -1,4 +1,7 @@
-.checkout {}
+.check-out {
+	@include outer-container;
+	max-width: $small-screen;
+}
 
 // checked books
 

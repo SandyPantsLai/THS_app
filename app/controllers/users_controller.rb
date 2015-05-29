@@ -13,7 +13,9 @@ class UsersController < ApplicationController
 			@user = User.new(user_params)
 			@user.role = 'user'
 			if @user.save
-				redirect_to root_url, notice: "User created"
+        Transaction.new_membership(@user)
+        Transaction.initial_deposit(@user)
+				redirect_to user_url(@user), notice: "User created"
 			else
 				render 'new'
 			end
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
     check_outs = CheckOut.where( user: @user )
 
     @current_check_outs = check_outs.where( return_date: nil ).order( :checkout_date )
-    @past_check_outs = check_outs.where( return_date: !nil ).order( :return_date )
+    @past_check_outs = check_outs.where( "return_date IS NOT NULL" ).order( :return_date )
 
     @holds = Hold.where( user: @user )
 
@@ -66,11 +68,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :membership)
   end
 
   def user_update_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :membership)
   end
 
 end

@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 8ba1a0e4908cccf20198791aa8f72acc63575589
+  specs:
+    stripe (1.21.0)
+      json (~> 1.8.1)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -76,6 +84,8 @@ GEM
     debug_inspector (0.0.2)
     did_you_mean (0.9.8)
       interception
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     dragonfly (1.0.10)
       addressable (~> 2.3)
       multi_json (~> 1.0)
@@ -98,6 +108,11 @@ GEM
       quiet_assets
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     interception (0.5)
     jbuilder (2.2.16)
@@ -145,6 +160,7 @@ GEM
     neat (1.7.2)
       bourbon (>= 4.0)
       sass (>= 3.3)
+    netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
@@ -202,6 +218,10 @@ GEM
       polyamorous (~> 1.2)
     rdoc (4.2.0)
     refills (0.1.0)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rqrcode (0.4.2)
     rqrcode_png (0.1.5)
       chunky_png
@@ -240,6 +260,9 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     web-console (2.1.2)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -263,6 +286,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   favorite_things
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
@@ -279,6 +303,7 @@ DEPENDENCIES
   sorcery
   spring
   sqlite3
+  stripe!
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
