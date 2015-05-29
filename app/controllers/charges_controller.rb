@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
 
   def new
     # @payment = Payment.find(params[:payment_id])
-    # @payments = current_user.payments
+    # @charge_for = current_user.fines.sum + current_user.member_fees.sum
   end
 
   def create

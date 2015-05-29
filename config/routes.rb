@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  get 'transactions/index'
+
+  get 'transactions/edit'
+
+  get 'transactions/update'
+
   root 'user_sessions#new'
   
   resources :check_outs, only: [ :index, :show, :new, :create ] do
