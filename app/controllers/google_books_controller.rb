@@ -1,12 +1,5 @@
 class GoogleBooksController < ApplicationController
 
-	# include HTTParty
-	# base_uri 'googleapis.com'
-
-	# def initialize(title, author, publisher, subject, isbn)
-	# 	@items = { query: {intitle: title, inauthor: author, inpublisher: publisher, subject: subject, isbn: isbn} }
-	# end
-
 
 
 endrequire "httparty"
