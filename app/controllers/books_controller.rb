@@ -9,19 +9,20 @@ class BooksController < ApplicationController
       @filtered_results = @results.map do |item|
         {
           # number of returned volumes from the search
-          totalItems: item ["totalItems"]
-          # returned individual item details
+          totalItems: item ["totalItems"],
+          # returned individual item data
           title: item["volumeInfo"]["title"],
           subtitle: item ["volumeInfo"]["subtitle"],
           authors: item ["volumeInfo"]["authors"],
           publisher: item ["volumeInfo"]["publisher"],
           published_date: item ["volumeInfo"]["publishedDate"],
           description: item ["volumeInfo"]["description"],
-          type: item ["volumeInfo"]["type"],
-          identifier: item ["volumeInfo"]["identifier"],
-          image: item ["volumeInfo"]["imageLinks"]["thumbnail"]
-          image: item ["volumeInfo"]["imageLinks"]["thumbnail"]
-          categories
+          page_count: item ["volumeInfo"]["pageCount"],
+          categories: item ["volumeInfo"]["categories"],
+          cover_image: item ["volumeInfo"]["imageLinks"]["thumbnail"],
+          #isbn
+          type: item ["volumeInfo"]["industryIdentifiers"]["type"],
+          identifier: item ["volumeInfo"]["industryIdentifiers"]["identifier"]
         }
       end
     end
