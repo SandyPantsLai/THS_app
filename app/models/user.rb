@@ -10,5 +10,6 @@ class User < ActiveRecord::Base
 	has_many :held_books, through: :checkout, class_name: 'book'
 	has_many :fines, through: :checkout
   has_many :member_fees
+  has_many :deposits
 
 end

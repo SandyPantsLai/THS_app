@@ -13,6 +13,7 @@ feature "TransactionsList" do
     fill_in "Password", with: "4321"
     click_button "Login"
     visit transactions_path
+    binding.pry
   end
 
   #items include fines (overdue and damage/lost), deposit top ups and member fees
