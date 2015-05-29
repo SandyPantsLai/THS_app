@@ -12,7 +12,8 @@ class ChargesController < ApplicationController
 
   def create
     # Get the credit card details submitted by the form
-
+    @transactions = current_user.deposits.where("settlement_date IS NULL") + current_user.member_fees.where("settlement_date IS NULL")
+    @amount = @transactions.sum(&:amount)
     # Create a Stripe Customer and save card info as token for reuse
     if current_user.stripe_id == nil && params[:remember_card] == "on"
       customer = Stripe::Customer.create(
