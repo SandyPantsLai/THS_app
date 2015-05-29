@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     check_outs = CheckOut.where( user: @user )
 
     @current_check_outs = check_outs.where( return_date: nil ).order( :checkout_date )
-    @past_check_outs = check_outs.where( return_date: !nil ).order( :return_date )
+    @past_check_outs = check_outs.where( "return_date IS NOT NULL" ).order( :return_date )
 
     @holds = Hold.where( user: @user )
 
