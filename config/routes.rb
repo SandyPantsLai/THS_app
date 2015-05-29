@@ -2,11 +2,6 @@ Rails.application.routes.draw do
 
   root 'user_sessions#new'
 
-<<<<<<< HEAD
-  resources :fines, only: [ :index ]
-
-=======
->>>>>>> stripe
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
   end
@@ -21,8 +16,6 @@ Rails.application.routes.draw do
   resources :holds, only: [:index, :destroy]
   get 'myholds' => 'holds#my_holds'
 
-<<<<<<< HEAD
-=======
   resources :check_outs
 
   resources :fines
@@ -32,7 +25,6 @@ Rails.application.routes.draw do
   resources :transactions, except: [:new, :create, :show]
 
   resources :deposits
->>>>>>> stripe
   # User associated routes
 
   resources :users
@@ -49,8 +41,6 @@ Rails.application.routes.draw do
     end
   end
 
-<<<<<<< HEAD
-=======
   resources :charges
   get 'confirm_refund' => 'charges#confirm_refund'
   get 'refund' => 'charges#refund'
@@ -108,5 +98,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
->>>>>>> stripe
 end

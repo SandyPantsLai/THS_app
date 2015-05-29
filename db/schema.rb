@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529170311) do
+ActiveRecord::Schema.define(version: 20150529193724) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20150529170311) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                        null: false
+    t.string   "email",                                           null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20150529170311) do
     t.string   "stripe_id"
     t.integer  "current_deposit"
     t.string   "membership"
+    t.string   "status",                       default: "active"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"

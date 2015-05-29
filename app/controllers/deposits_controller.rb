@@ -17,10 +17,4 @@ class DepositsController < ApplicationController
   def destroy
   end
 
-  def initial_deposit(user)
-    Deposit.create(amount:4000, user_id: user.id)
-  end
-
-  def user_deposits
-  end
 end
