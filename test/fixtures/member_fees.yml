@@ -1,0 +1,12 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  amount: 1
+  user_id: 1
+  settlement_date: 2015-05-29 07:26:29
+
+two:
+  amount: 1
+  user_id: 1
+  settlement_date: 2015-05-29 07:26:29
