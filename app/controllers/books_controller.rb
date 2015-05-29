@@ -2,6 +2,30 @@ class BooksController < ApplicationController
   # this filter requires the user to login before they can create new book
   before_action :require_login, only: [:new, :create, :edit]
 
+  def search_google
+    if params[:query]
+      query = GGI.escape(params[:query])
+      @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query)
+      @filtered_results = @results.map do |item|
+        {
+          # number of returned volumes from the search
+          totalItems: item ["totalItems"]
+          # returned individual item details
+          title: item["volumeInfo"]["title"],
+          subtitle: item ["volumeInfo"]["subtitle"],
+          author: item ["volumeInfo"]["authors"],
+          publisher: item ["volumeInfo"]["publisher"],
+          publishedDate: item ["volumeInfo"]["publishedDate"],
+          description: item ["volumeInfo"]["description"],
+          type: item ["volumeInfo"]["type"],
+          identifier: item ["volumeInfo"]["identifier"],
+          image: item ["volumeInfo"]["imageLinks"]["thumbnail"]
+        }
+      end
+    end
+    render "google_results"
+  end
+
   def new
     @book = Book.new
   end
