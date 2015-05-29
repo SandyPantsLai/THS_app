@@ -3,7 +3,9 @@ class ChargesController < ApplicationController
 
   def new
     # @payment = Payment.find(params[:payment_id])
-    # @charge_for = current_user.fines.sum + current_user.member_fees.sum
+    @transactions = current_user.deposits.where("settlement_date IS NULL") + current_user.member_fees.where("settlement_date IS NULL")
+    @amount = @transactions.sum(&:amount)
+    @pay_now = true
   end
 
   def create
@@ -18,17 +20,21 @@ class ChargesController < ApplicationController
 
       charge = Stripe::Charge.create(
           :customer => current_user.stripe_id,
-          :amount => 1000, # in cents
+          :amount => @amount, # in cents
           :currency => "cad",
       )
     else
     # Charge the Customer (no card info is stored, card is charged using token)
       charge = Stripe::Charge.create(
       :source => params[:stripeToken],
-      :amount => 1000, # amount in cents, again
+      :amount => @amount, # amount in cents, again
       :currency => "cad",
       # :description => "Example charge"
     )
+    end
+
+    @transactions.each do |t|
+      t.update(charge_id: charge.id)
     end
 
     flash[:notice] = "Thanks for your payment!"

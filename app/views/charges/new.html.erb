@@ -1,7 +1,8 @@
+<%= render "transactions/transaction" %>
 <%= form_tag charges_path do %>
   <article>
     <label class="amount">
-      <span>Amount: $10.00</span>
+      <span>Total Owing: <%= number_to_currency(sprintf("%.2f", @amount.to_f / 100)) %></span>
     </label>
     <% unless current_user.stripe_id %>
       <%= check_box_tag(:remember_card) %>
@@ -11,8 +12,8 @@
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key=<%= Rails.configuration.stripe[:publishable_key] %>
-    data-amount="1000"
-    data-description="Monthly Membership Fee"
+    data-amount=<%= @amount %>
+    data-description="Total Owing"
     data-allow-remember-me=false>
   </script>
 <% end -%>

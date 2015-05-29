@@ -1,32 +1,33 @@
-<tr class="transaction-item">
+<div class="transactions">
+  <table id="transactions-table">
+  <tr>
+    <th scope="col">Date</th>
+    <th scope="col">Description</th>
+    <th scope="col">Amount</th>
+    <% unless request.original_url == new_charge_url %>
+      <th scope="col">Paid</th>
+      <th scope="col">Payment Method</th>
+    <% end %>
+  </tr>
   <% @transactions.each do |t| %>
-    <% if t.class == MemberFee %>
-        <td class="member-fee">
-          <% if t.amount == 1000 %>
-            <%= t.created_at.strftime("%b") + " Monthly Membership Fee" %>
-          <% else %>
-            <%= t.created_at.strftime("%Y") + " Annual Membership Fee" %>
-          <% end %>
-        </td>
-    <% else %>
-        <td class="deposit">
-          <%= "Deposit top up to $40" %>
-        </td>
-
-    <% end %>
-    <td><%= t.amount %></td>
-    <% if t.settlement_date %>
-      <td><%= t.settlement_date.strftime("%b %e, %Y") %></td>
-      <td>
-        <% if t.charge_id %>
-          <%= link_to "Card", charge_path(t.charge_id) %>
+    <tr class="transaction-item">
+        <td><%= t.created_at.strftime("%b %e, %Y") %></td>
+        <% if t.class == MemberFee %>
+            <td class="member-fee">
+              <% if t.amount == 1000 %>
+                <%= t.created_at.strftime("%b") + " Monthly Membership Fee" %>
+              <% else %>
+                <%= t.created_at.strftime("%Y") + " Annual Membership Fee" %>
+              <% end %>
+            </td>
         <% else %>
-          <%= "Cash" %>
+            <td class="deposit">
+              <%= "Deposit top up to $40" %>
+            </td>
         <% end %>
-      </td>
-    <% else %>
-      <td>UNPAID</td>
-      <td><%= link_to "Pay Now", new_charge_path, class: "pay-now" %></td>
-    <% end %>
+        <td><%= number_to_currency(sprintf("%.2f", t.amount.to_f / 100)) %></td>
+        <%= render partial: 'transactions/payment_info', locals: { t: t } unless request.original_url == new_charge_url %>
+    </tr>
   <% end %>
-</tr>
+  </table>
+</div>
