@@ -59,7 +59,7 @@ class BooksController < ApplicationController
   def search_google
     if params[:query]
       query = CGI.escape(params[:query])
-      @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query)
+      @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query + "&key=AIzaSyDwke6DGsi_jyQJjGiLg0EhKFajYwVwN5E")
       @filtered_results = {}
       @filtered_results['totalItems']  = @results['totalItems']
       @filtered_results['volumes'] = @results['items'].map do |item|
@@ -67,6 +67,7 @@ class BooksController < ApplicationController
           # number of returned volumes from the search
           #totalItems: item ["totalItems"],
           # returned individual item data
+          id: item["id"],
           title: item["volumeInfo"]["title"],
           subtitle: item["volumeInfo"]["subtitle"],
           authors: item["volumeInfo"]["authors"],

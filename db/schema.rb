@@ -92,11 +92,7 @@ ActiveRecord::Schema.define(version: 20150529193724) do
   end
 
   create_table "users", force: :cascade do |t|
-<<<<<<< HEAD
-    t.string   "email",                                       null: false
-=======
-    t.string   "email",                                           null: false
->>>>>>> 9657bbd466997927be771c4edf954977c6ee9d54
+    t.string   "email",                                              null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -123,7 +119,7 @@ ActiveRecord::Schema.define(version: 20150529193724) do
     t.string   "stripe_id"
     t.integer  "current_deposit"
     t.string   "membership"
-    t.string   "status",                       default: "active"
+    t.string   "status",                          default: "active"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"
