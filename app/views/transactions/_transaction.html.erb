@@ -3,7 +3,7 @@
     <% if t.class == MemberFee %>
         <td class="member-fee">
           <% if t.amount == 1000 %>
-            <%= t.created_at.strftime("%A") + " Monthly Membership Fee" %>
+            <%= t.created_at.strftime("%b") + " Monthly Membership Fee" %>
           <% else %>
             <%= t.created_at.strftime("%Y") + " Annual Membership Fee" %>
           <% end %>
@@ -15,17 +15,18 @@
 
     <% end %>
     <td><%= t.amount %></td>
-    <td><%= t.settlement_date || "UNPAID" %></td>
-    <td>
-      <% if t.settlement_date %>
+    <% if t.settlement_date %>
+      <td><%= t.settlement_date.strftime("%b %e, %Y") %></td>
+      <td>
         <% if t.charge_id %>
           <%= link_to "Card", charge_path(t.charge_id) %>
         <% else %>
           <%= "Cash" %>
         <% end %>
-      <% else %>
-        <% link_to "Pay Now", new_charge_path %>
-      <% end %>
-    </td>
+      </td>
+    <% else %>
+      <td>UNPAID</td>
+      <td><%= link_to "Pay Now", new_charge_path, class: "pay-now" %></td>
+    <% end %>
   <% end %>
 </tr>
