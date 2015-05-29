@@ -1,0 +1,7 @@
+
+<% @filtered_results.each do |result| %>
+
+<% form_for Book.new do |f| %>
+
+	f.text_field :title, value: result["title"]
+
