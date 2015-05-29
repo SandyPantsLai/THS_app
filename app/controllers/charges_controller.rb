@@ -36,7 +36,7 @@ class ChargesController < ApplicationController
     end
 
     @transactions.each do |t|
-      t.update(charge_id: charge.id)
+      t.update(charge_id: charge.id, settlement_date: Time.now)
     end
 
     flash[:notice] = "Thanks for your payment!"
