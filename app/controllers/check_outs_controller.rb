@@ -1,5 +1,9 @@
 class CheckOutsController < ApplicationController
 
+  before_action :require_login
+  before_action :check_max_check_out, only: [ :create ]
+
+
   def index
     if ( params[ :user_id ] )
       if ( params[ :due_only ] )
@@ -65,6 +69,15 @@ class CheckOutsController < ApplicationController
   end
 
   private
+  def check_max_check_out
+    user_check_out_count = CheckOut.where( user_id: params[ :check_out ][ :user_id ], return_date: nil ).count
+
+    if user_check_out_count >= CheckOut::MAX_CHECK_OUT
+      flash[ :error ] = "User with id #{params[ :check_out ][ :user_id ]} has already checked out the maximum number of books."
+      redirect_to new_check_out_path
+    end
+  end
+
   def check_out_params
     params.require( :check_out ).permit( :user_id, :book_copy_id )
   end
