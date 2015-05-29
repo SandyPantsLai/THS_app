@@ -13,13 +13,15 @@ class BooksController < ApplicationController
           # returned individual item details
           title: item["volumeInfo"]["title"],
           subtitle: item ["volumeInfo"]["subtitle"],
-          author: item ["volumeInfo"]["authors"],
+          authors: item ["volumeInfo"]["authors"],
           publisher: item ["volumeInfo"]["publisher"],
-          publishedDate: item ["volumeInfo"]["publishedDate"],
+          published_date: item ["volumeInfo"]["publishedDate"],
           description: item ["volumeInfo"]["description"],
           type: item ["volumeInfo"]["type"],
           identifier: item ["volumeInfo"]["identifier"],
           image: item ["volumeInfo"]["imageLinks"]["thumbnail"]
+          image: item ["volumeInfo"]["imageLinks"]["thumbnail"]
+          categories
         }
       end
     end
