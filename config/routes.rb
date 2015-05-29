@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  
+
   root 'user_sessions#new'
-  
+
+  resources :fines, only: [ :index ]
+
   resources :check_outs, only: [ :index, :show, :new, :create ] do
     resources :fines, only: [ :update ]
   end
@@ -15,8 +17,6 @@ Rails.application.routes.draw do
 
   resources :holds, only: [:index, :destroy]
   get 'myholds' => 'holds#my_holds'
-
-  resources :check_outs
 
   # User associated routes
 
@@ -32,5 +32,5 @@ Rails.application.routes.draw do
       get :activate
     end
   end
-  
+
 end
