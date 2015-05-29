@@ -2,7 +2,7 @@ Rails.application.config.sorcery.submodules = [:activity_logging, :remember_me, 
 
 Rails.application.config.sorcery.configure do |config|
   
-  config.session_timeout = 10.minutes
+  config.session_timeout = 500.minutes
   config.session_timeout_from_last_action = false 
   
   config.user_config do |user| 

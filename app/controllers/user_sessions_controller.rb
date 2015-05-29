@@ -6,12 +6,10 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if login(params[:email], params[:password], params[:remember_me])
-      flash[:success] = 'Welcome!'
-      redirect_back_or_to root_path
+    if @user = login(params[:email], params[:password], params[:remember_me])
+      format.html { redirect_back_or_to(:books, :notice => "Login Successful")}
     else
-      flash.now[:warning] = 'E-mail and/or password is incorrect.'
-      render 'new'
+      format.html { flash.now[:alert] = "E-mail and/or password is incorrect"; render :action => 'new' }
     end
   end
 
