@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529193724) do
+ActiveRecord::Schema.define(version: 20150602192311) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -38,10 +38,6 @@ ActiveRecord::Schema.define(version: 20150529193724) do
     t.integer  "hold_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "subject_id"
-    t.string   "qr_code_uid"
   end
 
   create_table "check_outs", force: :cascade do |t|

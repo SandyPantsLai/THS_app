@@ -14,8 +14,6 @@
 			<p><%= @book.description %></p>
 		</div>
 
-		<img class="qr" <%= image_tag @book.qr_code.url if @book.qr_code %> />
-
 		<br /><p class="copies"><%= @copies_available %> copies are available for checkout.<br /> 
 		(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
 
