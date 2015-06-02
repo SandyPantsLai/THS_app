@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'password_resets/create'
+
+  get 'password_resets/edit'
+
+  get 'password_resets/update'
+
+  get 'password_resets/create'
+
+  get 'password_resets/edit'
+
+  get 'password_resets/update'
+
   root 'user_sessions#new'
 
   resources :fines, only: [ :index ]
