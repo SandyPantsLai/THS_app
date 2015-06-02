@@ -23,19 +23,25 @@ ActiveRecord::Schema.define(version: 20150529193724) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string  "title"
-    t.integer "published"
-    t.string  "publisher"
-    t.integer "page_count"
-    t.integer "price"
-    t.text    "description"
-    t.string  "cover_image"
-    t.string  "isbn"
-    t.integer "hold_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.integer "subject_id"
-    t.string  "qr_code_uid"
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "authors"
+    t.string   "publisher"
+    t.datetime "published_date"
+    t.text     "description"
+    t.string   "page_count"
+    t.string   "categories"
+    t.string   "cover_image"
+    t.string   "type"
+    t.string   "indetifier"
+    t.integer  "book_copy_id"
+    t.integer  "hold_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "subject_id"
+    t.string   "qr_code_uid"
   end
 
   create_table "check_outs", force: :cascade do |t|
@@ -85,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150529193724) do
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
+    t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
