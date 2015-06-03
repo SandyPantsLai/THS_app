@@ -4,15 +4,15 @@
 	  <a href="javascript:void(0)" class="navigation-menu-button right" id="js-mobile-menu">Menu</a>
 	  <nav role="navigation">
 	    <ul id="js-navigation-menu" class="navigation-menu show">
-	    	<% if current_user == nil %> 
-	    	<% elsif current_user.role == 'admin' %>	
+	    	<% if current_user == nil %>
+	    	<% elsif current_user.role == 'admin' %>
 	        <li class="nav-link title"><%= link_to 'Hermetic Library Awesome', root_url %></li>
 	        <li class="nav-link more"><a href="javascript:void(0)">Library</a>
 	        	<ul class="submenu">
 			        <li><%= link_to "Catalogue", books_path %></li>
 			        <li><%= link_to "Add Book", new_book_path %></li>
 			        <li><%= link_to "User Holds", holds_path %></li>
-			        <li><%= link_to "User Checkouts", new_check_out_path %></li>
+			        <li><%= link_to "User Checkouts", check_outs_path %></li>
 			        <li><%= link_to "User Fines", fines_path %></li>
 			      </ul>
 			    </li>
@@ -53,15 +53,15 @@
 	        </button>
 	      </form>
 	    </div>-->
-	    
+
 		    <% if current_user == nil %>
-		    	<%= link_to "Login", :login, :method => :get, class: "sign-up" %> 
-		    <% elsif current_user.role == 'admin' %>	
+		    	<%= link_to "Login", :login, :method => :get, class: "sign-up" %>
+		    <% elsif current_user.role == 'admin' %>
 		    	<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
 		    <% else current_user.role == 'user' %>
 					<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
 				<% end %>
-			
+
 	  </div>
 	</div>
 </header>

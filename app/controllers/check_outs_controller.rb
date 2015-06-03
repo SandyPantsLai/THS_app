@@ -87,6 +87,13 @@ class CheckOutsController < ApplicationController
       update_hold(check_out)
 
       if attributes[ :fine ]
+        user = check_out.user
+
+        if user.current_deposit > check_out.fine.amount
+          user.update( current_deposit: ( user.current_deposit - check_out.fine.amount ) )
+          check_out.fine.update( settlement_date: DateTime.now )
+        end
+
         redirect_to check_out_path( check_out )
       else
         redirect_to check_outs_path

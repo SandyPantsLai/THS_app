@@ -16,11 +16,11 @@
 
 		<img class="qr" <%= image_tag @book.qr_code.url if @book.qr_code %> />
 
-		<br /><p class="copies"><%= @copies_available %> copies are available for checkout.<br /> 
+		<br /><p class="copies"><%= @copies_available %> copies are available for checkout.<br />
 		(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
 
 	<% unless @due_dates == [] %>
-	  
+
 	  <ul>Currently checked out copies are due back:
 	  	<% @due_dates.sort.each do |due_date| %>
 	    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
@@ -28,17 +28,17 @@
 	  </ul>
 
 	<% end %>
-	
+
 	<div class="book-links">
 
 		<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
-		  <p><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p> 
-			<ul>	
+		  <p><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p>
+			<ul>
 		  	<li><%= link_to "Edit book", edit_book_path %></li>
 		  	<li><%= link_to "Back to Catalogue", books_path %></li>
 		<% elsif %>
 		  <ul>
-		   	<li><%= link_to "Checkout Book" %></li>
+		   	<li><%= link_to "Checkout Book", new_check_out_path( book_id: @book.id ) %></li>
 		  	<li><%= link_to "Edit book", edit_book_path %></li>
 		 		<li><%= link_to "Back to Catalogue", books_path %></li>
 		<% else %>
@@ -47,7 +47,7 @@
 		  	<li><%= link_to "Edit book", edit_book_path %></li>
 		<% end %>
 			</ul>
-	
+
 	</div><!-- end .book-links -->
-	
+
 </div><!-- end .book -->
