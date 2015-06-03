@@ -12,7 +12,9 @@
 			<%= f.text_field :description, value: result[:description] %>
 			<%= f.text_field :type, value: result[:type] %>
 			<%= f.text_field :identifier, value: result[:identifier] %>
-			
+			<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:id]}&source=qrcode" %>
+			<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+
 		<% end %>
 
 	<% end %>

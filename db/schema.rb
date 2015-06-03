@@ -24,16 +24,20 @@ ActiveRecord::Schema.define(version: 20150529193724) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.integer  "published"
+    t.string   "subtitle"
+    t.string   "authors"
     t.string   "publisher"
-    t.integer  "page_count"
-    t.integer  "price"
+    t.datetime "published_date"
     t.text     "description"
+    t.string   "page_count"
+    t.string   "categories"
     t.string   "cover_image"
-    t.string   "isbn"
+    t.string   "type"
+    t.string   "indetifier"
+    t.integer  "book_copy_id"
     t.integer  "hold_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "subject_id"
@@ -87,16 +91,13 @@ ActiveRecord::Schema.define(version: 20150529193724) do
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
+    t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-<<<<<<< HEAD
-    t.string   "email",                                       null: false
-=======
-    t.string   "email",                                           null: false
->>>>>>> 9657bbd466997927be771c4edf954977c6ee9d54
+    t.string   "email",                                              null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -123,7 +124,7 @@ ActiveRecord::Schema.define(version: 20150529193724) do
     t.string   "stripe_id"
     t.integer  "current_deposit"
     t.string   "membership"
-    t.string   "status",                       default: "active"
+    t.string   "status",                          default: "active"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"
