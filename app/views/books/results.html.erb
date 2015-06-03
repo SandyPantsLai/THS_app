@@ -18,7 +18,7 @@
 
 				<div class="field">
 					<%= f.label :author %>
-					<%= f.text_field :author, value: result[:authors] %>
+					<%= f.text_field :author, value: result[:author] %>
 				</div>
 
 				<div class="field">
@@ -37,12 +37,7 @@
 				</div>
 
 				<div class="field">
-					<%= f.label :tyoe %>
-					<%= f.text_field :type, value: result[:type] %>
-				</div>
-
-				<div class="field">
-					<%= f.label :identifier %>
+					<%= f.label "ISBN" %>
 					<%= f.text_field :identifier, value: result[:identifier] %>
 				</div>
 			
