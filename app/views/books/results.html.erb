@@ -15,6 +15,8 @@
 			<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:id]}&source=qrcode" %>
 			<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 
+			<div class="submit"><%= f.submit "Add Book to Library" %></div>
+
 		<% end %>
 
 	<% end %>
