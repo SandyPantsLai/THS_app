@@ -7,6 +7,7 @@
 	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
 
 		<h3><%= @book.title %></h3>
+		<%= image_tag @book.cover_image %>
 		<p><strong>Author:</strong> <%= @book.first_name %> <%= @book.last_name %><br />
 		<strong>Subject:</strong> <%= @book.subject.name %><br />
 		<strong>Pages:</strong> <%= @book.page_count %></p>
