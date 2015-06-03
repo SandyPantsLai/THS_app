@@ -10,8 +10,11 @@
 }
 // book
 
-.book {} 
-.book-description {
+.book {}
+.book .subtitle {}
+.book .cover_image {}
+.book .qr_code {}
+.book .description {
 	padding-top: rem(20);
 }
 .book-links {
