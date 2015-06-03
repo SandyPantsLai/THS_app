@@ -35,7 +35,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to books_new_url
+      redirect_to books_url
     else
       render "new"
     end

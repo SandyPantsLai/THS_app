@@ -7,16 +7,17 @@
 	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
 
 		<div class="cover_image"><%= @book.cover_image %></div>
-		<div class="qr_code"><%= @book.qr_code %></div>
+		<!-- qr code needed -->
 
-		<h3><%= @book.title %></h3>
-		<p class="subtitle"><%= @book.subtitle %></p>
+		<h3><%= @book.title %><br />
+		<%= @book.subtitle %></h3>
+		
 		<p><strong>Author:</strong> <%= @book.author %><br />
 		<strong>Publisher:</strong> <%= @book.publisher %><br />
-		<strong>Published:</strong> <%= @book.published_date %><br />
-		<strong>ISBN:</strong> <%= @book.type %> <%= @book.indetifier %><br />
-		<strong>Subject:</strong> <%= @book.category %><br />
-		<strong>Pages:</strong> <%= @book.page_count %></p>
+		<strong>Published Date:</strong> <%= @book.published_date %><br />
+		<strong>ISBN:</strong><%= @book.indetifier %><br />
+		<strong>Category:</strong> <%= @book.category %><br />
+		<strong>Page Count:</strong> <%= @book.page_count %></p>
 
 		<div class="description">
 			<p><%= @book.description %></p>
