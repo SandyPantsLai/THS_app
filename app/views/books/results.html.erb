@@ -8,6 +8,8 @@
 			
 			<div class="images">
 
+			<!-- cover_image won't go into database -->
+
 					<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 			
 					<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:id]}&source=qrcode" %>
@@ -40,9 +42,18 @@
 					<%= f.label "ISBN" %>
 					<%= f.text_field :identifier, value: result[:identifier] %>
 				</div>
-			
-			</div><!-- end .data -->			
 
+				<div class="field">
+					<%= f.label "Pages" %>
+					<%= f.text_field :page_count, value: result[:page_count] %>
+				</div>
+
+				<div class="field">
+					<%= f.label :catagory %>
+					<%= f.text_field :catagory, value: result[:catagory] %>
+				</div>
+
+			</div><!-- end .data -->			
 
 			<div class="submit">
 				<%= f.submit "Add Book to Library" %>
