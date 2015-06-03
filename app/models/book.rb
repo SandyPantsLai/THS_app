@@ -2,7 +2,7 @@ class Book < ActiveRecord::Base
   has_many :book_copies
   has_many :holds
   belongs_to :subject
-  dragonfly_accessor :qr_code
+  #dragonfly_accessor :qr_code
 
   after_create :generate_qr_code
 

@@ -11,8 +11,8 @@
 		<div class="book-card">
 
 			<h3 class="title"><%= link_to book.title, "/books/#{book.id}" %></h3>
-			<p><strong>Author:</strong> <%= book.first_name %> <%= book.last_name %><br />
-			<strong>Subject:</strong> <%= book.subject.name %></p>
+			<p><strong>Author:</strong> <%= book.author %><br />
+			<strong>Subject:</strong> <%= book.category %></p>
 			<div class="book-description">
 				<p><%= book.description %></p>
 			</div>
