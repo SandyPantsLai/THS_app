@@ -27,6 +27,7 @@ class CheckOutsController < ApplicationController
   end
 
   def create
+    binding.pry
     currentDate = DateTime.now
 
     @check_out = CheckOut.new( check_out_params )

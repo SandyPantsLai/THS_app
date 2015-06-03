@@ -56,6 +56,7 @@ img{
   border-radius:20px;
 }
 .selector{
+  display: none;
     margin:0;
     padding:0;
     cursor:pointer;
@@ -69,6 +70,7 @@ img{
   border-width: 3px 3px 3px 3px;
 }
 #result{
+  display: none;
     border: solid;
   border-width: 1px 1px 1px 1px;
   padding:20px;
@@ -84,7 +86,6 @@ li{
     padding-right: 0.5em;
     padding-left: 0.5em;
     font-weight: bold;
-    border-right: 1px solid #333333;
 }
 li a{
     text-decoration: none;
@@ -102,7 +103,7 @@ li a{
 
 <script type="text/javascript" src="http://www.webqr.com/llqrcode.js"></script>
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<script type="text/javascript" src="http://www.webqr.com/webqr.js"></script>
+<script type="text/javascript" src="combined_qr.js"></script>
 
   <div class="field">
     <%= f.label :user_id, "User Id" %>
@@ -120,10 +121,10 @@ QR Code scanner
 </p>
 </div>
 <div id="mainbody">
-<table class="tsel" border="0" width="100%">
+<table class="tsel" width="100%">
 <tr>
 <td valign="top" align="center" width="50%">
-<table class="tsel" border="0">
+<table class="tsel">
 <tr>
 <td><img class="selector" id="webcamimg" src="vid.png" onclick="setwebcam()" align="left" /></td>
 <td><img class="selector" id="qrimg" src="cam.png" onclick="setimg()" align="right"/></td></tr>
@@ -134,14 +135,14 @@ QR Code scanner
 </td>
 </tr>
 <tr><td colspan="3" align="center">
-<img src="down.png"/>
 </td></tr>
 <tr><td colspan="3" align="center">
 <div id="result">
-<%= f.text_field :book_copy_id, id:"result" %>
 </div>
+
 </td></tr>
 </table>
+<%= f.text_field :book_copy_id %>
   <div class="submit"><%= f.submit "Check Out Book" %></div>
 </div>&nbsp;
 <div id="footer">
