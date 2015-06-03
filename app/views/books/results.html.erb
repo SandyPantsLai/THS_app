@@ -53,6 +53,11 @@
 					<%= f.text_field :catagory, value: result[:catagory] %>
 				</div>
 
+				<div class="field">
+					<%= f.label :volume_id %>
+					<%= f.text_field :volume_id, value: result[:volume_id] %>
+				</div>
+
 				<div class="submit">
 					<%= f.submit "Add Book to Library" %>
 				</div>
