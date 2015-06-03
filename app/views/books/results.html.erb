@@ -4,55 +4,62 @@
 
 		<%= form_for Book.new do |f| %>
 			
-			<div class="field">
-				<%= f.label :title %>
-				<%= f.text_field :title, value: result[:title] %>
-			</div>
+			<div class="images">
 
-			<div class="field">
-				<%= f.label :subtitle %>
-				<%= f.text_field :subtitle, value: result[:subtitle] %>
-			</div>
-
-			<div class="field">
-				<%= f.label :author %>
-				<%= f.text_field :author, value: result[:authors] %>
-			</div>
-
-			<div class="field">
-				<%= f.label :publisher %>
-				<%= f.text_field :publisher, value: result[:publisher] %>
-			</div>
-
-			<div class="field">
-				<%= f.label :published_date %>
-				<%= f.text_field :published_date, value: result[:published_date] %>
-			</div>	
-
-			<div class="field">
-				<%= f.label :description %>
-				<%= f.text_field :description, value: result[:description] %>
-			</div>
-
-			<div class="field">
-				<%= f.label :tyoe %>
-				<%= f.text_field :type, value: result[:type] %>
-			</div>
-
-			<div class="field">
-				<%= f.label :identifier %>
-				<%= f.text_field :identifier, value: result[:identifier] %>
-			</div>
-
-			<div class="qr_code">
-				<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:id]}&source=qrcode" %>
-			</div>
-
-			<div class="cover_image">	
-				<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
-			</div>
+					<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 			
-			<div class="submit"><%= f.submit "Add Book to Library" %></div>
+					<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:id]}&source=qrcode" %>
+			
+			</div><!-- end .images -->
+
+			<div class="data">
+				
+				<div class="field">
+					<%= f.label :title %>
+					<%= f.text_field :title, value: result[:title] %>
+				</div>
+
+				<div class="field">
+					<%= f.label :subtitle %>
+					<%= f.text_field :subtitle, value: result[:subtitle] %>
+				</div>
+
+				<div class="field">
+					<%= f.label :author %>
+					<%= f.text_field :author, value: result[:authors] %>
+				</div>
+
+				<div class="field">
+					<%= f.label :publisher %>
+					<%= f.text_field :publisher, value: result[:publisher] %>
+				</div>
+
+				<div class="field">
+					<%= f.label :published_date %>
+					<%= f.text_field :published_date, value: result[:published_date] %>
+				</div>	
+
+				<div class="field">
+					<%= f.label :description %>
+					<%= f.text_field :description, value: result[:description] %>
+				</div>
+
+				<div class="field">
+					<%= f.label :tyoe %>
+					<%= f.text_field :type, value: result[:type] %>
+				</div>
+
+				<div class="field">
+					<%= f.label :identifier %>
+					<%= f.text_field :identifier, value: result[:identifier] %>
+				</div>
+			
+			</div><!-- end .data -->			
+
+
+			<div class="submit">
+				<%= f.submit "Add Book to Library" %>
+			</div>
 
 		<% end %>
 

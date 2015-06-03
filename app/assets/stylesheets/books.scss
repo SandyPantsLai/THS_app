@@ -22,3 +22,40 @@
 	margin: rem(30) 0;
 	padding: rem(30) 0 rem(20) 0;
 }
+
+// Google Book search results
+.volume {
+	float: left;
+	border-bottom: $base-border;
+	background-color: black;
+	margin-bottom: rem(20);
+}
+.volume .images {
+	float: left;
+	background-color: orange;
+	max-width: 50%;
+}
+.volume .images img {}
+.volume .data {
+	float: left;
+	padding: 0 0 0 rem(10);
+	max-width: 50%;
+}
+.volume .data .field {
+	background-color: red;
+	margin-bottom: rem(5);		
+	width: 100%;
+}
+.volume .data .field label {
+	font-size: rem(12);
+	letter-spacing: $small-spacing / 4;
+	font-weight: $base-font-weight * 2;
+	margin: $no-margin;
+}
+.volume .data .field input {
+	font-size: rem(12);
+	letter-spacing: $small-spacing / 4;
+	font-weight: $base-font-weight;
+	margin: $no-margin;
+	padding: $no-margin;
+}
