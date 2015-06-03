@@ -25,32 +25,32 @@
 
 // Google Book search results
 .volume {
-	float: left;
 	border-bottom: $base-border;
 	background-color: black;
-	margin-bottom: rem(20);
+	margin-bottom: 100px;
 }
 .volume .images {
+	padding-top: rem(5);
 	float: left;
-	background-color: orange;
-	max-width: 50%;
+	width: 30%;
 }
-.volume .images img {}
+.volume .images img {
+	margin-bottom: rem(5);
+}
 .volume .data {
 	float: left;
 	padding: 0 0 0 rem(10);
-	max-width: 50%;
+	width: 70%;
 }
 .volume .data .field {
 	background-color: red;
 	margin-bottom: rem(5);		
-	width: 100%;
 }
 .volume .data .field label {
 	font-size: rem(12);
 	letter-spacing: $small-spacing / 4;
 	font-weight: $base-font-weight * 2;
-	margin: $no-margin;
+	margin: rem(5) 0 0 0;
 }
 .volume .data .field input {
 	font-size: rem(12);
@@ -58,4 +58,5 @@
 	font-weight: $base-font-weight;
 	margin: $no-margin;
 	padding: $no-margin;
+	height: auto;
 }
