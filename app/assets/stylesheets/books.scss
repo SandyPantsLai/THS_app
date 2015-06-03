@@ -29,6 +29,15 @@
 	background-color: black;
 	margin-bottom: 100px;
 }
+.volume .title input {
+	font-weight: $base-font-weight * 2;
+	padding: $no-margin;
+  text-align: center;
+  margin: 0 0 rem(10) 0;
+  font-weight: 600;
+  letter-spacing: $small-spacing / 2;
+  line-height: rem(30);
+}
 .volume .images {
 	padding-top: rem(5);
 	float: left;
