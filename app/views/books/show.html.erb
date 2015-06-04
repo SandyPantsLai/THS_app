@@ -11,7 +11,7 @@
 
 		<h3><%= @book.title %><br />
 		<%= @book.subtitle %></h3>
-		
+
 		<p><strong>Author:</strong> <%= @book.author %><br />
 		<strong>Publisher:</strong> <%= @book.publisher %><br />
 		<strong>Published Date:</strong> <%= @book.published_date %><br />
@@ -23,7 +23,7 @@
 			<p><%= @book.description %></p>
 		</div>
 
-		<br /><p><%= @copies_available %> copies are available for checkout.<br /> 
+		<br /><p><%= @copies_available %> copies are available for checkout.<br />
 		(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
 
 	<% unless @due_dates == [] %>
@@ -45,7 +45,7 @@
 		  	<li><%= link_to "Back to Catalogue", books_path %></li>
 		<% elsif %>
 		  <ul>
-		   	<li><%= link_to "Checkout Book" %></li>
+		   	<li><%= link_to "Checkout Book", new_check_out_path( book_id: @book.id ) %></li>
 		  	<li><%= link_to "Edit book", edit_book_path %></li>
 		 		<li><%= link_to "Back to Catalogue", books_path %></li>
 		<% else %>
