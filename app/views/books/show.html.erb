@@ -6,17 +6,24 @@
 
 	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
 
-		<h3><%= @book.title %></h3>
-		<p><strong>Author:</strong> <%= @book.first_name %> <%= @book.last_name %><br />
-		<strong>Subject:</strong> <%= @book.subject %><br />
-		<strong>Pages:</strong> <%= @book.page_count %></p>
-		<div class="book-description">
+		<div class="cover_image"><%= @book.cover_image %></div>
+		<!-- qr code needed -->
+
+		<h3><%= @book.title %><br />
+		<%= @book.subtitle %></h3>
+
+		<p><strong>Author:</strong> <%= @book.author %><br />
+		<strong>Publisher:</strong> <%= @book.publisher %><br />
+		<strong>Published Date:</strong> <%= @book.published_date %><br />
+		<strong>ISBN:</strong><%= @book.indetifier %><br />
+		<strong>Category:</strong> <%= @book.category %><br />
+		<strong>Page Count:</strong> <%= @book.page_count %></p>
+
+		<div class="description">
 			<p><%= @book.description %></p>
 		</div>
 
-		<img class="qr" <%= image_tag @book.qr_code.url if @book.qr_code %> />
-
-		<br /><p class="copies"><%= @copies_available %> copies are available for checkout.<br />
+		<br /><p><%= @copies_available %> copies are available for checkout.<br />
 		(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</p>
 
 	<% unless @due_dates == [] %>
