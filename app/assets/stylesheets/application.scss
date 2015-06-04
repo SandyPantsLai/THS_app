@@ -8,10 +8,11 @@
 
 // views
 
-@import "refills";
+// @import "refills";
+@import "navigation";
 @import "users";
 @import "books";
 @import "fines";
 @import "holds";
 @import "user_sessions";
-@improt "check_outs";
+@import "check_outs";
