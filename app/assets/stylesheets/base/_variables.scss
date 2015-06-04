@@ -1,17 +1,21 @@
 // Structure
 $main-content-padding: rem(20);
 $no-margin: 0 0;
+$no-padding: 0 0;
 
 // Typography
-$base-font-family: Avenir, Helvetica;
-$heading-font-family: Avenir, Helvetica;
-
-// Font Sizes
+$base-font-family: Georgia, "Times New Roman", serif;
+$heading-font-family: Futura, Helvetica, san-serif;
 $base-font-size: 1em;
+$base-line-height: 1.5;
+$heading-line-height: 1.5;
+$letter-spacing: 0.4px;
+$base-font-weight: 300;
 
-// Line height
-$base-line-height: 1.4;
-$heading-line-height: 1.2;
+// Font Colors
+$base-background-color: #fff;
+$base-font-color: $dark-gray;
+$action-color: $blue;
 
 // Other Sizes
 $base-border-radius: 3px;
@@ -25,12 +29,6 @@ $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 
-// Font Colors
-$base-background-color: #fff;
-$base-font-color: $dark-gray;
-$action-color: $blue;
-$base-font-weight: 300;
-
 // Border
 $base-border-color: $light-gray;
 $base-border: 1.5px dotted $light-gray;
@@ -41,4 +39,6 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 
 // Navigation
 $nav-height: 50px;
+
+
 
