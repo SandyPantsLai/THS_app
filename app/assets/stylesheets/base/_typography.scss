@@ -15,7 +15,7 @@ h5,
 h6 {
   font-family: $heading-font-family;
   line-height: $heading-line-height;
-  margin: 0 0 $small-spacing * 2;
+  margin: $no-margin;
   letter-spacing: $letter-spacing / 4;
 }
 
@@ -23,6 +23,10 @@ h1 { font-size: rem(32);}
 h2 { font-size: rem(26);}
 h3 { font-size: rem(22);}
 h4 { font-size: rem(16);}
+
+h2.title { 
+  border-bottom: $base-border;
+}
 
 p {
   margin: 0 0 $small-spacing;
@@ -50,7 +54,7 @@ hr {
   border-left: none;
   border-right: none;
   border-top: none;
-  margin: $base-spacing 0;
+  margin: $no-margin;
 }
 
 img,

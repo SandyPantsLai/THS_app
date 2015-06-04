@@ -3,13 +3,35 @@
 	@include outer-container;
 	padding: 0 rem(20); 
 }
+.catalogue form {
+	margin: $form-margin;
+}
+.catalogue p, .catalogue-search .field label { // partial
+	font-family: $heading-font-family;
+	font-weight: $base-font-weight;
+}
+
+.catalogue h4 {
+	font-size: rem(18);
+	margin-bottom: rem(5);
+}
+.catalogue p {
+	font-size: $base-font-size;
+}
 .book-card {
 	border-top: $base-border;
 	margin: rem(20) 0;
 	padding: rem(30) 0 rem(20) 0;
 }
-.book-card img {}
-.book-card .data {}
+.book-card img {
+	float: left;
+	width: 30%;
+}
+.book-card .data {
+	float: left;
+	width: 70%;
+	padding-left: rem(15);
+}
 .book-card .description {}
 
 // book show

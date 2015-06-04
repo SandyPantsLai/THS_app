@@ -1,6 +1,7 @@
 <div class="catalogue">
 
-	<h2>Catalogue</h2>
+	<h2 class="title">Catalogue</h2>
+	
 
 	<%= render 'search' %>
 
@@ -10,18 +11,14 @@
 
 		<div class="book-card">
 
-			<%= @book.cover_image %>
+			<img src="http://place-hold.it/128x193" />
 
 			<div class="data">
-				<h3><%= link_to book.title, "/books/#{book.id}" %><br />
-				<%= book.subtitle %></h3>
+				<h4><%= link_to book.title, "/books/#{book.id}" %><br />
+				<%= book.subtitle %></h4>
 
 				<p><strong>Author:</strong> <%= book.author %><br />
-				<strong>Category:</strong> <%= book.category %></p>
-				
-				<div class="description">
-					<p><%= book.description %></p>
-				</div>
+				<strong>Category:</strong> <%= book.category %><br />
 			
 			</div><!-- end .data -->	
 		</div><!-- end .book-card -->
