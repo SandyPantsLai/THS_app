@@ -1,35 +1,27 @@
 header {
-	background-color: #000;
+	background-color: $base-background-color;
 	width: 100%;
-	position: fixed;
-	top: 0px;
-	z-index: 2;
+	float: left;
 	height: $nav-height;
 }
-nav.main-nav {
-	background-color: $matt-black;
-}
-nav.main-nav ul
-{
+nav.main-nav ul {
 	list-style: none;
 	position: relative;
 	float: left;
 	margin: 0;
 	padding: 0;
 }
-nav.main-nav ul a
-{
+nav.main-nav ul a {
 	display:block;
-	color: $off-white;
+	color: $base-font-color;
 	text-decoration: none;
 	font-weight: $base-font-weight;
 	font-size: $base-font-size;
 	line-height: $base-line-height;
-	padding: 0 rem(15);
+	padding: rem(15) rem(15);
 	font-family: $heading-font-family;
 }
-nav.main-nav ul li
-{
+nav.main-nav ul li {
 	position: relative;
 	float: left;
 	margin: 0;
@@ -41,8 +33,7 @@ nav.main-nav ul li.current-menu-item {
 nav.main-nav ul li:hover {
 	background-color: #f6f6f6;
 }
-nav.main-nav ul ul
-{
+nav.main-nav ul ul {
 	display: none;
 	position: absolute;
 	top: 100%;
@@ -50,18 +41,15 @@ nav.main-nav ul ul
 	background: #fff;
 	padding: 0;
 }
-nav.main-nav ul ul li
-{
+nav.main-nav ul ul li {
 	float: none;
 	width: 200px;
 }
-nav.main-nav ul ul a
-{
+nav.main-nav ul ul a {
 	line-height: $base-line-height;
 	padding: 10px 15px;
 }
-nav.main-nav ul ul ul
-{
+nav.main-nav ul ul ul {
 	top: 0;
 	left: 100%;
 }
