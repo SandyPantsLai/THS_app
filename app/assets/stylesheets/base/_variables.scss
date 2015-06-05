@@ -1,5 +1,5 @@
 // Structure
-$main-content-padding: rem(20);
+$main-content-padding: rem(15);
 $no-margin: 0 0;
 $no-padding: 0 0;
 
@@ -43,6 +43,7 @@ $base-border: 1.5px dotted $light-gray;
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
 $form-margin: rem(30) 0 rem(40) 0;
+
 // Navigation
 $nav-height: 50px;
 

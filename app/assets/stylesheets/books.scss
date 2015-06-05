@@ -10,7 +10,6 @@
 	font-family: $heading-font-family;
 	font-weight: $base-font-weight;
 }
-
 .catalogue h4 {
 	font-size: rem(18);
 	margin-bottom: rem(5);
@@ -22,30 +21,50 @@
 	border-top: $base-border;
 	margin: rem(20) 0;
 	padding: rem(30) 0 rem(20) 0;
+	float: left;
 }
 .book-card img {
+	margin-top: rem(10);
 	float: left;
 	width: 30%;
 }
 .book-card .data {
 	float: left;
 	width: 70%;
-	padding-left: rem(15);
+	padding-left: rem(20);
 }
-.book-card .description {}
 
 // book show
-.book {}
-.book .subtitle {}
-.book .cover_image {}
-.book .qr_code {}
-.book .description {
-	padding-top: rem(20);
+.description { 
+	padding: rem(30) 0;
+	float: left;
+	text-align: justify;
+	border-bottom: $base-border;
+}
+.description p {
+	font-family: $base-font-family;
+	font-weight: $base-font-weight;
+	font-size: $base-font-size;
+}
+.copies {
+	float: left;
+	width: 100%;
+
 }
 .book-links {
+	position: fixed;
+	bottom: 0;
+	z-index: 9;  
+	float: left;
+	width: 100%;
 	border-top: $base-border;
 	margin: rem(30) 0;
 	padding: rem(30) 0 rem(20) 0;
+	background-color: $light-gray;
+}
+.book-links button {
+	float: left;
+	width: 33%;
 }
 
 // Google Book search results
