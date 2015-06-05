@@ -33,8 +33,8 @@
 	width: 70%;
 	padding-left: rem(20);
 }
-
 // book show
+
 .description { 
 	padding: rem(30) 0;
 	float: left;
@@ -44,6 +44,9 @@
 	font-family: $base-font-family;
 	font-weight: $base-font-weight;
 	font-size: $base-font-size;
+}
+p.link {
+	font-family: $heading-font-family;
 }
 .copies {
 	float: left;
@@ -60,25 +63,23 @@
 	top: 0px;
 	z-index: 9;  
 	width: 100%;
-	margin: rem(30) 0;
-	padding: rem(30) 0 0 0;
 	background-color: $off-white;
 }
 nav.book-menu {
 	float: left;
-	height: $nav-height; 
+	width: 100%; 
 }
-nav.book-menu ul {
-	padding: rem(20);
-}
-nav.book-menu ul li a {
-	display: block;
-}
+nav.book-menu ul {}
 nav.book-menu ul li {
 	display: inline;
 	float: left;
-	margin: $no-margin;
-	padding: rem(10) rem(10);
+	padding: rem(20) rem(10);
+	width: 100%;
+	text-align: center;
+}
+nav.book-menu ul li a {
+	display: block;
+	font-family: $heading-font-family;
 }
 
 // Google Book search results
