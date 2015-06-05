@@ -9,9 +9,10 @@ input,
 label,
 select {
   display: block;
-  font-family: $base-font-family;
+  font-family: $heading-font-family;
   font-size: $base-font-size;
-  margin-top: rem(15);
+  margin: rem(15) 0;
+  font-weight: $base-font-weight;
 }
 
 label {

@@ -89,7 +89,12 @@ nav.book-menu ul li a {
 	display: block;
 	font-family: $heading-font-family;
 }
-
+// Google Book search from
+.google-search { // form
+	margin-top: rem(30);
+	float: left;
+	width: 100%;
+}
 // Google Book search results
 .volume .title input {
 	font-weight: $base-font-weight * 2;
