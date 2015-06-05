@@ -1,31 +1,103 @@
 // book index
 .catalogue { 
 	@include outer-container;
-	padding: 0 rem(20); 
+	padding: 0 rem(20);
+	margin: rem(30) 0; 
 }
-.book-card {
-	border-top: $base-border;
-	margin: rem(20) 0;
+.catalogue form {
+	margin: $form-margin;
+}
+.catalogue-search {
+	float: left;
+	width: 100%;
+	margin-bottom: rem(30);
+}
+.catalogue-search .field label { // partial
+	font-family: $heading-font-family;
+	font-weight: $base-font-weight;
+}
+.catalogue h4 {
+	font-size: rem(18);
+	margin-bottom: rem(5);
+}
+.catalogue p {
+	font-size: $base-font-size;
+}
+.book-card, .index-card {
 	padding: rem(30) 0 rem(20) 0;
+	float: left;
 }
-.book-card img {}
-.book-card .data {}
-.book-card .description {}
-
+.book-card img, .index-card img {
+	margin-top: rem(10);
+	float: left;
+	width: 30%;
+}
+.book-card .data, .index-card .data{
+	float: left;
+	width: 70%;
+	padding-left: rem(20);
+}
+.index-card {
+	border-top: $base-border;
+	margin-top: rem(30);
+}
 // book show
-.book {}
-.book .subtitle {}
-.book .cover_image {}
-.book .qr_code {}
-.book .description {
-	padding-top: rem(20);
+.data p {
+	font-size: rem(14);
+} 
+.description { 
+	padding: rem(30) 0;
+	float: left;
+	text-align: justify;
+}
+.description p {
+	font-family: $base-font-family;
+	font-weight: $base-font-weight;
+	font-size: $base-font-size;
+}
+p.link {
+	font-family: $heading-font-family;
+}
+.copies {
+	float: left;
+	width: 100%;
+	background-color: $matt-black;
+	padding: rem(40) rem(20);
+	border-top: 5px solid $purple;
+}
+.copies p, .copies ul, .copies li {
+	color: $off-white;
+	font-family: $heading-font-family;
 }
 .book-links {
-	border-top: $base-border;
-	margin: rem(30) 0;
-	padding: rem(30) 0 rem(20) 0;
+	position: fixed;
+	top: 0px;
+	z-index: 9;  
+	width: 100%;
+	background-color: $off-white;
 }
-
+nav.book-menu {
+	float: left;
+	width: 100%; 
+}
+nav.book-menu ul {}
+nav.book-menu ul li {
+	display: inline;
+	float: left;
+	padding: rem(20) rem(10);
+	width: 100%;
+	text-align: center;
+}
+nav.book-menu ul li a {
+	display: block;
+	font-family: $heading-font-family;
+}
+// Google Book search from
+.google-search { // form
+	margin-top: rem(30);
+	float: left;
+	width: 100%;
+}
 // Google Book search results
 .volume .title input {
 	font-weight: $base-font-weight * 2;

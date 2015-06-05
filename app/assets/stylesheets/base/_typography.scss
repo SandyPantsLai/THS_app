@@ -14,16 +14,25 @@ h4,
 h5,
 h6 {
   font-family: $heading-font-family;
-  font-size: $base-font-size;
   line-height: $heading-line-height;
-  margin: 0 0 $small-spacing * 2;
-  letter-spacing: $small-spacing / 4;
+  margin: $no-margin;
+  letter-spacing: $letter-spacing / 4;
 }
 
 h1 { font-size: rem(32);}
 h2 { font-size: rem(26);}
 h3 { font-size: rem(22);}
 h4 { font-size: rem(16);}
+
+h2.title { 
+  color: $base-font-color;
+  text-align: left;
+  padding: rem(5) rem(20);
+  margin-top: rem(30); 
+  width: 100%;
+  font-weight: $base-font-weight;
+  border-bottom: 1.5px solid $matt-black;
+}
 
 p {
   margin: 0 0 $small-spacing;
@@ -51,7 +60,7 @@ hr {
   border-left: none;
   border-right: none;
   border-top: none;
-  margin: $base-spacing 0;
+  margin: $no-margin;
 }
 
 img,
