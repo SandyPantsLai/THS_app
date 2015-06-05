@@ -49,23 +49,25 @@ class ChargesController < ApplicationController
   end
 
   def show
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @charge = Stripe::Charge.retrieve(params[:id])
     @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
   end
 
   def confirm_refund
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @charge = Stripe::Charge.retrieve(params[:format])
     @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
   end
 
   def refund
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    binding.pry
+    @charge = Stripe::Charge.retrieve(params[:format])
+    binding.pry
     @charge.refunds.create
     @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
     @transactions.each do |t|
       t.update(settlement_date: nil)
     end
-
+    binding.pry
     rescue Stripe::CardError => e
     rescue Stripe::InvalidRequestError => e
     rescue Stripe::StripeError => e
