@@ -10,6 +10,7 @@
 		        <li><%= link_to "Member Holds", holds_path %></li>
 		        <li><%= link_to "Member Checkouts", check_outs_path %></li>
 		        <li><%= link_to "Member Fines", fines_path %></li>
+		        <li><%= link_to "Member Accounts", transactions_path %></li>
 		      </ul>
 		    </li>
 		    <li><a href="#">Members</a>
@@ -27,6 +28,7 @@
 		        <li><%= link_to "Holds", holds_path %></li>
 		        <li><%= link_to "Checkouts", check_outs_path %></li>
 		        <li><%= link_to "Fines", fines_path(current_user.id) %></li>
+		        <li><%= link_to "Account", transactions_path %></li>
 		      </ul>
 		    <li><%= link_to "Profile", user_path(current_user.id) %></li>
 		    <li><%= link_to "Logout", :logout, :method => :post %></li>
