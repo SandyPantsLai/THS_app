@@ -1,37 +1,36 @@
 <header>
-	<div class="nav-wrapper">
-	  <nav class="main-nav">
-	    <ul class="main-menu">
-	    	<% if current_user == nil %>
-	    	<% elsif current_user.role == 'admin' %>
-	        <!-- mobile menu toggle to go here -->
-	        <li class="nav">Library
-	        	<ul class="submenu">
-			        <li><%= link_to "Catalogue", books_path %></li>
-			        <li><%= link_to "Add Book", new_book_path %></li>
-			        <li><%= link_to "Member Holds", holds_path %></li>
-			        <li><%= link_to "Member Checkouts", check_outs_path %></li>
-			        <li><%= link_to "Member Fines", fines_path %></li>
-			      </ul>
-			    </li>
-			    <li class="nav">Members
-						<ul class="submenu">
-			        <li><%= link_to "Member Profiles", users_path %></li>
-			        <li><%= link_to "Add Member", new_user_path %></li>
-			      </ul>
-			    </li>
-			  <% else current_user.role == 'user' %>
-					<li class="nav">Your Library
-	        	<ul class="submenu">
-			        <li><%= link_to "Catalogue", books_path %></li>
-			        <li><%= link_to "Holds", holds_path(current_user.id) %></li>
-			        <li><%= link_to "Checkouts", check_outs_path(current_user.id) %></li>
-			        <li><%= link_to "Fines", fines_path(current_user.id) %></li>
-			      </ul>
-				<% end %>
-	    </ul><!-- end .main-menu -->
-	    <%= button_to "Profile", user_path(current_user.id) %>
-	    <%= button_to "Logout", :logout, :method => :post %>
-	  </nav><!-- end .main-nav -->
-	</div><!-- .nav-wrapper -->
+  <nav class="main-nav">
+    <ul class="main-menu">
+    	<% if current_user == nil %>
+    	<% elsif current_user.role == 'admin' %>
+        <li><a href="#">Library</a>
+        	<ul>
+		        <li><%= link_to "Catalogue", books_path %></li>
+		        <li><%= link_to "Add Book", new_book_path %></li>
+		        <li><%= link_to "Member Holds", holds_path %></li>
+		        <li><%= link_to "Member Checkouts", check_outs_path %></li>
+		        <li><%= link_to "Member Fines", fines_path %></li>
+		      </ul>
+		    </li>
+		    <li><a href="#">Members</a>
+					<ul>
+		        <li><%= link_to "Member Profiles", users_path %></li>
+		        <li><%= link_to "Add Member", new_user_path %></li>
+		      </ul>
+		    </li>
+		    <li><%= link_to "Profile", user_path(current_user.id) %></li>
+		    <li><%= link_to "Logout", :logout, :method => :post %></li>
+		  <% else current_user.role == 'user' %>
+				<li><a href="#">Your Library</a>
+        	<ul>
+		        <li><%= link_to "Catalogue", books_path %></li>
+		        <li><%= link_to "Holds", holds_path(current_user.id) %></li>
+		        <li><%= link_to "Checkouts", check_outs_path(current_user.id) %></li>
+		        <li><%= link_to "Fines", fines_path(current_user.id) %></li>
+		      </ul>
+		    <li><%= link_to "Profile", user_path(current_user.id) %></li>
+		    <li><%= link_to "Logout", :logout, :method => :post %></li>
+			<% end %>
+    </ul><!-- end .main-menu -->
+  </nav><!-- end .main-nav -->
 </header>
