@@ -2,10 +2,10 @@
 button {
   @include appearance(none);
   -webkit-font-smoothing: antialiased;
-  background-color: $base-background-color;
+  background-color: $light-green;
   border-radius: $base-border-radius;
-  border: $base-border;
-  color: $dark-gray;
+  border: #fff;
+  color: $off-white;
   cursor: pointer;
   display: inline-block;
   font-family: $heading-font-family;
@@ -17,11 +17,12 @@ button {
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  margin: rem(10) 0;
+  float: left;
+  margin: rem(20) rem(10) 0 0;
 
   &:hover,
   &:focus {
-    background-color: darken($action-color, 15%);
+    background-color: darken($light-green, 15%);
     color: #fff;
   }
 
@@ -30,4 +31,9 @@ button {
     opacity: 0.5;
   }
 }
+.book-card button {
+  background-color: $light-green;
+  color: $off-white;
+}
+
 
