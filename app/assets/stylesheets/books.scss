@@ -1,7 +1,8 @@
 // book index
 .catalogue { 
 	@include outer-container;
-	padding: 0 rem(20); 
+	padding: 0 rem(20);
+	margin: rem(30) 0; 
 }
 .catalogue form {
 	margin: $form-margin;
@@ -41,7 +42,9 @@
 	margin-top: rem(30);
 }
 // book show
-
+.data p {
+	font-size: rem(14);
+} 
 .description { 
 	padding: rem(30) 0;
 	float: left;

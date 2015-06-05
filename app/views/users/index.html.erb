@@ -1,20 +1,18 @@
-<div class="user">
+<h2 class="title">Users</h2>
 
-	<h1>Users</h1>
+	<div class="catalogue">
 
-	<% if current_user %>
-		<p>Currently active users: <%= current_users_list %></p>
-	<% end %>
-
-	<% @users.each do |user| %>
+		<% @users.each do |user| %>
 		
-		<ul class="user-info">
-			<li><strong><%= user.first_name %> <%= user.last_name %></strong></li>
-			<li class="role"><%= user.role %></li>
-			<li class="email"><%= mail_to user.email %></li>
-			<li class="phone-number"><%= user.phone_number %></li>
-	  </ul>
+			<div class="user-card">	
+				<ul class="user-info">
+					<li><strong><%= user.first_name %> <%= user.last_name %></strong></li>
+					<li><%= user.role %></li>
+					<li><%= mail_to user.email %></li>
+					<li><%= user.phone_number %></li>
+			  </ul>
+			</div><!-- end user-card -->
 
-	<% end %>
+		<% end %>
 
-</div>
+	</div><!-- end .catalogue -->
