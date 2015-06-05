@@ -6,6 +6,11 @@
 .catalogue form {
 	margin: $form-margin;
 }
+.catalogue-search {
+	float: left;
+	width: 100%;
+	margin-bottom: rem(30);
+}
 .catalogue-search .field label { // partial
 	font-family: $heading-font-family;
 	font-weight: $base-font-weight;
@@ -17,20 +22,23 @@
 .catalogue p {
 	font-size: $base-font-size;
 }
-.book-card {
-	border-bottom: $base-border;
+.book-card, .index-card {
 	padding: rem(30) 0 rem(20) 0;
 	float: left;
 }
-.book-card img {
+.book-card img, .index-card img {
 	margin-top: rem(10);
 	float: left;
 	width: 30%;
 }
-.book-card .data {
+.book-card .data, .index-card .data{
 	float: left;
 	width: 70%;
 	padding-left: rem(20);
+}
+.index-card {
+	border-top: $base-border;
+	margin-top: rem(30);
 }
 // book show
 

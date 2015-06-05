@@ -1,29 +1,29 @@
-<div class="catalogue">
+<h2 class="title">Catalogue</h2>
 
-	<h2 class="title">Catalogue</h2>
-	
-	<%= render 'search' %>
+	<div class="catalogue">
 
-  <p><%= page_entries_info @books %></p>
+		<%= render 'search' %>
 
-	<% @books.each do |book| %>
+	  <p><%= page_entries_info @books %></p>
 
-		<div class="book-card">
+		<% @books.each do |book| %>
 
-			<img src="http://place-hold.it/128x193" />
+			<div class="index-card">
 
-			<div class="data">
-				<h4><%= link_to book.title, "/books/#{book.id}" %><br />
-				<%= book.subtitle %></h4>
+				<img src="http://place-hold.it/128x193" />
 
-				<p><strong>Author:</strong> <%= book.author %><br />
-				<strong>Category:</strong> <%= book.category %><br />
-			
-			</div><!-- end .data -->	
-		</div><!-- end .book-card -->
+				<div class="data">
+					<h4><%= link_to book.title, "/books/#{book.id}" %><br />
+					<%= book.subtitle %></h4>
 
-	<% end %>
+					<p><strong>Author:</strong> <%= book.author %><br />
+					<strong>Category:</strong> <%= book.category %><br />
+				
+				</div><!-- end .data -->	
+			</div><!-- end .book-card -->
 
-	<%= paginate @books %>
+		<% end %>
 
-</div><!-- end .catalogue -->
+		<%= paginate @books %>
+
+	</div><!-- end .catalogue -->

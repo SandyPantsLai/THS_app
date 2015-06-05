@@ -25,7 +25,12 @@ h3 { font-size: rem(22);}
 h4 { font-size: rem(16);}
 
 h2.title { 
-  border-bottom: $base-border;
+  background-color: $purple;
+  color: $off-white;
+  text-align: left;
+  padding: rem(5) rem(20);
+  width: 100%;
+  font-weight: $base-font-weight;
 }
 
 p {
