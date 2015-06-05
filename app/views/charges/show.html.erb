@@ -4,9 +4,9 @@
   <li><%= number_to_currency(sprintf("%.2f", @charge.amount.to_f / 100)) %></li>
   <li>Paid by: <%= @charge.source[:brand] %></li>
   <li>Last 4 digits: <%= @charge.source[:last4] %></li>
-  <% if @charge.amount_refunded == 0 %>
+  <% if @charge.amount_refunded == 0 && current_user.role == "admin" %>
     <li><%= link_to "Refund this transaction", confirm_refund_path(@charge["id"]) %></li>
-  <% else %>
+  <% elsif @charge.amount_refunded != 0 %>
     <li>Refunded</li>
   <% end %>
 </ul>

@@ -6,6 +6,7 @@
 			<li><%= link_to "Add Book", new_book_path %></li>
 			<li><%= link_to "Checkouts", new_check_out_path %></li>
 			<li><%= link_to "Fines" %></li>
+			<li><%= link_to "Transactions", transactions_path %></li>
 			<li><%= link_to "User Profiles", users_path %></li>
 			<li><%= link_to "Add User", new_user_path %></li>
 		<% else current_user.role == 'user' %>
