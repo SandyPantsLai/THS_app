@@ -1,12 +1,12 @@
 <h1>Transaction Details</h1>
 <%= render "transactions/transaction"%>
-<div class="card-transaction">
-  <%= number_to_currency(sprintf("%.2f", charge.amount.to_f / 100)) %>
-  <%= "Paid by: " charge.source[:brand] %>
-  <%= "Last 4 digits: " charge.source[:last4] %>
-  <% if charge.amount_refunded == 0 %>
-    <%= link_to "Refund this transaction", confirm_refund_path(charge.id) %>
-  <% else %>
-    <p>Refunded</p>
+<ul class="card-transaction">
+  <li><%= number_to_currency(sprintf("%.2f", @charge.amount.to_f / 100)) %></li>
+  <li>Paid by: <%= @charge.source[:brand] %></li>
+  <li>Last 4 digits: <%= @charge.source[:last4] %></li>
+  <% if @charge.amount_refunded == 0 && current_user.role == "admin" %>
+    <li><%= link_to "Refund this transaction", confirm_refund_path(@charge["id"]) %></li>
+  <% elsif @charge.amount_refunded != 0 %>
+    <li>Refunded</li>
   <% end %>
-</div>
+</ul>

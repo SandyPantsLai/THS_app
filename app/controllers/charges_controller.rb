@@ -41,7 +41,7 @@ class ChargesController < ApplicationController
     end
 
     flash[:notice] = "Thanks for your payment!"
-    redirect_to user_path(current_user)
+    redirect_to transactions_path
 
     rescue Stripe::CardError => e
       flash[:alert] = e.message
@@ -49,22 +49,24 @@ class ChargesController < ApplicationController
   end
 
   def show
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @charge = Stripe::Charge.retrieve(params[:id])
     @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
   end
 
   def confirm_refund
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @charge = Stripe::Charge.retrieve(params[:format])
     @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
   end
 
   def refund
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @charge = Stripe::Charge.retrieve(params[:format])
     @charge.refunds.create
     @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
     @transactions.each do |t|
       t.update(settlement_date: nil)
     end
+    flash[:notice] = "Your refund was successful!"
+    redirect_to transactions_path
 
     rescue Stripe::CardError => e
     rescue Stripe::InvalidRequestError => e
@@ -72,6 +74,5 @@ class ChargesController < ApplicationController
       flash[:alert] = e.message
       redirect_to charges_path(@charge.id)
 
-    render :show
   end
 end

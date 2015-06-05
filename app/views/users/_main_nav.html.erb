@@ -24,8 +24,8 @@
 				<li><a href="#">Your Library</a>
         	<ul>
 		        <li><%= link_to "Catalogue", books_path %></li>
-		        <li><%= link_to "Holds", holds_path(current_user.id) %></li>
-		        <li><%= link_to "Checkouts", check_outs_path(current_user.id) %></li>
+		        <li><%= link_to "Holds", holds_path %></li>
+		        <li><%= link_to "Checkouts", check_outs_path %></li>
 		        <li><%= link_to "Fines", fines_path(current_user.id) %></li>
 		      </ul>
 		    <li><%= link_to "Profile", user_path(current_user.id) %></li>

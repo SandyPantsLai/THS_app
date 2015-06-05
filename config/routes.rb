@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   patch 'check_outs/:id/check_in' => 'check_outs#check_in', as: :check_out_check_in
   patch 'check_outs/:id/renew' => 'check_outs#renew', as: :check_out_renew
 
-  
+
   resources :books do
     resources :holds, only: [:new, :create]
   end
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 
   resources :charges
   get 'confirm_refund' => 'charges#confirm_refund'
-  get 'refund' => 'charges#refund'
+  post 'refund' => 'charges#refund'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
