@@ -6,7 +6,7 @@
 .catalogue form {
 	margin: $form-margin;
 }
-.catalogue p, .catalogue-search .field label { // partial
+.catalogue-search .field label { // partial
 	font-family: $heading-font-family;
 	font-weight: $base-font-weight;
 }
@@ -18,7 +18,7 @@
 	font-size: $base-font-size;
 }
 .book-card {
-	border-top: $base-border;
+	border-bottom: $base-border;
 	margin: rem(20) 0;
 	padding: rem(30) 0 rem(20) 0;
 	float: left;
@@ -39,7 +39,6 @@
 	padding: rem(30) 0;
 	float: left;
 	text-align: justify;
-	border-bottom: $base-border;
 }
 .description p {
 	font-family: $base-font-family;
@@ -49,22 +48,37 @@
 .copies {
 	float: left;
 	width: 100%;
-
+	background-color: $matt-black;
+	padding: rem(40) rem(20);
+}
+.copies p, .copies ul, .copies li {
+	color: $off-white;
+	font-family: $heading-font-family;
 }
 .book-links {
 	position: fixed;
-	bottom: 0;
+	top: 0px;
 	z-index: 9;  
-	float: left;
 	width: 100%;
-	border-top: $base-border;
 	margin: rem(30) 0;
-	padding: rem(30) 0 rem(20) 0;
-	background-color: $light-gray;
+	padding: rem(30) 0 0 0;
+	background-color: $off-white;
 }
-.book-links button {
+nav.book-menu {
 	float: left;
-	width: 33%;
+	height: $nav-height; 
+}
+nav.book-menu ul {
+	padding: rem(20);
+}
+nav.book-menu ul li a {
+	display: block;
+}
+nav.book-menu ul li {
+	display: inline;
+	float: left;
+	margin: $no-margin;
+	padding: rem(10) rem(10);
 }
 
 // Google Book search results
