@@ -16,7 +16,7 @@ select {
 }
 
 label {
-  font-weight: 600;
+  font-weight: $base-font-weight;
   margin-bottom: $small-spacing / 2;
 
   &.required::after {
@@ -36,12 +36,13 @@ textarea {
   border-radius: $base-border-radius;
   box-shadow: $form-box-shadow;
   box-sizing: border-box;
-  font-family: $base-font-family;
+  font-family: $heading-font-family;
   font-size: $base-font-size;
   margin-bottom: $base-spacing / 2;
   padding: $base-spacing / 3;
   transition: border-color;
   width: 100%;
+  font-weight: $base-font-weight;
 
   &:hover {
     border-color: darken($base-border-color, 10%);
