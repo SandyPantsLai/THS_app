@@ -1,6 +1,10 @@
 <div class="transactions">
   <table id="transactions-table">
   <tr>
+    <% if current_user.role == "admin" || current_user.role == "volunteer" %>
+    <th scope="col">User Name</th>
+    <th scope="col">User ID</th>
+    <% end %>
     <th scope="col">Date</th>
     <th scope="col">Description</th>
     <th scope="col">Amount</th>
@@ -11,6 +15,11 @@
   </tr>
   <% @transactions.each do |t| %>
     <tr class="transaction-item">
+        <% if current_user.role == "admin" || current_user.role == "volunteer" %>
+          <% user = User.find(t.user_id) %>
+          <td><%= user.first_name + " " + user.last_name %></td>
+          <td><%= user.id %></td>
+        <% end %>
         <td><%= t.created_at.strftime("%b %e, %Y") %></td>
         <% if t.class == MemberFee %>
             <td class="member-fee">

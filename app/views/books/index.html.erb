@@ -10,7 +10,7 @@
 
 		<div class="book-card">
 
-			<%= @book.cover_image %>
+			<%= book.cover_image %>
 
 			<div class="data">
 				<h3><%= link_to book.title, "/books/#{book.id}" %><br />
@@ -18,12 +18,12 @@
 
 				<p><strong>Author:</strong> <%= book.author %><br />
 				<strong>Category:</strong> <%= book.category %></p>
-				
+
 				<div class="description">
 					<p><%= book.description %></p>
 				</div>
-			
-			</div><!-- end .data -->	
+
+			</div><!-- end .data -->
 		</div><!-- end .book-card -->
 
 	<% end %>
