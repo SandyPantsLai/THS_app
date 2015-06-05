@@ -11,8 +11,7 @@ class CreateBooks < ActiveRecord::Migration
       t.string :page_count
       t.string :categories
       t.string :cover_image
-      t.string :type
-      t.string :indetifier
+      t.string :isbn_number
       t.integer :book_copy_id
       t.integer :hold_id
 

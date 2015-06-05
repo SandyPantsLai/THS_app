@@ -42,8 +42,21 @@ Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 14.days)
 Deposit.create(amount: 4000, user_id: 3, settlement_date: Time.now - 28.days)
 Deposit.create(amount: 1250, user_id: 3)
 
+100.times do
+  Book.create(title: Faker::Lorem.sentence.capitalize,
+    subtitle: Faker::Lorem.sentence.capitalize,
+    author: "#{Faker::Name.last_name}," + " #{Faker::Name.first_name}",
+    publisher: Faker::Company.name,
+    published_date: Faker::Date.between(200.years.ago, Date.today),
+    description: Faker::Lorem.paragraph,
+    page_count: rand(50..1000),
+    category: Faker::Commerce.department,
+    cover_image: Faker::Avatar.image,
+    isbn_number: Faker::Code.isbn)
+end
+
 300.times do
-  BookCopy.create(book_id: rand(2..99))
+  BookCopy.create(book_id: rand(2..100))
 end
 
 5.times do

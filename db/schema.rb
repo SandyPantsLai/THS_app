@@ -32,8 +32,7 @@ ActiveRecord::Schema.define(version: 20150603162346) do
     t.string   "page_count"
     t.string   "category"
     t.string   "cover_image"
-    t.string   "type"
-    t.string   "indetifier"
+    t.string   "isbn_number"
     t.integer  "book_copy_id"
     t.integer  "hold_id"
     t.datetime "created_at",     null: false
