@@ -3,12 +3,9 @@
 	@include outer-container;
 }
 .main-content {
-	@include outer-container;
-	padding: $main-content-padding;
-	margin-bottom: rem(100);
+	float: left;
+	width: 100%;
 }
-.left { float: left;}
-.right { float: right;}
 .qrscanner {
   width: 200px;
   height: 200px;

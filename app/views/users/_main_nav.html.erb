@@ -1,57 +1,38 @@
-<!-- enjoy the noise x -->
 <header>
-	<div class="nav-wrapper">
-	  <nav class="main-nav">
-	    <ul class="main-menu">
-	    	<% if current_user == nil %>
-	    	<% elsif current_user.role == 'admin' %>
-	        <li class="nav"><%= link_to 'Hermetic Library Awesome', root_url %></li>
-	        <li class="nav">Library
-	        	<ul class="submenu">
-			        <li><%= link_to "Catalogue", books_path %></li>
-			        <li><%= link_to "Add Book", new_book_path %></li>
-			        <li><%= link_to "User Holds", holds_path %></li>
-			        <li><%= link_to "User Checkouts", check_outs_path %></li>
-			        <li><%= link_to "User Fines", fines_path %></li>
-			        <li><%= link_to "User Transactions", transactions_path %></li>
-			      </ul>
-			    </li>
-			    <li class="nav">Profiles
-						<ul class="submenu">
-							<li><%= link_to "Admin Profile", user_path(current_user.id) %></li>
-			        <li><%= link_to "User Profiles", users_path %></li>
-			        <li><%= link_to "Add User", new_user_path %></li>
-			        <li><%= link_to "Edit Admin Profile", edit_user_path(current_user.id) %></li>
-			      </ul>
-			    </li>
-			  <% else current_user.role == 'user' %>
-					<li class="nav">Library</a>
-	        	<ul class="submenu">
-			        <li><%= link_to "Catalogue", books_path %></li>
-			        <li><%= link_to "Add Book" %></li>
-			        <li><%= link_to "Holds" %></li>
-			        <li><%= link_to "Checkouts" %></li>
-			        <li><%= link_to "Fines" %></li>
-			        <li><%= link_to "Paid and Unpaid Transactions", transactions_path %></li>
-			      </ul>
-			    </li>
-			    <li class="nav">Profile
-						<ul class="submenu">
-			        <li><%= link_to "Profile", user_path(current_user.id) %></li>
-			        <li><%= link_to "Edit", edit_user_path(current_user.id) %></li>
-			      </ul>
-			    </li>
-				<% end %>
-	    </ul><!-- end .main-menu -->
-	  </nav><!-- end .main-nav -->
-
-    <% if current_user == nil %>
-    	<%= link_to "Login", :login, :method => :get, class: "sign-up" %>
-    <% elsif current_user.role == 'admin' %>
-    	<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
-    <% else current_user.role == 'user' %>
-			<%= link_to "Logout", :logout, :method => :post, class: "sign-up" %>
-		<% end %>
-
-	</div><!-- .nav-wrapper -->
+  <nav class="main-nav">
+    <ul class="main-menu">
+    	<% if current_user == nil %>
+    	<% elsif current_user.role == 'admin' %>
+        <li><a href="#">Library</a>
+        	<ul>
+		        <li><%= link_to "Catalogue", books_path %></li>
+		        <li><%= link_to "Add Book", new_book_path %></li>
+		        <li><%= link_to "Member Holds", holds_path %></li>
+		        <li><%= link_to "Member Checkouts", check_outs_path %></li>
+		        <li><%= link_to "Member Fines", fines_path %></li>
+		        <li><%= link_to "Member Accounts", transactions_path %></li>
+		      </ul>
+		    </li>
+		    <li><a href="#">Members</a>
+					<ul>
+		        <li><%= link_to "Member Profiles", users_path %></li>
+		        <li><%= link_to "Add Member", new_user_path %></li>
+		      </ul>
+		    </li>
+		    <li><%= link_to "Profile", user_path(current_user.id) %></li>
+		    <li><%= link_to "Logout", :logout, :method => :post %></li>
+		  <% else current_user.role == 'user' %>
+				<li><a href="#">Your Library</a>
+        	<ul>
+		        <li><%= link_to "Catalogue", books_path %></li>
+		        <li><%= link_to "Holds", holds_path %></li>
+		        <li><%= link_to "Checkouts", check_outs_path %></li>
+		        <li><%= link_to "Fines", fines_path(current_user.id) %></li>
+		        <li><%= link_to "Account", transactions_path %></li>
+		      </ul>
+		    <li><%= link_to "Profile", user_path(current_user.id) %></li>
+		    <li><%= link_to "Logout", :logout, :method => :post %></li>
+			<% end %>
+    </ul><!-- end .main-menu -->
+  </nav><!-- end .main-nav -->
 </header>

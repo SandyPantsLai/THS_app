@@ -2,26 +2,27 @@
 button {
   @include appearance(none);
   -webkit-font-smoothing: antialiased;
-  background-color: $action-color;
+  background-color: $light-green;
   border-radius: $base-border-radius;
-  border: none;
-  color: #fff;
+  border: #fff;
+  color: $off-white;
   cursor: pointer;
   display: inline-block;
-  font-family: $base-font-family;
+  font-family: $heading-font-family;
   font-size: $base-font-size;
-  font-weight: 600;
-  line-height: 1;
-  padding: 0.75em 1em;
+  font-weight: $base-font-weight;
+  line-height: $base-line-height;
+  padding: 0.5em 1em;
   text-decoration: none;
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  margin: rem(20) 0;
+  float: left;
+  margin: rem(20) 0 0 rem(10);
 
   &:hover,
   &:focus {
-    background-color: darken($action-color, 15%);
+    background-color: darken($light-green, 15%);
     color: #fff;
   }
 
@@ -30,3 +31,9 @@ button {
     opacity: 0.5;
   }
 }
+.book-card button {
+  background-color: $light-green;
+  color: $off-white;
+}
+
+
