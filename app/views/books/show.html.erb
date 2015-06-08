@@ -1,7 +1,7 @@
-<div class="catalogue">	
+<div class="catalogue">
 
 	<p class="link">&larr; <%= link_to "Catalogue", books_path %></p>
-	
+
 	<% copies = BookCopy.where(book_id: @book.id)%>
 	<% copies_count = copies.count %>
 	<% checked_out = 0 %>
@@ -9,26 +9,26 @@
 	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
 
 	<div class="book-card">
-	
+
 		<img src="http://place-hold.it/128x193" />
 		<!-- qr code needed -->
 
 		<div class="data">
-			
+
 			<h4><%= @book.title %><br />
 			<%= @book.subtitle %></h4>
-		
+
 			<p>Author: <%= @book.author %><br />
 			Publisher: <%= @book.publisher %><br />
 			Published Date: <%= @book.published_date %><br />
-			ISBN: <%= @book.indetifier %><br />
+			ISBN: <%= @book.isbn_number %><br />
 			Category: <%= @book.category %><br />
 			Page Count: <%= @book.page_count %></p>
-		
-		</div><!-- end .data -->	
-		
+
+		</div><!-- end .data -->
+
 		<%= button_to "Edit Book", edit_book_path %>
-			
+
 			<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
 	  		<p><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p>
 			<% elsif %>
@@ -38,12 +38,12 @@
 			<% end %>
 
 		<div class="description"><p><%= @book.description %></p></div>
-	
+
 	</div><!-- end .book-card -->
 </div><!-- end .catalogue -->
 
 <div class="copies">
-	
+
 	<p><strong>Book Status:</strong></p><br />
 
 	<p><%= @copies_available %> copies are available for checkout.<br />
@@ -52,13 +52,13 @@
 	<% unless @due_dates == [] %>
 
 	  <p><strong>Checked out copies are due back:</strong></p><br />
-		
-		<ul>	  	
+
+		<ul>
 	  	<% @due_dates.sort.each do |due_date| %>
 	    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
 	  	<% end %>
 	  </ul>
-		
+
 	<% end %>
 
 </div><!-- end .copies -->
