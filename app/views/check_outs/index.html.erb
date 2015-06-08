@@ -1,14 +1,17 @@
 <div class="catalogue">
 
-	<h2>Check Outs</h2>
+	<h2 class="title">Check Outs</h2>
 
-	<ul>
+	<div class="book-card">
+
 	  <% @check_outs.each do |check_out| %>
-	    <li>
-	      <%= link_to check_out.book_copy.book.title, check_out_path( check_out ) %><br />
-	      checked out by <strong><%= check_out.user.last_name %>, <%= check_out.user.first_name %></strong>
-	    </li>
+	    
+	    <h3><%= link_to check_out.book_copy.book.title, check_out_path( check_out ) %></h3>
+
+	    <p>Checked out by <strong><%= check_out.user.first_name %> <%= check_out.user.last_name %></strong></p> 
+	    
 	  <% end %>
-	</ul>
+
+	</div><!-- end .book-card -->
 
 </div><!-- end .catalogue -->
