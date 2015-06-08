@@ -17,6 +17,14 @@ class Transaction
     Deposit.create(amount:4000, user_id: user.id)
   end
 
+  def self.top_up_deposit(user)
+    if deposit = Deposit.where(user_id: user.id).where(settlement_date: nil)
+      deposit.update(amount: 4000 - user.current_deposit, updated_at: Time.now)
+    else
+      Deposit.create(amount: 4000 - user.current_deposit, user_id: user.id)
+    end
+  end
+
   def self.user_deposits
   end
 
