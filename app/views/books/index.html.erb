@@ -10,7 +10,7 @@
 
 		<div class="index-card">
 
-			<img src="http://place-hold.it/128x193" />
+			<%= image_tag "http://bks4.books.google.ca/books/content?id=#{book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 
 			<div class="data">
 				<h4><%= link_to book.title, "/books/#{book.id}" %><br />
@@ -18,8 +18,8 @@
 
 				<p><strong>Author:</strong> <%= book.author %><br />
 				<strong>Category:</strong> <%= book.category %><br />
-			
-			</div><!-- end .data -->	
+
+			</div><!-- end .data -->
 		</div><!-- end .book-card -->
 
 	<% end %>
