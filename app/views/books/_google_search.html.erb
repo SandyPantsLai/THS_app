@@ -1,10 +1,12 @@
 <div class="google-search">
 	<%= form_tag book_search_google_path method: "post" do %>
-	  
+
 	  <%= label_tag(:query, "Google Book Search:") %>
 	  <%= text_field_tag(:query) %>
 	  <%= submit_tag("Search") %>
-	  <%= button_to "Add Book Manually" %> 
-
+	  
 	<% end %>
+
+	<p class"link"><%= link_to "Add Book Manually" %></p> 
+
 </div>

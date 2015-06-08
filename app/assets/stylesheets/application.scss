@@ -7,10 +7,11 @@
 @import "base/layout";
 
 // views
+@import "user_sessions";
 @import "navigation";
-@import "users";
 @import "books";
+@import "google_search";
+@import "users";
 @import "fines";
 @import "holds";
-@import "user_sessions";
 @import "check_outs";

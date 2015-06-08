@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150608042550) do
+=======
+ActiveRecord::Schema.define(version: 20150608194651) do
+>>>>>>> d31f5051f381d89f7bd4ab8338d7e7ad3c526e1a
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -38,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150608042550) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "qr_code"
+    t.string   "volume_id"
   end
 
   create_table "check_outs", force: :cascade do |t|
