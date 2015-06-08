@@ -1,33 +1,45 @@
-<h1>Holds </h1>
-<% holds = @holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
-<% if current_user.role == "admin" || current_user.role == "volunteer" %>
-  <% unless @mine %>
-    <%= link_to 'View My Holds', myholds_path %>
-  <% else %>
-    <%= link_to 'View Holds For All Users', holds_path %>
-  <% end %>
-<% end %>
-<p>There are <%= @holds.where("pickup_expiry IS NOT NULL").count %> holds available for pickup.</p>
+<div class="catalogue">
 
-<div class="holds_list">
-  <% holds.each do |hold| %>
-    <% if current_user.role == 'admin' || current_user.role == 'volunteer' %>
-      <p class="user"> User: <% user = hold.user %>
-      <%= link_to "#{user.last_name}, #{user.first_name}", user_path(user) %></p>
-      <%= "This user has #{Hold.where(user_id: hold.user_id).where("pickup_expiry IS NOT NULL").count} holds available for pickup." %>
+  <h2 class="title">Holds</h2>
+
+  <p>There are <%= @holds.where("pickup_expiry IS NOT NULL").count %> holds available for pickup.</p>
+
+  <% holds = @holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
+  <% if current_user.role == "admin" || current_user.role == "volunteer" %>
+    <% unless @mine %>
+      <%= button_to 'View My Holds', myholds_path %></p>
+    <% else %>
+      <%= button_to 'View Holds For All Users', holds_path %>
+    <% end %>
+  <% end %>
+
+  <div class="book-card">
+
+    <% holds.each do |hold| %>
+      <% if current_user.role == 'admin' || current_user.role == 'volunteer' %>
+        <h3>
+          <% user = hold.user %>
+          <%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %>
+        </h3>
+
+        <%= "This user has #{Hold.where(user_id: hold.user_id).where("pickup_expiry IS NOT NULL").count} holds available for pickup." %>
+    
+      <% end %>
+
+      <% title = Book.find(hold.book_id).title %>
+      <% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %>
+
+        <p>Book: <%= link_to title, book_path(hold.book_id) %></p>
+        
+        <% if hold.pickup_expiry %>
+          <p>Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></p>
+        <% else %>
+          <p>You are #<%= queue %> in line.</p>
+        <% end %>
+        
+      <div class="submit"><%= button_to 'Cancel hold', hold_path(hold), method: :delete, class: "cancel" %></div> 
+    
     <% end %>
 
-    <% title = Book.find(hold.book_id).title %>
-    <% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %>
-
-    <div class="hold_item">
-      <p>Book: <%= link_to title, book_path(hold.book_id) %></p>
-      <% if hold.pickup_expiry %>
-        <p>Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></p>
-      <% else %>
-        <p>You are #<%= queue %> in line.</p>
-      <% end %>
-      <%= button_to 'Cancel hold', hold_path(hold), method: :delete, class: "cancel" %>
-    </div>
-  <% end %>
-</div>
+  </div><!-- end .book-card -->
+</div><!-- end .catalogue -->

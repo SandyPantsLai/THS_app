@@ -19,3 +19,10 @@ p.link {
 	font-family: $heading-font-family;
 	padding-left: rem(20);
 }
+.submit {
+	float: left;
+	width: 100%;
+	padding-bottom: rem(30);
+	margin-bottom: rem(40);
+	border-bottom: $base-border;
+}
