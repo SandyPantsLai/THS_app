@@ -39,7 +39,7 @@
             </td>
         <% end %>
         <td><%= number_to_currency(sprintf("%.2f", t.amount.to_f / 100)) %></td>
-        <% unless request.original_url == new_charge_url || request.original_url == new_charge_url(t.user_id) %>
+        <% if request.original_url == transactions_url %>
           <%= render partial: 'transactions/payment_info', locals: { t: t } %>
         <% end %>
     </tr>

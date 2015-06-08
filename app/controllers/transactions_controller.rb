@@ -13,13 +13,10 @@ class TransactionsController < ApplicationController
 
   def edit
     if t.class == MemberFee
-      @transaction = MemberFee.find(params[:id])
+      @transactions = [MemberFee.find(params[:id])]
     else
-      @transaction = Deposit.find(params[:id])
+      @transactions = [Deposit.find(params[:id])]
     end
-  end
-
-  def update
   end
 
   def destroy

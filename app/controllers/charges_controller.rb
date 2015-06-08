@@ -49,14 +49,8 @@ class ChargesController < ApplicationController
   end
 
   def show
-    if params[:id]
-      @charge = Stripe::Charge.retrieve(params[:id])
-      @transactions = current_user.deposits.where(notes: @charge.id) + current_user.member_fees.where(notes: @charge.id)
-    else
-      @charge = nil
-      @notes = params[:notes]
-      render "transactions/show"
-    end
+    @charge = Stripe::Charge.retrieve(params[:id])
+    @transactions = current_user.deposits.where(notes: @charge.id) + current_user.member_fees.where(notes: @charge.id)
   end
 
   def confirm_refund

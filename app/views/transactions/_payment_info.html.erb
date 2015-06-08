@@ -3,8 +3,10 @@
   <td>
     <% if t.notes == "cash" %>
       <%= "Cash" %>
+    <% elsif t.notes == "credit card, in-person" %>
+      <%= "Paid by credit card, in-person via machine." %>
     <% else %>
-      <%= link_to "Card", charge_path(charge_id: st.notes) %>
+      <%= link_to "Online Payment", charge_path(id: t.notes) %>
     <% end %>
   </td>
 <% else %>
