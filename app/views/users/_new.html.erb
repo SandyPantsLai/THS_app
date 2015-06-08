@@ -2,41 +2,32 @@
 
 <%= form_for @user do |f| %>
 
-	<div class="field">
-		<%= f.label :first_name %><br />
-		<%= f.text_field :first_name %>
-	</div>
+	<%= f.label :first_name %><br />
+	<%= f.text_field :first_name %>
 
-	<div clas="field">
-		<%= f.label :last_name %><br />
-		<%= f.text_field :last_name %>
-	</div>
+	<%= f.label :last_name %><br />
+	<%= f.text_field :last_name %>
 
-	<div clas="field">
-		<%= f.label :email %><br />
-		<%= f.email_field :email %>
-	</div>
+	<%= f.label :email %><br />
+	<%= f.email_field :email %>
 
-	<div clas="field">
-		<%= f.label :phone_number %><br />
-		<%= f.telephone_field :phone_number %>
-	</div>
+	<%= f.label :phone_number %><br />
+	<%= f.telephone_field :phone_number %>
 
-	<div class="field">
-	   <%= f.label :password %><br />
-	   <%= f.password_field :password %>
-	</div>
+   <%= f.label :password %><br />
+   <%= f.password_field :password %>
 
-	<div class="field">
-	   <%= f.label :password_confirmation %><br />
-	   <%= f.password_field :password_confirmation %>
-	</div>
+   <%= f.label :password_confirmation %><br />
+   <%= f.password_field :password_confirmation %>
 
-	<div class="field">
-		<%= f.label :membership, "How often would you like to pay for your membership?" %><br />
-		<%= f.select :membership, [["$10 per month", "monthly"],["$100 per year","annual"]] %>
-	</div>
+	<%= f.label :membership, "How often would you like to pay for your membership?" %><br />
+	<%= f.select :membership, [["$10 per month", "monthly"],["$100 per year","annual"]] %>
 
-	<div class="submit"><%= f.submit "Create User" %></div>
+	<%= f.submit "Create User" %></div>
+
+	<div class"alert">
+		<%= flash[ :notice ] if flash[ :notice ] %>
+		<%= flash[ :alert ] if flash[ :alert ] %>
+	</div>
 
 <% end %>

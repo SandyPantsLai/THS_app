@@ -1,5 +1,7 @@
 <%= render "transactions/transaction" %>
+
 <%= form_tag charges_path do %>
+  
   <article>
     <label class="amount">
       <span>Total Owing: <%= number_to_currency(sprintf("%.2f", @amount.to_f / 100)) %></span>
@@ -16,5 +18,5 @@
     data-description="Total Owing"
     data-allow-remember-me=false>
   </script>
-  <%= hidden_field_tag :user_id, @user.id %>
+
 <% end -%>
