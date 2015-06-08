@@ -1,11 +1,11 @@
 <div class="catalogue">
 
   <p><%= check_out.book_copy.book.title %></p>
-  <p>By <%= check_out.book_copy.book.last_name %>, <%= check_out.book_copy.book.first_name %></p>
+  <p>By <%= check_out.book_copy.book.first_name %> <%= check_out.book_copy.book.last_name %></p>
   <p>Library code: <%= check_out.book_copy.library_code %></p>
 
-
   <h3>Borrower</h3>
+
   <p><%= check_out.user.first_name %> <%= check_out.user.last_name %><br />
   Email: <%= check_out.user.email %><br />
   Phone: <%= check_out.user.phone_number %></p>

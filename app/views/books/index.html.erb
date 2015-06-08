@@ -13,6 +13,7 @@
 			<%= image_tag "http://bks4.books.google.ca/books/content?id=#{book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 
 			<div class="data">
+			
 				<h4><%= link_to book.title, "/books/#{book.id}" %><br />
 				<%= book.subtitle %></h4>
 
@@ -26,4 +27,4 @@
 
 	<%= paginate @books %>
 
-</div><!-- end .wrapper -->
+</div><!-- end .catalogue -->
