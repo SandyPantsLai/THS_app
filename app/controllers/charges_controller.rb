@@ -37,9 +37,8 @@ class ChargesController < ApplicationController
     @transactions.each do |t|
       t.update(notes: "Online Payment", settlement_date: Time.now, charge_id: charge.id)
       current_deposit = t.user.current_deposit || 0
-      if t.class == Deposit
-        t.user.update(current_deposit: current_deposit + @amount)
-      end
+      t.user.update(current_deposit: current_deposit + @amount) if t.class == Deposit
+      @member_fee.user.update(status: "active") if MemberFee.where(user: @member_fee.user).where("settlement_date IS NOT NULL")
     end
 
     flash[:notice] = "Thanks for your payment!"
@@ -67,9 +66,7 @@ class ChargesController < ApplicationController
     @transactions = Deposit.where(charge_id: @charge.id) + MemberFee.where(charge_id: @charge.id)
     @transactions.each do |t|
       t.update(settlement_date: nil)
-      if t.class == Deposit
-        t.user.update(current_deposit: t.user.current_deposit - @charge.amount)
-      end
+      t.user.update(current_deposit: t.user.current_deposit - @charge.amount) if t.class == Deposit
     end
     flash[:notice] = "Your refund was successful!"
     redirect_to transactions_path
