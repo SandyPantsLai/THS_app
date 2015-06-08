@@ -1,30 +1,36 @@
 // book index
+.catalogue {
+	width: 100%;
+	float: left;
+	padding: 0 rem(20);
+	margin-bottom: rem(30);
+}
 .catalogue-search {
 	float: left;
 	width: 100%;
-	margin-bottom: rem(30);
+	padding-bottom: rem(30);
+}
+.catalogue-search p {
+	margin-left: rem(20); 
 }
 .catalogue-search .field label { // partial
 	font-family: $heading-font-family;
 	font-weight: $base-font-weight;
 }
 .book-card, .book-index {
-	padding: rem(30) rem(20);
+	padding: rem(30) 0;
 	float: left;
 	width: 100%;
 }
-.book-card img {
+.book-card img, .book-index img {
 	float: left;
 	padding-right: rem(20);
-	width: 40%;
 }
 .data {
 	float: left;
-	width: 60%;
 }
 .copies {
 	float: left;
-	padding: 0 rem(20);
 }
 .copies p, .copies ul, .copies li {
 	color: $base-font-color;
@@ -36,7 +42,7 @@
 // book show
 
 .description { 
-	padding: rem(30) rem(20);
+	padding: rem(30) 0;
 	float: left;
 	text-align: justify;
 	width: 100%;

@@ -1,24 +1,29 @@
-<h2 class="title">Catalogue</h2>
+<div class="catalogue">	
 
-<%= render 'search' %>
+	<h2 class="title">Catalogue</h2>
 
-<p><%= page_entries_info @books %></p>
+	<%= render 'search' %>
 
-<% @books.each do |book| %>
+	<p><%= page_entries_info @books %></p>
 
-	<div class="book-index">
+	<% @books.each do |book| %>
 
-		<%= image_tag "http://bks4.books.google.ca/books/content?id=#{book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+		<div class="book-index">
 
-		<div class="data">
-			<h4><%= link_to book.title, "/books/#{book.id}" %><br />
-			<%= book.subtitle %></h4>
+			<%= image_tag "http://bks4.books.google.ca/books/content?id=#{book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 
-			<p><strong>Author:</strong> <%= book.author %><br />
-			<strong>Category:</strong> <%= book.category %><br />
-		
-		</div><!-- end .data -->	
-	</div><!-- end .book-index -->
-<% end %>
+			<div class="data">
+				<h4><%= link_to book.title, "/books/#{book.id}" %><br />
+				<%= book.subtitle %></h4>
 
-<%= paginate @books %>
+				<p>Author: <%= book.author %><br />
+				Category: <%= book.category %><br />
+			
+			</div><!-- end .data -->	
+		</div><!-- end .book-index -->
+	
+	<% end %>
+
+	<%= paginate @books %>
+
+</div><!-- end .wrapper -->
