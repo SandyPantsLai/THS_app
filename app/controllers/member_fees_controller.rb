@@ -4,6 +4,7 @@ class MemberFeesController < ApplicationController
   end
 
   def edit
+     @deposit.update(amount: params["deposit"]["amount"]) if params["deposit"]["amount"]
   end
 
   def update
