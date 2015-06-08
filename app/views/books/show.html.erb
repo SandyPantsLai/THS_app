@@ -8,12 +8,12 @@
 
 	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
 
-	<div class="book-card">
+	<div class="book-card">	
+		
+		<%= image_tag "http://bks4.books.google.ca/books/content?id={@book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 	
-		<% @filtered_results["volumes"].each do |result| %>
-			<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
-		<% end %>	
-						
+		<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id={@book.volume_id}&source=qrcode" %>
+
 		<div class="data">
 			
 			<h3><%= @book.title %><br />

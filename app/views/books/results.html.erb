@@ -9,11 +9,12 @@
 			<div class="title"><%= f.text_field :title, value: result[:title] %></div>
 			
 			<div class="images">
-				
-						<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:volume_id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+
+				<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:volume_id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+	
+				<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:volume_id]}&source=qrcode" %>
 			
-						<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:volume_id]}&source=qrcode" %>
-			
+
 			</div><!-- end .images -->
 
 			<div class="data">
