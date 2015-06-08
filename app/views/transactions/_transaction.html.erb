@@ -8,7 +8,7 @@
     <th scope="col">Date</th>
     <th scope="col">Description</th>
     <th scope="col">Amount</th>
-    <% unless request.original_url == new_charge_url %>
+    <% if request.original_url == transactions_url %>
       <th scope="col">Paid</th>
       <th scope="col">Payment Method</th>
     <% end %>
@@ -28,7 +28,7 @@
               <% elsif t.user.membership == "annual" && t.amount != 10000 %>
                 <%= t.created_at.strftime("%b") + " Initial Annual Membership Fee - Prorated From Start of Month" %>
               <% elsif t.amount == 1000 %>
-                <%= t.created_at.strftime("%b") + " Monthly Membership Fee" %>
+                <%= t.created_at.strftime("%b %Y") + " Monthly Membership Fee" %>
               <% else %>
                 <%= t.created_at.strftime("%Y") + " Annual Membership Fee" %>
               <% end %>
@@ -39,7 +39,9 @@
             </td>
         <% end %>
         <td><%= number_to_currency(sprintf("%.2f", t.amount.to_f / 100)) %></td>
-        <%= render partial: 'transactions/payment_info', locals: { t: t } unless request.original_url == new_charge_url %>
+        <% if request.original_url == transactions_url %>
+          <%= render partial: 'transactions/payment_info', locals: { t: t } %>
+        <% end %>
     </tr>
   <% end %>
   </table>

@@ -34,12 +34,12 @@ User.create!(
 	User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.phone_number, password: '4321', password_confirmation: '4321', role: 'user')
 end
 
-MemberFee.create(amount: 10000, user_id: 1, settlement_date: Time.now - 14.days)
-MemberFee.create(amount: 1000, user_id: 3, settlement_date: Time.now - 58.days, created_at: Time.now-58.days)
+MemberFee.create(amount: 10000, user_id: 1, settlement_date: Time.now - 14.days, notes: "Cash")
+MemberFee.create(amount: 1000, user_id: 3, settlement_date: Time.now - 58.days, created_at: Time.now-58.days, notes: "Cash")
 MemberFee.create(amount: 1000, user_id: 3, created_at: Time.now - 28.days)
 
-Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 14.days)
-Deposit.create(amount: 4000, user_id: 3, settlement_date: Time.now - 28.days)
+Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 14.days, notes: "Cash")
+Deposit.create(amount: 4000, user_id: 3, settlement_date: Time.now - 28.days, notes: "Cash")
 Deposit.create(amount: 1250, user_id: 3)
 
 100.times do

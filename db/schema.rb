@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150608194651) do
     t.string   "charge_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "notes"
   end
 
   create_table "fines", force: :cascade do |t|
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150608194651) do
     t.string   "charge_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "notes"
   end
 
   create_table "subjects", force: :cascade do |t|
