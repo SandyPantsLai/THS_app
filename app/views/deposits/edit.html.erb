@@ -6,5 +6,5 @@
   <%= f.select "notes", ["cash", "credit card, in-person"] %>
   <%= f.submit "Mark as Paid" %>
 <% end %>
-  <li><%= button_to "Or pay now by entering credit card info online", new_charge_path(@deposit[0].user_id) %></li>
+  <li><%= button_to "Or pay now by entering credit card info online", new_charge_path(@deposit.user_id) %></li>
 </ul>

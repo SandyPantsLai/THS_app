@@ -10,8 +10,11 @@ class MemberFeesController < ApplicationController
 
   def update
     @member_fee = MemberFee.find(params["id"])
-    @member_fee.update(settlement_date: Time.now, notes: params["member_fee"]["notes"])
-    redirect_to transactions_url
+    if @member_fee.update(settlement_date: Time.now, notes: params["member_fee"]["notes"])
+      redirect_to user_url(@member_fee.user)
+    else
+      redirect_to transactions_url
+    end
   end
 
   def destroy
