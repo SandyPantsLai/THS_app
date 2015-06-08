@@ -30,12 +30,16 @@
 .book-card img, .index-card img {
 	margin-top: rem(10);
 	float: left;
-	width: 30%;
+	padding-right: rem(20);
 }
 .book-card .data, .index-card .data{
 	float: left;
-	width: 70%;
-	padding-left: rem(20);
+}
+.copies {
+	float: left;}
+.copies p, .copies ul, .copies li {
+	color: $base-font-color;
+	font-family: $heading-font-family;
 }
 .index-card {
 	border-top: $base-border;
@@ -43,12 +47,13 @@
 }
 // book show
 .data p {
-	font-size: rem(14);
+	font-size: $base-font-size;
 } 
 .description { 
 	padding: rem(30) 0;
 	float: left;
 	text-align: justify;
+	width: 100%;
 }
 .description p {
 	font-family: $base-font-family;
@@ -58,17 +63,7 @@
 p.link {
 	font-family: $heading-font-family;
 }
-.copies {
-	float: left;
-	width: 100%;
-	background-color: $matt-black;
-	padding: rem(40) rem(20);
-	border-top: 5px solid $purple;
-}
-.copies p, .copies ul, .copies li {
-	color: $off-white;
-	font-family: $heading-font-family;
-}
+
 .book-links {
 	position: fixed;
 	top: 0px;
