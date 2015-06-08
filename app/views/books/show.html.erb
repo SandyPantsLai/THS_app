@@ -1,72 +1,68 @@
-<div class="catalogue">	
+<p class="link">&larr; <%= link_to "Catalogue", books_path %></p>
 
-	<p class="link">&larr; <%= link_to "Catalogue", books_path %></p>
+<% copies = BookCopy.where(book_id: @book.id)%>
+<% copies_count = copies.count %>
+<% checked_out = 0 %>
+
+<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
+
+<div class="book-card">	
 	
-	<% copies = BookCopy.where(book_id: @book.id)%>
-	<% copies_count = copies.count %>
-	<% checked_out = 0 %>
+	<%= image_tag "http://bks4.books.google.ca/books/content?id={@book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 
-	<% copies.each {|copy| checked_out += 1 if CheckOut.find_by(book_copy_id: copy.id)} %>
-
-	<div class="book-card">	
+	<div class="data">
 		
-		<%= image_tag "http://bks4.books.google.ca/books/content?id={@book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+		<h3><%= @book.title %><br />
+		<%= @book.subtitle %></h3>
 	
-		<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id={@book.volume_id}&source=qrcode" %>
-
-		<div class="data">
-			
-			<h3><%= @book.title %><br />
-			<%= @book.subtitle %></h3>
-		
-			<p>Author: <%= @book.author %><br />
-			Publisher: <%= @book.publisher %><br />
-			Published Date: <%= @book.published_date %><br />
-			ISBN: <%= @book.indetifier %><br />
-			Category: <%= @book.category %><br />
-			Page Count: <%= @book.page_count %></p>
-		
-		</div><!-- end .data -->	
-		
-		<%= button_to "Edit Book", edit_book_path %>
-			
-	</div><!-- end .book-card -->
+		<p>Author: <%= @book.author %><br />
+		Publisher: <%= @book.publisher %><br />
+		Published Date: <%= @book.published_date %><br />
+		ISBN: <%= @book.indetifier %><br />
+		Category: <%= @book.category %><br />
+		Page Count: <%= @book.page_count %></p>
 	
-	<div class="copies">
-			
-		<h4>Book Status:</h4>
+	</div><!-- end .data -->	
+	
+	<%= button_to "Edit Book", edit_book_path %>
+		
+</div><!-- end .book-card -->
 
-		<p><%= @copies_available %> copies are available for checkout.<br />
-		<em>(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</em></p><br />
+<div class="copies">
+		
+	<h4>Book Status:</h4>
 
-		<% unless @due_dates == [] %>
+	<p><%= @copies_available %> copies are available for checkout.<br />
+	<em>(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</em></p><br />
 
-		  <p><strong>Checked out copies are due back:</strong></p>
-			
-			<ul>	  	
-		  	<% @due_dates.sort.each do |due_date| %>
-		    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
-		  	<% end %>
-		  </ul>
-			
+	<% unless @due_dates == [] %>
+
+	  <p><strong>Checked out copies are due back:</strong></p>
+		
+		<ul>	  	
+	  	<% @due_dates.sort.each do |due_date| %>
+	    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
+	  	<% end %>
+	  </ul>
+		
+	<% end %>
+	
+	<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
+  		<p><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p>
+		<% elsif %>
+  		<%= button_to "Checkout Book", new_check_out_path( book_id: @book.id ) %>
+		<% else %>
+			<%= button_to "Place Book Hold", new_book_hold_path(book_id: @book.id) %>
 		<% end %>
-		
-		<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
-	  		<p><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p>
-			<% elsif %>
-	  		<%= button_to "Checkout Book", new_check_out_path( book_id: @book.id ) %>
-			<% else %>
-				<%= button_to "Place Book Hold", new_book_hold_path(book_id: @book.id) %>
-			<% end %>
 
-	</div><!-- end .copies -->
+</div><!-- end .copies -->
 
-	<div class="description">
-		
-		<h3>Description</h3>
+<div class="description">
+	
+	<h3>Description</h3>
 
-		<p><%= @book.description %></p></div>
+	<p><%= @book.description %></p></div>
 
-</div><!-- end .catalogue -->
+
 
 

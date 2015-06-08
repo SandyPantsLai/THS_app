@@ -1,12 +1,4 @@
 // book index
-.catalogue { 
-	@include outer-container;
-	padding: 0 rem(20);
-	margin: rem(30) 0; 
-}
-.catalogue form {
-	margin: $form-margin;
-}
 .catalogue-search {
 	float: left;
 	width: 100%;
@@ -16,24 +8,23 @@
 	font-family: $heading-font-family;
 	font-weight: $base-font-weight;
 }
-
-.catalogue p {
-	font-size: $base-font-size;
-}
-.book-card, .index-card {
-	padding: rem(30) 0 rem(20) 0;
+.book-card, .book-index {
+	padding: rem(30) rem(20);
 	float: left;
+	width: 100%;
 }
-.book-card img, .index-card img {
-	margin-top: rem(10);
+.book-card img {
 	float: left;
 	padding-right: rem(20);
+	width: 40%;
 }
-.book-card .data, .index-card .data{
+.data {
 	float: left;
+	width: 60%;
 }
 .copies {
 	float: left;
+	padding: 0 rem(20);
 }
 .copies p, .copies ul, .copies li {
 	color: $base-font-color;
@@ -41,16 +32,11 @@
 }
 .index-card {
 	border-top: $base-border;
-	margin-top: rem(30);
-	@include span-columns(4); 
-
 }
 // book show
-.data p {
-	font-size: $base-font-size;
-} 
+
 .description { 
-	padding: rem(30) 0;
+	padding: rem(30) rem(20);
 	float: left;
 	text-align: justify;
 	width: 100%;
@@ -60,10 +46,6 @@
 	font-weight: $base-font-weight;
 	font-size: $base-font-size;
 }
-p.link {
-	font-family: $heading-font-family;
-}
-
 .book-links {
 	position: fixed;
 	top: 0px;

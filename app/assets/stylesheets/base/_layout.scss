@@ -5,9 +5,14 @@
 .main-content {
 	float: left;
 	width: 100%;
+	padding-top: rem(30);
 }
 .qrscanner {
   width: 200px;
   height: 200px;
   background-color: red;
+}
+p.link {
+	font-family: $heading-font-family;
+	padding-left: rem(20);
 }
