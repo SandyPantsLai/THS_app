@@ -4,8 +4,8 @@ class ChargesController < ApplicationController
   before_action :require_login
 
   def new
-    # @payment = Payment.find(params[:payment_id])
-    @transactions = current_user.deposits.where("settlement_date IS NULL") + current_user.member_fees.where("settlement_date IS NULL")
+    user = User.find(params[:format]) || current_user
+    @transactions = user.deposits.where("settlement_date IS NULL") + user.member_fees.where("settlement_date IS NULL")
     @amount = @transactions.sum(&:amount)
     @pay_now = true
   end

@@ -1,2 +1,8 @@
-<h1>Transactions#edit</h1>
-<p>Find me in app/views/transactions/edit.html.erb</p>
+<h1>Update Transaction</h1>
+<p>Mark this payment as paid by:</p>
+<ul>
+  <li>replace with select for cash or credit</li>
+  <li><%= link_to "Pay now by entering credit card info online", new_charge_path(@transaction.user_id) %></li>
+</ul>
+<p>Waive this transaction</p>
+<p>Delete this transaction</p>

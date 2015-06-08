@@ -8,7 +8,7 @@
     <th scope="col">Date</th>
     <th scope="col">Description</th>
     <th scope="col">Amount</th>
-    <% unless request.original_url == new_charge_url %>
+    <% if request.original_url == transactions_url%>
       <th scope="col">Paid</th>
       <th scope="col">Payment Method</th>
     <% end %>
@@ -39,7 +39,9 @@
             </td>
         <% end %>
         <td><%= number_to_currency(sprintf("%.2f", t.amount.to_f / 100)) %></td>
-        <%= render partial: 'transactions/payment_info', locals: { t: t } unless request.original_url == new_charge_url %>
+        <% unless request.original_url == new_charge_url || request.original_url == new_charge_url(t.user_id) %>
+          <%= render partial: 'transactions/payment_info', locals: { t: t } %>
+        <% end %>
     </tr>
   <% end %>
   </table>

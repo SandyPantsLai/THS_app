@@ -6,7 +6,7 @@
     </label>
     <% unless current_user.stripe_id %>
       <%= check_box_tag(:remember_card) %>
-      <%= label_tag(:remember_card, "Remember my card info") %>
+      <%= label_tag(:remember_card, "Remember card info for future payments") %>
     <% end %>
   </article>
   <script
