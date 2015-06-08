@@ -13,6 +13,50 @@ class Transaction
     end
   end
 
+  def self.update_member_fee(user)
+    t = Time.now
+
+    if user.membership == "annual"
+      #since new membership is annual, check if this month's payment was already paid
+      last_fee = MemberFee.where(user_id: user.id).where(amount <= 1000).last
+      if last_fee.settlement_date
+        next_billing_date = (t + 1.months).beginning_of_month
+        MemberFee.create(amount: 10000, user_id: user.id, created_at: next_billing_date)
+        flash[:notice] = "Your next annual payment is due on #{next_billing_date.strftime("%b %e, %Y")}"
+      #if it is not already paid, update the last payment to be for the annual price instead
+      else
+        last_fee.update(amount: 10000)
+        flash[:notice] = "Please pay for your annual payment."
+      end
+
+    else
+      #since new membership is monthly, check for when next payment is actually due
+      last_fee = MemberFee.where(user_id: user.id).where(amount > 1000).last
+      # time_elapsed = t - last_fee.created_at
+
+      if last_fee.settlement_date
+        months_left = 12 - (t.month.to_int - last_fee.created_at.month.to_int)
+        next_billing_date = t.beginning_of_month + months_left.months
+        MemberFee.create(amount: 1000, user_id: user.id, created_at: next_billing_date)
+        flash[:notice] = "Your next monthly payment is due on #{next_billing_date.strftime("%b %e, %Y")}"
+      else
+        last_fee.update(amount: 1000, created_at: t.beginning_of_month)
+        flash[:notice] = "Please pay for your monthly payment."
+      end
+    end
+
+
+
+
+
+    if membership == "annual"
+      amount =
+
+      member_fee.update(membership: membership)
+    else
+    end
+  end
+
   def self.initial_deposit(user)
     Deposit.create(amount:4000, user_id: user.id)
   end

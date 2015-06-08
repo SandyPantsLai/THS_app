@@ -56,7 +56,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find( params[:id])
 
+    @change_membership = true if params[:membership] != @user.membership
+
     if @user.update_attributes(user_update_params)
+      Transaction.update_member_fee(@user) if @change_membership
       flash[ :alert ] = "Success"
       redirect_to user_path(@user)
     else
