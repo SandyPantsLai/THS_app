@@ -23,9 +23,9 @@
 			ISBN: <%= @book.isbn_number %><br />
 			Category: <%= @book.category %><br />
 			Page Count: <%= @book.page_count %></p>
-		
-		</div><!-- end .data -->	
-		
+
+		</div><!-- end .data -->
+
 		<%= button_to "Edit Book", edit_book_path %>
 			
 	</div><!-- end .book-card -->
@@ -50,6 +50,7 @@
 		<% end %>
 		
 		<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
+
 	  		<p><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p>
 			<% elsif %>
 	  		<%= button_to "Checkout Book", new_check_out_path( book_id: @book.id ) %>
@@ -66,8 +67,7 @@
 		<p><%= @book.description %></p>
 
 	</div>
-</div><!-- end .wrapper -->
 
-
+</div><!-- end .catalogue -->
 
 
