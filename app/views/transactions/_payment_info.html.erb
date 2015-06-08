@@ -1,10 +1,10 @@
 <% if t.settlement_date %>
   <td><%= t.settlement_date.strftime("%b %e, %Y") %></td>
   <td>
-    <% if t.charge_id %>
-      <%= link_to "Card", charge_path(t.charge_id) %>
-    <% else %>
+    <% if t.notes == "cash" %>
       <%= "Cash" %>
+    <% else %>
+      <%= link_to "Card", charge_path(charge_id: st.notes) %>
     <% end %>
   </td>
 <% else %>

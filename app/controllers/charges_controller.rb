@@ -37,7 +37,7 @@ class ChargesController < ApplicationController
     end
 
     @transactions.each do |t|
-      t.update(charge_id: charge.id, settlement_date: Time.now)
+      t.update(notes: charge.id, settlement_date: Time.now)
     end
 
     flash[:notice] = "Thanks for your payment!"
@@ -49,19 +49,25 @@ class ChargesController < ApplicationController
   end
 
   def show
-    @charge = Stripe::Charge.retrieve(params[:id])
-    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+    if params[:id]
+      @charge = Stripe::Charge.retrieve(params[:id])
+      @transactions = current_user.deposits.where(notes: @charge.id) + current_user.member_fees.where(notes: @charge.id)
+    else
+      @charge = nil
+      @notes = params[:notes]
+      render "transactions/show"
+    end
   end
 
   def confirm_refund
     @charge = Stripe::Charge.retrieve(params[:format])
-    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+    @transactions = current_user.deposits.where(notes: @charge.id) + current_user.member_fees.where(notes: @charge.id)
   end
 
   def refund
     @charge = Stripe::Charge.retrieve(params[:format])
     @charge.refunds.create
-    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+    @transactions = current_user.deposits.where(notes: @charge.id) + current_user.member_fees.where(notes: @charge.id)
     @transactions.each do |t|
       t.update(settlement_date: nil)
     end
