@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 			if @user.save
         Transaction.new_membership(@user)
         Transaction.initial_deposit(@user)
-				redirect_to user_url(@user), notice: "User created"
+				redirect_to transactions_path, notice: "User created.  Please enter payments for the deposit and membership fee."
 			else
 				render 'new'
 			end
@@ -56,7 +56,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find( params[:id])
 
+    @change_membership = true if params[:membership] != @user.membership
+
     if @user.update_attributes(user_update_params)
+      Transaction.update_member_fee(@user) if @change_membership
+      binding.pry
       flash[ :alert ] = "Success"
       redirect_to user_path(@user)
     else

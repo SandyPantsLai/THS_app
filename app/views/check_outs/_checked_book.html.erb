@@ -1,16 +1,23 @@
-<div class="checked-book">
+<div class="catalogue">
 
+<<<<<<< HEAD
   <h3 class="title"><%= check_out.book_copy.book.title %></h3>
-  <p class="author">By <%= check_out.book_copy.book.last_name %>, <%= check_out.book_copy.book.first_name %></p>
+  <p class="author">By <%= check_out.book_copy.book.author %></p>
   <p class="library-code">Library code: <%= check_out.book_copy.library_code %></p>
+=======
+  <p><%= check_out.book_copy.book.title %></p>
+  <p>By <%= check_out.book_copy.book.last_name %>, <%= check_out.book_copy.book.first_name %></p>
+  <p>Library code: <%= check_out.book_copy.library_code %></p>
+>>>>>>> d31f5051f381d89f7bd4ab8338d7e7ad3c526e1a
 
 
-  <h4 class="burrower">Borrower</h4>
-  <p class="name"><%= check_out.user.last_name %>, <%= check_out.user.first_name %></p>
-  <p class="email">Email: <%= check_out.user.email %></p>
-  <p class="phone">Phone: <%= check_out.user.phone_number %></p>
+  <h3>Borrower</h3>
+  <p><%= check_out.user.first_name %> <%= check_out.user.last_name %><br />
+  Email: <%= check_out.user.email %><br />
+  Phone: <%= check_out.user.phone_number %></p>
 
   <h4>Transaction</h4>
+
   <p>Checked out on: <strong><%= check_out.checkout_date.strftime("%A, %b %e, %Y") %></strong></p>
 
   <% if check_out.return_date %>
@@ -39,20 +46,20 @@
   <% if current_user && ( current_user.role == 'admin' || current_user.role == 'volunteer' ) %>
     <ul>
       <% if !check_out.return_date %>
-        <li><%= link_to "Return Book", check_out_check_in_path( check_out ), method: :patch %></li>
+        <li><%= button_to "Return Book", check_out_check_in_path( check_out ), method: :patch %></li>
 
         <% if DateTime.now.to_time.to_i < check_out.due_date.to_time.to_i && check_out.renewal > 0 %>
           <% if can_renew?( check_out.book_copy.book ) %>
-            <li><%= link_to "Renew Book", check_out_renew_path( check_out ), method: :patch %></li>
+            <li><%= Button_to "Renew Book", check_out_renew_path( check_out ), method: :patch %></li>
           <% elsif %>
             <li>There are holds placed on this book; it cannot be renewed.</li>
           <% end %>
         <% end %>
 
       <% elsif check_out.fine && !check_out.fine.settlement_date %>
-        <li><%= link_to "Settle Fine", check_out_fine_path( check_out, check_out.fine ), method: :patch %></li>
+        <li><%= Button_to "Settle Fine", check_out_fine_path( check_out, check_out.fine ), method: :patch %></li>
       <% end %>
     </ul>
   <% end %>
 
-</div><!-- end .checked-book -->
+</div><!-- end .catalogue -->

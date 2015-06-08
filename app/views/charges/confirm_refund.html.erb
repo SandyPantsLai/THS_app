@@ -1,12 +1,12 @@
-<div class="refunds">
+<div class="catalogue">
 
-  <h2>Refund Confirmation</h2>
+  <h2 class="title">Refund Confirmation</h2>
 
   <p>Are you sure you want to refund this transaction?</p>
   <%= render "transactions/transaction" %>
-  <ul>
-    <li><%= button_to'Confirm Refund', refund_path(@charge_id), method: :post %></li>
-    <li><%= link_to 'Back', charges_path(@charge.id) %></li>
-  </ul>
-
+  <% binding.pry %>
+  
+  <%= button_to'Confirm Refund', refund_path(params["format"]), method: :post %></li>
+  <p class="link"><%= link_to 'Back', charges_path(params["format"]) %></li></p>
+  
 </div>

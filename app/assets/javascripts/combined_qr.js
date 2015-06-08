@@ -1,5 +1,3 @@
-// QRCODE reader Copyright 2011 Lazar Laszlo
-// http://www.webqr.com
 
 var gCtx = null;
 var gCanvas = null;
@@ -108,7 +106,6 @@ function read(a)
         html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
     html+="<b>"+htmlEntities(a)+"</b><br><br>";
     document.getElementById("result").innerHTML=html;
-    document.getElementById("check_out_book_copy_id").value=a.split("?id=")[1];
 }
 
 function isCanvasSupported(){

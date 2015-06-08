@@ -34,20 +34,29 @@ User.create!(
 	User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.phone_number, password: '4321', password_confirmation: '4321', role: 'user')
 end
 
-MemberFee.create(amount: 10000, user_id: 1, settlement_date: Time.now - 14.days)
-MemberFee.create(amount: 1000, user_id: 3, settlement_date: Time.now - 58.days, created_at: Time.now-58.days)
+MemberFee.create(amount: 10000, user_id: 1, settlement_date: Time.now - 14.days, notes: "Cash")
+MemberFee.create(amount: 1000, user_id: 3, settlement_date: Time.now - 58.days, created_at: Time.now-58.days, notes: "Cash")
 MemberFee.create(amount: 1000, user_id: 3, created_at: Time.now - 28.days)
 
-Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 14.days)
-Deposit.create(amount: 4000, user_id: 3, settlement_date: Time.now - 28.days)
+Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 14.days, notes: "Cash")
+Deposit.create(amount: 4000, user_id: 3, settlement_date: Time.now - 28.days, notes: "Cash")
 Deposit.create(amount: 1250, user_id: 3)
 
 100.times do
-  Book.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, title: Faker::Lorem.sentence.capitalize, published_date: rand(1900..2015), publisher: Faker::Company.name, page_count: rand(50..2000), description: Faker::Lorem.paragraph, subject_id: rand(1..10), cover_image: Faker::Avatar.image)
+  Book.create(title: Faker::Lorem.sentence.capitalize,
+    subtitle: Faker::Lorem.sentence.capitalize,
+    author: "#{Faker::Name.last_name}," + " #{Faker::Name.first_name}",
+    publisher: Faker::Company.name,
+    published_date: Faker::Date.between(200.years.ago, Date.today),
+    description: Faker::Lorem.paragraph,
+    page_count: rand(50..1000),
+    category: Faker::Commerce.department,
+    cover_image: Faker::Avatar.image,
+    isbn_number: Faker::Code.isbn)
 end
 
 300.times do
-  BookCopy.create(book_id: rand(2..99))
+  BookCopy.create(book_id: rand(2..100))
 end
 
 5.times do

@@ -1,2 +1,10 @@
-<h1>Deposits#edit</h1>
-<p>Find me in app/views/deposits/edit.html.erb</p>
+<h1>Update Deposit Payment</h1>
+<%= render "transactions/transaction" %>
+<h3>Payment Method:</h3>
+<ul id="update-transaction">
+  <%= form_for @deposit do |f| %>
+  <%= f.select "notes", ["Cash", "Credit Card, In-Person"] %>
+  <%= f.submit "Mark as Paid" %>
+<% end %>
+  <li><%= button_to "Or pay now by entering credit card info online", new_charge_path(@deposit.user_id), method: "get" %></li>
+</ul>

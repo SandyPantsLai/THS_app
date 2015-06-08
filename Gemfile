@@ -18,7 +18,7 @@ gem 'whenever', :require => false
 gem 'better_errors'
 gem 'sorcery'
 gem 'kaminari'
-gem 'dragonfly'
+#gem 'dragonfly'
 gem 'qrio'
 gem 'rqrcode_png'
 gem 'httparty'

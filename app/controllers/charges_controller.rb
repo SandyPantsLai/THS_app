@@ -1,28 +1,26 @@
-require 'json'
-
 class ChargesController < ApplicationController
   before_action :require_login
 
   def new
-    # @payment = Payment.find(params[:payment_id])
-    @transactions = current_user.deposits.where("settlement_date IS NULL") + current_user.member_fees.where("settlement_date IS NULL")
+    @user = User.find(params[:format]) || current_user
+    @transactions = @user.deposits.where("settlement_date IS NULL") + @user.member_fees.where("settlement_date IS NULL")
     @amount = @transactions.sum(&:amount)
-    @pay_now = true
   end
 
   def create
     # Get the credit card details submitted by the form
-    @transactions = current_user.deposits.where("settlement_date IS NULL") + current_user.member_fees.where("settlement_date IS NULL")
+    @user = User.find(params[:user_id]) || current_user
+    @transactions = @user.deposits.where("settlement_date IS NULL") + @user.member_fees.where("settlement_date IS NULL")
     @amount = @transactions.sum(&:amount)
     # Create a Stripe Customer and save card info as token for reuse
-    if current_user.stripe_id == nil && params[:remember_card] == "on"
+    if @user.stripe_id == nil && params[:remember_card] == "on"
       customer = Stripe::Customer.create(
         :source => params[:stripeToken]
       )
-      current_user.update(stripe_id: customer.id)
+      @user.update(stripe_id: customer.id)
 
       charge = Stripe::Charge.create(
-          :customer => current_user.stripe_id,
+          :customer => @user.stripe_id,
           :amount => @amount, # in cents
           :currency => "cad",
       )
@@ -37,11 +35,14 @@ class ChargesController < ApplicationController
     end
 
     @transactions.each do |t|
-      t.update(charge_id: charge.id, settlement_date: Time.now)
+      t.update(notes: "Online Payment", settlement_date: Time.now, charge_id: charge.id)
+      current_deposit = t.user.current_deposit || 0
+      t.user.update(current_deposit: current_deposit + @amount) if t.class == Deposit
+      @member_fee.user.update(status: "active") if MemberFee.where(user: @member_fee.user).where("settlement_date IS NOT NULL")
     end
 
     flash[:notice] = "Thanks for your payment!"
-    redirect_to user_path(current_user)
+    redirect_to transactions_path
 
     rescue Stripe::CardError => e
       flash[:alert] = e.message
@@ -49,22 +50,26 @@ class ChargesController < ApplicationController
   end
 
   def show
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
-    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+    @charge = Stripe::Charge.retrieve(params[:id])
+    @transactions = Deposit.where(charge_id: @charge.id) + MemberFee.where(charge_id: @charge.id)
+    binding.pry
   end
 
   def confirm_refund
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
-    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+    @charge = Stripe::Charge.retrieve(params[:format])
+    @transactions = Deposit.where(charge_id: @charge.id) + MemberFee.where(charge_id: @charge.id)
   end
 
   def refund
-    @charge = JSON.parse(Stripe::Charge.retrieve(params[:id]))
+    @charge = Stripe::Charge.retrieve(params[:format])
     @charge.refunds.create
-    @transactions = current_user.deposits.where(charge_id: @charge.id) + current_user.member_fees.where(charge_id: @charge.id)
+    @transactions = Deposit.where(charge_id: @charge.id) + MemberFee.where(charge_id: @charge.id)
     @transactions.each do |t|
       t.update(settlement_date: nil)
+      t.user.update(current_deposit: t.user.current_deposit - @charge.amount) if t.class == Deposit
     end
+    flash[:notice] = "Your refund was successful!"
+    redirect_to transactions_path
 
     rescue Stripe::CardError => e
     rescue Stripe::InvalidRequestError => e
@@ -72,6 +77,5 @@ class ChargesController < ApplicationController
       flash[:alert] = e.message
       redirect_to charges_path(@charge.id)
 
-    render :show
   end
 end

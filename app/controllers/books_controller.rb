@@ -59,27 +59,20 @@ class BooksController < ApplicationController
   def search_google
     if params[:query]
       query = CGI.escape(params[:query])
-      @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query + "&key=AIzaSyDwke6DGsi_jyQJjGiLg0EhKFajYwVwN5E")
+      @results = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=" + query)
       @filtered_results = {}
-      @filtered_results['totalItems']  = @results['totalItems']
       @filtered_results['volumes'] = @results['items'].map do |item|
         {
-          # number of returned volumes from the search
-          #totalItems: item ["totalItems"],
-          # returned individual item data
-          id: item["id"],
+          volume_id: item["id"],
           title: item["volumeInfo"]["title"],
           subtitle: item["volumeInfo"]["subtitle"],
-          authors: item["volumeInfo"]["authors"],
+          author: item["volumeInfo"]["authors"],
           publisher: item["volumeInfo"]["publisher"],
           published_date: item["volumeInfo"]["publishedDate"],
           description: item["volumeInfo"]["description"],
           page_count: item["volumeInfo"]["pageCount"],
-          categories: item["volumeInfo"]["categories"],
-          cover_image: item["volumeInfo"]["imageLinks"]["thumbnail"],
-          #isbn
-          type: item["volumeInfo"]["industryIdentifiers"].map {|f| f["type"]},
-          identifier: item["volumeInfo"]["industryIdentifiers"].map {|e| e["identifier"]}
+          category: item["volumeInfo"]["categories"],
+          isbn_number: item["volumeInfo"]["industryIdentifiers"].map {|e| e["identifier"]}
         }
       end
     end
@@ -87,9 +80,9 @@ class BooksController < ApplicationController
   end
 
   private
-  
+
   def book_params
-    params.require(:book).permit(:title, :author, :subject, :published, :publisher, :page_count, :price, :description, :cover_image, :isbn)
+    params.require(:book).permit(:title, :subtitle, :author, :publisher, :published_date, :description, :page_count, :category, :cover_image, :type, :indetifier, :qr_code, :volume_id)
   end
 
 end

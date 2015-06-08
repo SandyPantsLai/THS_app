@@ -3,14 +3,26 @@
 	@include outer-container;
 }
 .main-content {
-	@include outer-container;
-	padding: $main-content-padding;
-	margin-bottom: rem(100);
+	float: left;
+	width: 100%;
+	padding-top: rem(30);
 }
-.left { float: left;}
-.right { float: right;}
-.qrscanner {
+.index-wrapper {
+	float: left;
+}
+.qr-scanner {
   width: 200px;
   height: 200px;
   background-color: red;
+}
+p.link {
+	font-family: $heading-font-family;
+	padding-left: rem(20);
+}
+.submit {
+	float: left;
+	width: 100%;
+	padding-bottom: rem(30);
+	margin-bottom: rem(40);
+	border-bottom: $base-border;
 }

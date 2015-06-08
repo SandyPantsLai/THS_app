@@ -1,21 +1,77 @@
-// catalogue
-.catalogue { 
-	@include outer-container;
-	padding: 0 rem(20); 
+// book index
+.catalogue {
+	width: 100%;
+	float: left;
+	padding: 0 rem(20);
+	margin-bottom: rem(30);
 }
-.book-card {
+.catalogue-search {
+	float: left;
+	width: 100%;
+	padding-bottom: rem(30);
+}
+.catalogue-search p {
+	margin-left: rem(20); 
+}
+.catalogue-search .field label { // partial
+	font-family: $heading-font-family;
+	font-weight: $base-font-weight;
+}
+.book-card, .book-index {
+	padding: rem(30) 0;
+	float: left;
+	width: 100%;
+}
+.book-card img, .book-index img {
+	float: left;
+	padding-right: rem(20);
+}
+.data {
+	float: left;
+}
+.copies {
+	float: left;
+}
+.copies p, .copies ul, .copies li {
+	color: $base-font-color;
+	font-family: $heading-font-family;
+}
+.index-card {
 	border-top: $base-border;
-	margin: rem(20) 0;
-	padding: rem(30) 0 rem(20) 0;
 }
-// book
+// book show
 
-.book {} 
-.book-description {
-	padding-top: rem(20);
+.description { 
+	padding: rem(30) 0;
+	float: left;
+	text-align: justify;
+	width: 100%;
+}
+.description p {
+	font-family: $base-font-family;
+	font-weight: $base-font-weight;
+	font-size: $base-font-size;
 }
 .book-links {
-	border-top: $base-border;
-	margin: rem(30) 0;
-	padding: rem(30) 0 rem(20) 0;
+	position: fixed;
+	top: 0px;
+	z-index: 9;  
+	width: 100%;
+	background-color: $off-white;
+}
+nav.book-menu {
+	float: left;
+	width: 100%; 
+}
+nav.book-menu ul {}
+nav.book-menu ul li {
+	display: inline;
+	float: left;
+	padding: rem(20) rem(10);
+	width: 100%;
+	text-align: center;
+}
+nav.book-menu ul li a {
+	display: block;
+	font-family: $heading-font-family;
 }

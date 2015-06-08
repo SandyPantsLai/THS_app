@@ -3,6 +3,6 @@ FactoryGirl.define do
     amount 1000
     user
     settlement_date nil
-    charge_id nil
+    notes nil
   end
 end

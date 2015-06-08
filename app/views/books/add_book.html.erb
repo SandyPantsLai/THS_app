@@ -1,0 +1,38 @@
+<div class="catalogue">
+
+  <h2 class="title">Add Book</h2>
+
+  <%= form_for(@book) do |book| %>
+
+      <%= book.label :title %>
+      <%= book.text_field :title %>
+
+      <%= book.label :subject_id %>
+      <%= book.collection_select :subject_id, Subject.all, :id, :name, include_blank: true %>
+
+      <%= book.label :published %>
+      <%= book.date_field :published %>
+
+      <%= book.label :publisher %>
+      <%= book.text_field :publisher %>
+
+      <%= book.label :page_count %>
+      <%= book.number_field :page_count %>
+
+      <%= book.label :price %>
+      <%= book.number_field :price %>
+
+      <%= book.label :description %>
+      <%= book.text_field :description %>
+
+      <%= book.label :cover_image %>
+      <%= book.text_field :cover_image %>
+
+      <%= book.label :isbn %>
+      <%= book.text_field :isbn %>
+  
+      <%= book.submit %>
+
+  <% end %>
+
+</div><!-- end .catalogue -->
