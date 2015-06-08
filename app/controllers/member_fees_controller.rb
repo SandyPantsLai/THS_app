@@ -4,13 +4,14 @@ class MemberFeesController < ApplicationController
   end
 
   def edit
-     @deposit.update(amount: params["deposit"]["amount"]) if params["deposit"]["amount"]
+    @member_fee = MemberFee.find(params["id"])
+    @transactions =[@member_fee]
   end
 
   def update
     @member_fee = MemberFee.find(params["id"])
     @member_fee.update(settlement_date: Time.now, notes: params["member_fee"]["notes"])
-    redirect_to transactions_path
+    redirect_to transactions_url
   end
 
   def destroy

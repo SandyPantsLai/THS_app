@@ -9,12 +9,15 @@ class DepositsController < ApplicationController
   end
 
   def edit
+    @deposit = Deposit.find(params["id"])
+    @transactions = [@deposit]
   end
 
   def update
     @deposit = Deposit.find(params["id"])
     @deposit.update(settlement_date: Time.now, notes: params["deposit"]["notes"])
-    redirect_to transactions_path
+    @deposit.user.update(current_deposit: @deposit.user.current_deposit + params["deposit"]["amount"])
+    redirect_to transactions_url
   end
 
   def destroy

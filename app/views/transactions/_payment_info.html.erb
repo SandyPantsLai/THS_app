@@ -12,7 +12,11 @@
 <% else %>
   <td>UNPAID</td>
   <% if current_user.role == "admin" || current_user.role == "volunteer" %>
-    <td><%= link_to "Enter Payment", edit_transaction_path(t) %></td>
+    <% if t.class == MemberFee %>
+      <td><%= link_to "Enter Payment", edit_member_fee_path(t) %></td>
+    <% else %>
+      <td><%= link_to "Enter Payment", edit_deposit_path(t) %></td>
+    <% end %>
   <% else %>
     <td><%= link_to "Pay Owing", new_charge_path, class: "pay-owing" %></td>
   <% end %>
