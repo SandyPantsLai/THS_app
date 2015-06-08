@@ -9,12 +9,10 @@
 			<div class="title"><%= f.text_field :title, value: result[:title] %></div>
 			
 			<div class="images">
-
-			<!-- cover_image won't go into database -->
-
-					<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+				
+						<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:volume_id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 			
-					<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:id]}&source=qrcode" %>
+						<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:volume_id]}&source=qrcode" %>
 			
 			</div><!-- end .images -->
 
@@ -51,12 +49,12 @@
 				</div>
 
 				<div class="field">
-					<%= f.label :catagory %>
-					<%= f.text_field :catagory, value: result[:catagory] %>
+					<%= f.label :category %>
+					<%= f.text_field :category, value: result[:category] %>
 				</div>
 
 				<div class="field">
-					<%= f.label :volume_id %>
+					<%= f.label "Google volume id" %>
 					<%= f.text_field :volume_id, value: result[:volume_id] %>
 				</div>
 

@@ -16,10 +16,7 @@
 	font-family: $heading-font-family;
 	font-weight: $base-font-weight;
 }
-.catalogue h4 {
-	font-size: rem(18);
-	margin-bottom: rem(5);
-}
+
 .catalogue p {
 	font-size: $base-font-size;
 }
@@ -36,7 +33,8 @@
 	float: left;
 }
 .copies {
-	float: left;}
+	float: left;
+}
 .copies p, .copies ul, .copies li {
 	color: $base-font-color;
 	font-family: $heading-font-family;
@@ -44,6 +42,8 @@
 .index-card {
 	border-top: $base-border;
 	margin-top: rem(30);
+	@include span-columns(4); 
+
 }
 // book show
 .data p {

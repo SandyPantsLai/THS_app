@@ -10,9 +10,10 @@
 
 	<div class="book-card">
 	
-		<img src="http://place-hold.it/128x193" />
-		<!-- qr code needed -->
-
+		<% @filtered_results["volumes"].each do |result| %>
+			<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+		<% end %>	
+						
 		<div class="data">
 			
 			<h3><%= @book.title %><br />
