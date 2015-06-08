@@ -38,7 +38,7 @@ class ChargesController < ApplicationController
       t.update(notes: "Online Payment", settlement_date: Time.now, charge_id: charge.id)
       current_deposit = t.user.current_deposit || 0
       t.user.update(current_deposit: current_deposit + @amount) if t.class == Deposit
-      @member_fee.user.update(status: "active") if MemberFee.where(user: @member_fee.user).where("settlement_date IS NOT NULL")
+      t.user.update(status: "active") if MemberFee.where(user: @member_fee.user).where("settlement_date IS NOT NULL")
     end
 
     flash[:notice] = "Thanks for your payment!"
