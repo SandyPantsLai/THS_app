@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150608042550) do
     t.integer  "amount"
     t.integer  "user_id"
     t.datetime "settlement_date"
+    t.string   "charge_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "notes"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150608042550) do
     t.integer  "amount"
     t.integer  "user_id"
     t.datetime "settlement_date"
+    t.string   "charge_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "notes"

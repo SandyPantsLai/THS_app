@@ -1,12 +1,12 @@
 <% if t.settlement_date %>
   <td><%= t.settlement_date.strftime("%b %e, %Y") %></td>
   <td>
-    <% if t.notes == "cash" %>
-      <%= "Cash" %>
-    <% elsif t.notes == "credit card, in-person" %>
-      <%= "Paid by credit card, in-person via machine." %>
+    <% if t.notes == "Online Payment" && current_user.role == "admin" %>
+      <%= link_to "Refund this online payment", charge_path(id: t.charge_id) %>
+    <% elsif["Cash", "Credit Card, In-Person", "Online Payment"].include?(t.notes) %>
+      <%= t.notes %>
     <% else %>
-      <%= link_to "Online Payment", charge_path(id: t.notes) %>
+      <%= "Waived - " + t.notes  %>
     <% end %>
   </td>
 <% else %>

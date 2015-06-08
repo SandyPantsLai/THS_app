@@ -3,9 +3,9 @@
 <h3>Payment Method:</h3>
 <ul id="update-transaction">
   <%= form_for @member_fee do |f| %>
-  <%= f.select "notes", ["cash", "credit card, in-person"] %>
+  <%= f.select "notes", ["Cash", "Credit Card, In-Person"] %>
   <%= f.submit "Mark as Paid" %>
 <% end %>
-  <li><%= button_to "Or pay now by entering credit card info online", new_charge_path(@member_fee.user_id) %></li>
+  <li><%= button_to "Or pay now by entering credit card info online", new_charge_path(@member_fee.user_id), method: "get" %></li>
   <li><%= link_to "Waive this membership fee", waive_path(@member_fee) %></li>
 </ul>
