@@ -1,26 +1,32 @@
 <!-- check out form -->
+<div class="catalogue">
 
-<%= form_for @check_out do |f| %>
+  <%= form_for @check_out do |f| %>
 
-	<div class="field">
-		<%= f.label :user_id, "User Id" %>
-  	<%= f.text_field :user_id %>
-  </div>
+  	<div class="field">
+  		<%= f.label :user_id, "User Id" %>
+    	<%= f.text_field :user_id %>
+    </div>
 
-	<div class="field">
-  	<%= f.label :book_copy_id, "Book Copy Id" %>
-  	<%= f.text_field :book_copy_id %>
-  </div>
+  	<div class="field">
+    	<%= f.label :book_copy_id, "Book Copy Id" %>
+    	<%= f.text_field :book_copy_id %>
+    </div>
 
-  <div class="submit"><%= f.submit "Check Out Book" %></div>
+    <div class="submit"><%= f.submit "Check Out Book" %></div>
 
-  <div class="qrscanner">
-<script type="text/javascript">
+    <div class="qr-scanner">
+    
+      <script type="text/javascript">
 
-$('.qrscanner').photobooth().on("image",function( event, dataUrl ){
-  $( "#gallery" ).append( '<img src="' + dataUrl + '" >');
-});
-</script>
-</div>
+        $('.qrscanner').photobooth().on("image",function( event, dataUrl ){
+          $( "#gallery" ).append( '<img src="' + dataUrl + '" >');
+        });
+      
+      </script>
 
-<% end %>
+    </div><!-- end .qr-scanner -->
+
+  <% end %>
+
+</div><!-- end .catalogue -->
