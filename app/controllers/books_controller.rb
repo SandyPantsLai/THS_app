@@ -72,7 +72,7 @@ class BooksController < ApplicationController
           description: item["volumeInfo"]["description"],
           page_count: item["volumeInfo"]["pageCount"],
           category: item["volumeInfo"]["categories"],
-          identifier: item["volumeInfo"]["industryIdentifiers"].map {|e| e["identifier"]} # isbn
+          isbn_number: item["volumeInfo"]["industryIdentifiers"].map {|e| e["identifier"]}
         }
       end
     end

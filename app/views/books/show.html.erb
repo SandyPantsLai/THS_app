@@ -8,7 +8,7 @@
 
 <div class="book-card">	
 	
-	<%= image_tag "http://bks4.books.google.ca/books/content?id={@book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+	<%= image_tag "http://bks4.books.google.ca/books/content?id=#{book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 
 	<div class="data">
 		
@@ -18,7 +18,7 @@
 		<p>Author: <%= @book.author %><br />
 		Publisher: <%= @book.publisher %><br />
 		Published Date: <%= @book.published_date %><br />
-		ISBN: <%= @book.indetifier %><br />
+		ISBN: <%= @book.isbn_number %><br />
 		Category: <%= @book.category %><br />
 		Page Count: <%= @book.page_count %></p>
 	
