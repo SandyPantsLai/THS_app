@@ -19,7 +19,8 @@ class MemberFeesController < ApplicationController
     end
   end
 
-  def destroy
+  def waive
+    @member_fee = MemberFee.find(params["id"])
   end
 
 end
