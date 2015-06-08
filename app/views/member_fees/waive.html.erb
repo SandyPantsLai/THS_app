@@ -1,8 +1,8 @@
-<% form_for @member_fee do |f| %>
+<%= form_for @member_fee do |f| %>
   <div class="field">
     <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, :placeholder => "Enter a reason for waiving this fee - i.e. volunteer" %>
   </div>
-
-  <div class="submit"><%= f.submit "Waive this membership fee", update_member_fee_path(@member_fee) %></div>
+  <%= f.hidden_field :amount, :value => 0 %>
+  <div class="submit"><%= f.submit "Waive this membership fee" %></div>
 <% end %>

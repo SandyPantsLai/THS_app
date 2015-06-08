@@ -7,5 +7,5 @@
   <%= f.submit "Mark as Paid" %>
 <% end %>
   <li><%= button_to "Or pay now by entering credit card info online", new_charge_path(@member_fee.user_id) %></li>
-  <li><%= button_to "Waive this membership fee", waive_path(@member_fee) %></li>
+  <li><%= link_to "Waive this membership fee", waive_path(@member_fee) %></li>
 </ul>
