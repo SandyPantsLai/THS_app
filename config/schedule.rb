@@ -26,6 +26,10 @@ every :day, at: '1am' do
   rake 'check_outs:send_overdue_email'
 end
 
+every :day, at: '2am' do
+  rake 'deposits:create_top_up_transaction'
+end
+
 every '0 2 05 * *' do
   # runs monthly at 2am on the 5th of the month
   rake 'member_fees:deactivate_users'
