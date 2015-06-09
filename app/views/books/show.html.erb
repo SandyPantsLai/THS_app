@@ -33,6 +33,17 @@
 <div class="copies">
 
 	<p><strong>Book Status:</strong></p><br />
+		<% if @copies.count == 1 %>
+			<p class="copies"><%= @copies.count%> copy,  <%= @copies_available  %> available to checkout.</p>
+		<% else %>
+			<p class="copies"><%= @copies.count%> copies,  <%= @copies_available  %> available to checkout.</p>
+		<% end %>
+
+		<% if holds = Hold.where(book_id: @book.id).count == 1 %>
+			<p>(<%= holds %> hold, <%= @checked_out %> checked out.)</p>
+		<% else %>
+			<p>(<%= holds %> holds, <%= @checked_out %> checked out.)</p>
+		<% end %>
 
 		<% unless @due_dates == [] %>
 
