@@ -31,7 +31,7 @@
 	<div class="copies">
 
 		<p><strong>Book Status:</strong></p><br />
-			
+
 		<% if @copies.count == 1 %>
 			<p><%= @copies.count%> copy,  <%= @copies_available  %> available to checkout.</p>
 		<% else %>
@@ -56,7 +56,7 @@
 
 		<% end %>
 
-		
+
 		<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
 		 	<p><span class="highlight"><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></span></p>
 		<% else %>
@@ -66,8 +66,8 @@
 		<% if current_user.role == 'admin' %>
 	  	<%= button_to "Edit book", edit_book_path, :method => 'get' %></div>
 		<% end %>
-		
-	
+
+
 	</div><!-- end .copies -->
 
 	<div class="description">

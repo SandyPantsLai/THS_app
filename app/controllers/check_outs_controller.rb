@@ -24,6 +24,24 @@ class CheckOutsController < ApplicationController
 
   def new
     @check_out = CheckOut.new
+
+    if !params[ :volume_id ].nil?
+      @book = Book.where( volume_id: params[ :volume_id ] )[ 0 ]
+      hold_count = Hold.where( book_id: @book.id ).count
+
+      if ( !@book.nil? )
+        book_copies = BookCopy.where( book_id: @book.id )
+        @available_copies = []
+
+        book_copies.each do |book_copy|
+          if CheckOut.where( book_copy_id: book_copy.id ).count == 0
+            @available_copies.push( book_copy )
+          end
+        end
+
+        @available_copies.slice!( 0, hold_count )
+      end
+    end
   end
 
   def create
@@ -35,6 +53,7 @@ class CheckOutsController < ApplicationController
     @check_out.renewal = CheckOut::RENEWAL_COUNT
 
     if @check_out.save
+      remove_hold( @check_out )
       redirect_to check_outs_path
     else
       render :new
@@ -101,7 +120,7 @@ class CheckOutsController < ApplicationController
       if attributes[ :fine ]
         user = check_out.user
 
-        if user.current_deposit >= check_out.fine.amount
+        if !user.current_deposit.nil? && ( user.current_deposit >= check_out.fine.amount )
           user.update( current_deposit: ( user.current_deposit - check_out.fine.amount ) )
           check_out.fine.update( settlement_date: DateTime.now )
         else
@@ -115,6 +134,14 @@ class CheckOutsController < ApplicationController
     else
       render check_out_path( check_out )
     end
+  end
+
+  def remove_hold( check_out )
+    user_hold = Hold.where( user_id: check_out.user.id, book_id: @check_out.book_copy.book.id )[ 0 ]
+
+      if !user_hold.nil?
+        user_hold.destroy
+      end
   end
 
   def update_hold(check_out)
