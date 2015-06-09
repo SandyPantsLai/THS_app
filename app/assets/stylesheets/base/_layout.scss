@@ -2,6 +2,10 @@
 #wrapper {
 	@include outer-container;
 }
+.input-form {
+	@include outer-container;
+	max-width: $small-screen;
+}
 .main-content {
 	float: left;
 	width: 100%;
@@ -27,5 +31,4 @@ p.link {
 	width: 100%;
 	padding-bottom: rem(30);
 	margin-bottom: rem(40);
-	border-bottom: $base-border;
 }
