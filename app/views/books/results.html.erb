@@ -1,71 +1,76 @@
 <!-- google search results page -->
+<div class="catalogue">
 
-<div class="volume">
+	<p class="link">&larr; <%= link_to "Seach Again", books_path %></p>
 
-	<% @filtered_results["volumes"].each do |result| %>
+	<div class="volume">
 
-		<%= form_for Book.new do |f| %>
-			
-			<div class="title"><%= f.text_field :title, value: result[:title] %></div>
-			
-			<div class="images">
+		<% @filtered_results["volumes"].each do |result| %>
 
-				<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:volume_id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
-	
-				<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:volume_id]}&source=qrcode" %>
-			
-			</div><!-- end .images -->
+			<%= form_for Book.new do |f| %>
+				
+				<div class="title"><%= f.text_field :title, value: result[:title] %></div>
+				
+				<div class="images">
 
-			<div class="data">
+					<%= image_tag "http://bks4.books.google.ca/books/content?id=#{result[:volume_id]}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
+		
+					<%= image_tag "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://books.google.ca/books?id=#{result[:volume_id]}&source=qrcode" %>
+				
+				</div><!-- end .images -->
 
-				<div class="field">
-					<%= f.label :author %>
-					<%= f.text_field :author, value: result[:author] %>
-				</div>
+				<div class="data">
 
-				<div class="field">
-					<%= f.label :publisher %>
-					<%= f.text_field :publisher, value: result[:publisher] %>
-				</div>
+					<div class="field">
+						<%= f.label :author %>
+						<%= f.text_field :author, value: result[:author] %>
+					</div>
 
-				<div class="field">
-					<%= f.label :published_date %>
-					<%= f.text_field :published_date, value: result[:published_date] %>
-				</div>	
+					<div class="field">
+						<%= f.label :publisher %>
+						<%= f.text_field :publisher, value: result[:publisher] %>
+					</div>
 
-				<div class="field">
-					<%= f.label :description %>
-					<%= f.text_field :description, value: result[:description] %>
-				</div>
+					<div class="field">
+						<%= f.label :published_date %>
+						<%= f.text_field :published_date, value: result[:published_date] %>
+					</div>	
 
-				<div class="field">
-					<%= f.label "ISBN" %>
-					<%= f.text_field :isbn_number, value: result[:isbn_number] %>
-				</div>
+					<div class="field">
+						<%= f.label :description %>
+						<%= f.text_field :description, value: result[:description] %>
+					</div>
 
-				<div class="field">
-					<%= f.label "Pages" %>
-					<%= f.text_field :page_count, value: result[:page_count] %>
-				</div>
+					<div class="field">
+						<%= f.label "ISBN" %>
+						<%= f.text_field :isbn_number, value: result[:isbn_number] %>
+					</div>
 
-				<div class="field">
-					<%= f.label :category %>
-					<%= f.text_field :category, value: result[:category] %>
-				</div>
+					<div class="field">
+						<%= f.label "Pages" %>
+						<%= f.text_field :page_count, value: result[:page_count] %>
+					</div>
 
-				<div class="field">
-					<%= f.label "Google volume id" %>
-					<%= f.text_field :volume_id, value: result[:volume_id] %>
-				</div>
+					<div class="field">
+						<%= f.label :category %>
+						<%= f.text_field :category, value: result[:category] %>
+					</div>
 
-				<div class="submit">
-					<%= f.submit "Add Book to Library" %>
-				</div>
+					<div class="field">
+						<%= f.label "Google volume id" %>
+						<%= f.text_field :volume_id, value: result[:volume_id] %>
+					</div>
 
-			</div><!-- end .data -->			
+					<div class="submit">
+						<%= f.submit "Add Book to Library" %>
+					</div>
+
+				</div><!-- end .data -->			
+
+			<% end %>
 
 		<% end %>
 
-	<% end %>
+	</div><!-- end .data -->
 
-</div>
+</div><!-- end .catalogue -->
