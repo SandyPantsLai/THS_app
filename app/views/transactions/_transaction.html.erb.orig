@@ -12,7 +12,8 @@
   <%= button_to "Or view all transactions", transactions_path, :method => 'get' %>
   <% end %>
 <div class="transactions">
-  <table id="transactions-table">
+
+<table id="transactions-table">
   <tr>
     <% if current_user.role == "admin" || current_user.role == "volunteer" %>
     <th scope="col">User Name</th>
@@ -21,7 +22,7 @@
     <th scope="col">Date</th>
     <th scope="col">Description</th>
     <th scope="col">Amount</th>
-    <% if request.original_url == transactions_url %>
+    <% if request.original_url == transactions_url || request.original_url == user_transactions_url %>
       <th scope="col">Paid</th>
       <th scope="col">Payment Method</th>
     <% end %>
@@ -52,7 +53,7 @@
             </td>
         <% end %>
         <td><%= number_to_currency(sprintf("%.2f", t.amount.to_f / 100)) %></td>
-        <% if request.original_url == transactions_url %>
+        <% if request.original_url == transactions_url || request.original_url == user_transactions_url %>
           <%= render partial: 'transactions/payment_info', locals: { t: t } %>
         <% end %>
     </tr>

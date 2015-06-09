@@ -107,7 +107,7 @@ class CheckOutsController < ApplicationController
         else
           Transaction.top_up_deposit(user)
           flash[:alert] = "Please enter a payment to top up the deposit for user ##{user.id}"
-          redirect_to user_transactions_url(user)
+          redirect_to transactions_url
         end
       else
         redirect_to check_outs_path
