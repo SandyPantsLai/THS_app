@@ -15,9 +15,15 @@ class DepositsController < ApplicationController
 
   def update
     @deposit = Deposit.find(params["id"])
-    current_deposit = @deposit.user.current_deposit || 0
+    check_outs = CheckOut.where( user: user )
+    fines = check_outs.inject( 0 ) do | sum, check_out |
+      sum += ( !check_out.fine.nil? && check_out.fine.settlement_date.nil? ) ? check_out.fine.amount : 0
+      sum
+    end
+    current_deposit = @deposit.user.current_deposit
+
     if @deposit.update(settlement_date: Time.now, notes: params["deposit"]["notes"])
-      @deposit.user.update(current_deposit: current_deposit + @deposit.amount, status: "active")
+      @deposit.user.update(current_deposit: current_deposit + @deposit.amount - fines, status: "active")
       flash[:notice] = "The payment has been updated"
       redirect_to user_url(@deposit.user)
     else

@@ -5,7 +5,7 @@
 <%= button_to "Edit Profile", edit_user_path(@user.id) %>
 <ul class="user-info">
 	<li><strong><%= @user.first_name %> <%= @user.last_name %></strong></li>
-	<li class="role"><%= @user.role %></li>
+	<li class="role"><%= @user.role.capitalize %></li>
 	<li class="email"><%= mail_to @user.email %></li>
 	<li class="phone-number"><%= @user.phone_number %></li>
 </ul>

@@ -35,9 +35,16 @@ class ChargesController < ApplicationController
     end
 
     @transactions.each do |t|
+
+    check_outs = CheckOut.where( user: user )
+    fines = check_outs.inject( 0 ) do | sum, check_out |
+      sum += ( !check_out.fine.nil? && check_out.fine.settlement_date.nil? ) ? check_out.fine.amount : 0
+      sum
+    end
+
       t.update(notes: "Online Payment", settlement_date: Time.now, charge_id: charge.id)
       current_deposit = t.user.current_deposit || 0
-      t.user.update(current_deposit: current_deposit + @amount, status: "active") if t.class == Deposit
+      t.user.update(current_deposit: current_deposit + @amount - fines, status: "active") if t.class == Deposit
       t.user.update(status: "active") unless t.user.member_fees.last.settlement_date == nil
     end
 
