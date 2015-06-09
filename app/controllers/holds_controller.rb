@@ -24,13 +24,13 @@ class HoldsController < ApplicationController
       end
     end
 
-    if @copies.count - @checked_out - Hold.where(book_id: hold_params).where("pickup_expiry IS NOT NULL").count == 0
+    if @copies.count - @checked_out - Hold.where(book_id: params[:book_id]).where("pickup_expiry IS NOT NULL").count == 0
       pickup_expiry = nil
     else
       pickup_expiry = Time.now + 7.days
     end
 
-    @hold = Hold.new(book_id: hold_params, user_id: current_user.id, pickup_expiry: pickup_expiry)
+    @hold = Hold.new(book_id: params[:book_id], user_id: current_user.id, pickup_expiry: pickup_expiry)
 
     if @hold.save
       if pickup_expiry == nil

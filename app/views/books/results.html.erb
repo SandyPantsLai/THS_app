@@ -61,9 +61,12 @@
 						<%= f.text_field :volume_id, value: result[:volume_id] %>
 					</div>
 
-					<div class="submit">
-						<%= f.submit "Add Book to Library" %>
+					<div class="field.visable">
+						<%= f.label "Copy Count" %>
+						<%= f.text_field :book_copy_id %>
 					</div>
+
+					<div class="submit"><%= f.submit "Add Book to Library" %></div>
 
 				</div><!-- end .data -->			
 

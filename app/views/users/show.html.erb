@@ -6,13 +6,15 @@
 		<%= @user.role %><br />
 		<%= mail_to @user.email %><br />
 		<%= @user.phone_number %></p>
-		<%= button_to "Edit Profile", edit_user_path(current_user.id) %>
 
 		<% if @transactions.sum(&:amount) > 0 %>
-			<p><span class="highlight">You owe <%= number_to_currency(sprintf("%.2f", @transactions.sum(&:amount).to_f / 100)) %></span></p>
-			<%= button_to "Pay Owing", new_charge_path(@user), :method => 'get' %>
-		<% end %>
-	
+					<p><span class="highlight">You owe <%= number_to_currency(sprintf("%.2f", @transactions.sum(&:amount).to_f / 100)) %></span></p>
+					<%= button_to "Pay Owing", new_charge_path(@user), :method => 'get' %>
+				<% end %>
+			
+		<%= button_to "Edit Profile", edit_user_path(current_user.id), :method => 'get' %>
+
+		
 	</div>
 
 	<div class="book-card">
