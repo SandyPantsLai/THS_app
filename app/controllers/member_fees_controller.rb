@@ -12,7 +12,7 @@ class MemberFeesController < ApplicationController
     @member_fee = MemberFee.find(params["id"])
     if @member_fee.update(settlement_date: Time.now, notes: params["member_fee"]["notes"])
       flash[:notice] = "The membership fee was updated."
-      @member_fee.user.update(status: "active") if MemberFee.where(user: @member_fee.user).where("settlement_date IS NOT NULL")
+      @member_fee.user.update(status: "active")
       redirect_to user_url(@member_fee.user)
     else
       flash[:alert] = "There was an issue with updating the membership fee."
