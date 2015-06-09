@@ -26,8 +26,6 @@
 
 		</div><!-- end .data -->
 
-		<%= button_to "Edit Book", edit_book_path %>
-
 	</div><!-- end .book-card -->
 
 <div class="copies">
@@ -67,7 +65,6 @@
 		<% if current_user.role == 'admin' %>
 	  	<li><%= button_to "Edit book", edit_book_path, :method => 'get' %></li>
 		<% end %>
-		<li><%= button_to "Back to Catalogue", books_path, :method => 'get' %></li>
 		</ul>
 	</div><!-- end .copies -->
 
