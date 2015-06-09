@@ -18,7 +18,7 @@
 
 	</div>
 
-	<div class="user-card">
+	<div class="book-card">
 
 		<h3>Holds</h3>
 		
@@ -36,7 +36,7 @@
 
 	</div>
 
-	<div class="user-card">
+	<div class="book-card">
 			
 		<h3>Past Check Outs</h3>
 
@@ -45,7 +45,7 @@
 				<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
 			<% end %>
 		<% elsif %>
-			No past check outs for this user
+			<p>No past check outs for this user</p>
 		<% end %>
 	
 	</div>

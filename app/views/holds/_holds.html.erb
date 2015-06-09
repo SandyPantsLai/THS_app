@@ -8,7 +8,7 @@
 
   <% holds.each do |hold| %>
 
-  <div class="book-card">
+  <div class="user-card">
 
     <% if current_user.role == 'admin' || 'user' %>
       <% user = User.find(hold.user_id) %>
