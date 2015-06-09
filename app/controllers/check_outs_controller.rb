@@ -27,6 +27,7 @@ class CheckOutsController < ApplicationController
 
     if !params[ :volume_id ].nil?
       @book = Book.where( volume_id: params[ :volume_id ] )[ 0 ]
+      hold_count = Hold.where( book_id: @book.id ).count
 
       if ( !@book.nil? )
         book_copies = BookCopy.where( book_id: @book.id )
@@ -37,6 +38,8 @@ class CheckOutsController < ApplicationController
             @available_copies.push( book_copy )
           end
         end
+
+        @available_copies.slice!( 0, hold_count )
       end
     end
   end
@@ -49,9 +52,8 @@ class CheckOutsController < ApplicationController
     @check_out.due_date = currentDate + CheckOut::CHECK_OUT_PERIOD
     @check_out.renewal = CheckOut::RENEWAL_COUNT
 
-    binding.pry
-
     if @check_out.save
+      remove_hold( @check_out )
       redirect_to check_outs_path
     else
       render :new
@@ -132,6 +134,14 @@ class CheckOutsController < ApplicationController
     else
       render check_out_path( check_out )
     end
+  end
+
+  def remove_hold( check_out )
+    user_hold = Hold.where( user_id: check_out.user.id, book_id: @check_out.book_copy.book.id )[ 0 ]
+
+      if !user_hold.nil?
+        user_hold.destroy
+      end
   end
 
   def update_hold(check_out)
