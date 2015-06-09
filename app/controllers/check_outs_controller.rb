@@ -89,9 +89,13 @@ class CheckOutsController < ApplicationController
       if attributes[ :fine ]
         user = check_out.user
 
-        if user.current_deposit > check_out.fine.amount
+        if user.current_deposit >= check_out.fine.amount
           user.update( current_deposit: ( user.current_deposit - check_out.fine.amount ) )
           check_out.fine.update( settlement_date: DateTime.now )
+        else
+          Transaction.top_up_deposit(user)
+          flash[:alert] = "Please enter a payment to top up the deposit for user ##{user.id}"
+          redirect_to transactions_path(user)
         end
 
         redirect_to check_out_path( check_out )
