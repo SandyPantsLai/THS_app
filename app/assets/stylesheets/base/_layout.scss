@@ -14,12 +14,13 @@ body {
 .main-content {
 	float: left;
 	width: 100%;
-	padding-top: rem(30);
+	padding: rem(30) 0 rem(100) 0;
 }
 .catalogue {
 	width: 100%;
 	float: left;
 	padding: 0 rem(20);
+	opacity: 0.8;
 }
 .qr-scanner {
   width: 200px;
@@ -28,6 +29,9 @@ body {
 }
 p.link, p.link {
 	font-family: $heading-font-family;
+}
+span.highlight {
+	background-color: #ffff99;
 }
 .submit {
 	float: left;
