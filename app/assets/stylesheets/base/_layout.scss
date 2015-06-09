@@ -22,7 +22,7 @@
   height: 200px;
   background-color: red;
 }
-p.link {
+p.link, p.link {
 	font-family: $heading-font-family;
 	padding-left: rem(20);
 }
@@ -38,4 +38,4 @@ nav.pagination {
 	padding-top: rem(20);
 	margin-bottom: rem(40);
 	font-family: $heading-font-family;	
-}
+} 
