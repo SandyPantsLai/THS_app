@@ -1,8 +1,9 @@
 <div class="catalogue">
 
-  <p><%= check_out.book_copy.book.title %></p>
-  <p>By <%= check_out.book_copy.book.first_name %> <%= check_out.book_copy.book.last_name %></p>
-  <p>Library code: <%= check_out.book_copy.library_code %></p>
+
+  <h3 class="title"><%= check_out.book_copy.book.title %></h3>
+  <p class="author">By <%= check_out.book_copy.book.author %></p>
+  <p class="library-code">Library code: <%= check_out.book_copy.library_code %></p>
 
   <h3>Borrower</h3>
 

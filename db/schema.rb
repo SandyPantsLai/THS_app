@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150608194651) do
 
+
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "library_code"
