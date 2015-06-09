@@ -1,8 +1,8 @@
 header {
-	background-color: $base-background-color;
-	width: 100%;
 	float: left;
+	width: 100%;
 	height: $nav-height;
+	background-color: #400040;
 }
 nav.main-nav ul {
 	list-style: none;
@@ -13,12 +13,12 @@ nav.main-nav ul {
 }
 nav.main-nav ul a {
 	display:block;
-	color: $base-font-color;
+	color: #fff;
 	text-decoration: none;
 	font-weight: $base-font-weight;
 	font-size: $base-font-size;
 	line-height: $base-line-height;
-	padding: rem(15) rem(15);
+	padding: rem(13) rem(15);
 	font-family: $heading-font-family;
 }
 nav.main-nav ul li {
@@ -31,14 +31,14 @@ nav.main-nav ul li.current-menu-item {
 	background-color: #ddd;
 }
 nav.main-nav ul li:hover {
-	background-color: #f6f6f6;
+	background-color: lighten(#400040, 10%);
+	color: $base-font-color;
 }
 nav.main-nav ul ul {
 	display: none;
 	position: absolute;
 	top: 100%;
 	left: 0;
-	background: #fff;
 	padding: 0;
 }
 nav.main-nav ul ul li {
@@ -55,6 +55,7 @@ nav.main-nav ul ul ul {
 }
 nav.main-nav ul li:hover > ul {
 	display: block;
+	background-color: lighten(#400040, 5%);
 }
 // toggle
 .toggle-container {
