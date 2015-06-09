@@ -8,4 +8,26 @@ namespace :member_fees do
     end
   end
 
+  desc "Create monthly membership fee and delete previous unpaid fees"
+
+  task :create_monthly_fee => :environment do
+    users = User.where(:membership == "monthly")
+    users.each do |user|
+      last_fee = user.member_fees.last
+      last_fee.destroy if last_fee.settlement_date == nil
+      Transaction.create_member_fee(user)
+    end
+  end
+
+  desc "Create annual membership fee and delete previous unpaid fees"
+
+  task :create_annual_fee => :environment do
+    users = User.where(:membership == "annual")
+    users.each do |user|
+      last_fee = user.member_fees.last
+      last_fee.destroy if last_fee.settlement_date == nil
+      Transaction.create_member_fee(user)
+    end
+  end
+
 end

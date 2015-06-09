@@ -43,6 +43,15 @@ class Transaction
     end
   end
 
+  def self.create_member_fee(user)
+    if user.membership == "monthly"
+      amount = 1000
+    else
+      amount = 10000
+    end
+    MemberFee.create(amount: amount, user: user)
+  end
+
   def self.initial_deposit(user)
     Deposit.create(amount:4000, user_id: user.id)
   end
