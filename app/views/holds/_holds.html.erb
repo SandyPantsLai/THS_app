@@ -1,36 +1,21 @@
-  <% holds = user_holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
-
-  <% if current_user.role == 'admin' || current_user.role == 'user' %>
-    <p><%= link_to 'View my Holds', myholds_path %></p>
-  <% end %>
-
-  <p><span class="highlight">There are <%= user_holds.where("pickup_expiry IS NOT NULL").count %> holds available for pickup.</span></p>
-
+<% holds = user_holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
   <% holds.each do |hold| %>
+    <% title = Book.find(hold.book_id).title %>
+    <% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %>
 
-  <div class="user-card">
+    <div class="user-card">
 
-    <% if current_user.role == 'admin' || 'user' %>
-      <% user = User.find(hold.user_id) %>
-      <p><strong><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></strong></p>
-      <p><%= puts "This user has #{Hold.where(user_id: hold.user_id).where("pickup_expiry IS NOT NULL").count} holds available for pickup." %></p>
-    <% end %>
+      <h4><%= link_to title, book_path(hold.book_id) %></h4>
 
-    <h4><% title = Book.find(hold.book_id).title %></h4>
-    <p><% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %></p>
-
-    
-    
-      <h3 class="book"><%= link_to title, book_path(hold.book_id) %></h3>
-      
       <% if hold.pickup_expiry %>
-        <p><span class="highlight">Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></span> </p>
+        <p><span class="highlight">Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></span></p>
       <% else %>
         <p>You are #<%= queue %> in line.</p>
       <% end %>
 
-      <div class="submit"><%= button_to 'Cancel hold', hold_path(hold), method: :delete %></div>
+      <div class"submit"><%= button_to 'Cancel hold', hold_path(hold), method: :delete %></div>
+    
+    </div><!-- end .user-card -->
 
-    </div>
+<% end %>
 
-  <% end %>
