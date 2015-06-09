@@ -34,13 +34,21 @@ User.create!(
 	User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, phone_number: Faker::PhoneNumber.phone_number, password: '4321', password_confirmation: '4321', role: 'user')
 end
 
-MemberFee.create(amount: 10000, user_id: 1, settlement_date: Time.now - 14.days, notes: "Cash")
-MemberFee.create(amount: 1000, user_id: 3, settlement_date: Time.now - 58.days, created_at: Time.now-58.days, notes: "Cash")
-MemberFee.create(amount: 1000, user_id: 3, created_at: Time.now - 28.days)
+MemberFee.create(amount: 10000, user_id: 1, settlement_date: Time.now - 8.days, notes: "Credit Card, In-Person")
+MemberFee.create(amount: 1000, user_id: 2, settlement_date: Time.now - 38.days, created_at: Time.now-38.days, notes: "Cash")
+MemberFee.create(amount: 1000, user_id: 2, created_at: Time.now - 8.days)
 
-Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 14.days, notes: "Cash")
-Deposit.create(amount: 4000, user_id: 3, settlement_date: Time.now - 28.days, notes: "Cash")
-Deposit.create(amount: 1250, user_id: 3)
+for i in 3..12 do
+  MemberFee.create(amount: 1000, user_id: i, settlement_date: Time.now - 8.days, notes: "Cash")
+end
+
+Deposit.create(amount: 4000, user_id: 1, settlement_date: Time.now - 8.days, notes: "Credit Card, In-Person")
+Deposit.create(amount: 4000, user_id: 2, settlement_date: Time.now - 8.days, notes: "Cash")
+Deposit.create(amount: 1250, user_id: 2)
+
+for i in 3..12 do
+  Deposit.create(amount: 4000, user_id: i, settlement_date: Time.now - 8.days, notes: "Cash")
+end
 
 100.times do
   Book.create(title: Faker::Lorem.sentence.capitalize,
@@ -92,7 +100,7 @@ checkout = CheckOut.new(checkout_date: Faker::Date.backward(rand(0..20)),
 checkout.due_date = checkout.checkout_date + 7.days
 checkout.save
 
-checkout = CheckOut.new(checkout_date: Faker::Date.backward(rand(0..20)),
+checkout = CheckOut.new(checkout_date: Time.now - 10.days,
   user_id: rand(1..12),
   book_copy_id: 303,
   renewal: rand(0..1))
