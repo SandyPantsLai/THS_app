@@ -8,8 +8,8 @@
     <%= book.label :subject %><br />
     <%= book.text_area :subject %>
 
-    <%= book.label :published %><br />
-    <%= book.date_field :published %>
+    <%= book.label :published_date %><br />
+    <%= book.date_field :published_date %>
 
     <%= book.label :publisher %><br />
     <%= book.text_field :publisher %>
@@ -17,17 +17,14 @@
     <%= book.label :page_count %><br />
     <%= book.number_field :page_count %>
 
-    <%= book.label :price %><br />
-    <%= book.number_field :price %>
-
     <%= book.label :description %><br />
     <%= book.text_field :description %>
 
     <%= book.label :cover_image %><br />
     <%= book.text_field :cover_image %>
 
-    <%= book.label :isbn %><br />
-    <%= book.text_field :isbn %>
+    <%= book.label :isbn_number %><br />
+    <%= book.text_field :isbn_number %>
 
     <%= book.submit %>
 
