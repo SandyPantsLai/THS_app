@@ -1,3 +1,4 @@
+<%= button_to "Edit Profile", edit_user_path(current_user.id) %>
 <ul class="user-info">
 	<li><strong><%= @user.first_name %> <%= @user.last_name %></strong></li>
 	<li class="role"><%= @user.role %></li>
@@ -5,11 +6,13 @@
 	<li class="phone-number"><%= @user.phone_number %></li>
 </ul>
 
-<%= button_to "Edit Profile", edit_user_path(current_user.id) %>
+<section>
+	<h3>Deposit</h3>
+	<p>You have <%= number_to_currency(sprintf("%.2f", @user.current_deposit.to_f / 100)) %> left in your deposit.</p>
+</section>
 
 <section>
 	<h3>Fines</h3>
-	<p>You have <%= number_to_currency(sprintf("%.2f", @user.current_deposit.to_f / 100)) %> left in your deposit.</p>
 	<p>Total unsettled fine amount is <strong><%= number_to_currency( @total_fine / 100.0 ) %></strong></p>
 </section>
 
