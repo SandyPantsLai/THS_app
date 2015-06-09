@@ -2,10 +2,6 @@
 body {
 	background: -webkit-linear-gradient(#fff, #f2f2f2);
 }
-html {
-	width: 100%;
-	height: 100%;
-}
 #wrapper {
 	@include outer-container;
 	margin-bottom: rem(200);

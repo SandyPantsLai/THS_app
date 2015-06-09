@@ -1,6 +1,6 @@
 <div class="catalogue">
 
-	<div class="book-card">
+	<div class="user-card">
 
 		<p><strong><%= @user.first_name %> <%= @user.last_name %></strong><br />
 		<%= @user.role %><br />
@@ -10,7 +10,7 @@
 	
 	</div>
 	
-	<div class"index-card">
+	<div class="user-card">
 		
 		<h3>Fines</h3>
 		<p>You have <%= number_to_currency(sprintf("%.2f", @user.current_deposit.to_f / 100)) %> left in your deposit.</p>
@@ -18,7 +18,7 @@
 
 	</div>
 
-	<div class"index-card">
+	<div class="user-card">
 
 		<h3>Holds</h3>
 		
@@ -31,12 +31,12 @@
 				<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
 			<% end %>
 		<% elsif %>
-			No current check outs for this user
+			<p>No current check outs for this user</p>
 		<% end %>
 
 	</div>
 
-	<div class"index-card">
+	<div class="user-card">
 			
 		<h3>Past Check Outs</h3>
 
