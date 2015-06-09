@@ -1,5 +1,4 @@
-<div class="transactions">
-  <table id="transactions-table">
+<table id="transactions-table">
   <tr>
     <% if current_user.role == "admin" || current_user.role == "volunteer" %>
     <th scope="col">User Name</th>
@@ -43,6 +42,5 @@
           <%= render partial: 'transactions/payment_info', locals: { t: t } %>
         <% end %>
     </tr>
-  <% end %>
-  </table>
-</div>
+<% end %>
+</table>

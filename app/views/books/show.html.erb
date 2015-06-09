@@ -14,7 +14,7 @@
 
 		<div class="data">
 
-			<h3><%= @book.title %><br />
+			<h3 class="book"><%= @book.title %><br />
 			<%= @book.subtitle %></h3>
 
 			<p>Author: <%= @book.author %><br />
@@ -28,9 +28,10 @@
 
 	</div><!-- end .book-card -->
 
-<div class="copies">
+	<div class="copies">
 
-	<p><strong>Book Status:</strong></p><br />
+		<p><strong>Book Status:</strong></p><br />
+			
 		<% if @copies.count == 1 %>
 			<p class="copies"><%= @copies.count%> copy,  <%= @copies_available  %> available to checkout.</p>
 		<% else %>
@@ -66,6 +67,7 @@
 	  	<li><%= button_to "Edit book", edit_book_path, :method => 'get' %></li>
 		<% end %>
 		</ul>
+	
 	</div><!-- end .copies -->
 
 	<div class="description">

@@ -1,4 +1,4 @@
-<div class="catalogue">
+<div class="holds">
 
   <% holds = user_holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
 
@@ -23,16 +23,17 @@
     <div class="copies">
     
       <p>Book: <%= link_to title, book_path(hold.book_id) %></p>
+      
       <% if hold.pickup_expiry %>
         <p>Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></p>
       <% else %>
         <p>You are #<%= queue %> in line.</p>
       <% end %>
 
-      <%= button_to 'Cancel hold', hold_path(hold), method: :delete %></div>
+      <%= button_to 'Cancel hold', hold_path(hold), method: :delete %>
 
     </div>
 
   <% end %>
 
-</div><!-- end .catalogue -->
+</div>

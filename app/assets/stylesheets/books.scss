@@ -22,7 +22,7 @@
 }
 .book-card img, .book-index img {
 	float: left;
-	padding-right: rem(20);
+	padding-right: rem(40);
 }
 .data {
 	float: left;
@@ -38,7 +38,6 @@
 	border-top: $base-border;
 }
 // book show
-
 .description { 
 	padding: rem(30) 0;
 	float: left;
