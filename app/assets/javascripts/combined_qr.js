@@ -105,7 +105,8 @@ function read(a)
     if(a.indexOf("http://") === 0 || a.indexOf("https://") === 0)
         html+="<a target='_blank' href='"+a+"'>"+a+"</a><br>";
     html+="<b>"+htmlEntities(a)+"</b><br><br>";
-    document.getElementById("check_out_book_copy_id").innerHTML=html;
+    document.getElementById("result").innerHTML=a.split("?id=")[ 1 ];
+    document.getElementById("check_out_book_copy_id").innerHTML=a.split("?id=")[ 1 ];
 }
 
 function isCanvasSupported(){
