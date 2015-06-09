@@ -30,7 +30,7 @@
     <tr class="transaction-item">
         <% if current_user.role == "admin" || current_user.role == "volunteer" %>
           <% user = User.find(t.user_id) %>
-          <td><%= user.first_name + " " + user.last_name %></td>
+          <td><%= link_to user.first_name + " " + user.last_name, user_path(user) %></td>
           <td><%= user.id %></td>
         <% end %>
         <td><%= t.created_at.strftime("%b %e, %Y") %></td>

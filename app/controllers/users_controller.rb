@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	# this controller handle user sign ups
 
   def index
-    @users = User.all
+    @users = User.all.sort_by{|user| user.last_name}
   end
 
   def new
