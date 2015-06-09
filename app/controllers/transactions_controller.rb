@@ -11,8 +11,12 @@ class TransactionsController < ApplicationController
   end
 
   def user_transactions
-    if params[:user_id]
-      @user = User.find(params[:user_id])
+    if params[:user_id] || params[:id]
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      else
+        @user = User.find(params[:id])
+      end
     else
       @user = current_user
     end
