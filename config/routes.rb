@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   get 'myholds' => 'holds#my_holds'
 
   resources :check_outs
+  get 'report_lost_or_damaged' => 'check_outs#report_lost_or_damaged', :as => :report_lost_or_damaged
+  post 'update_lost_or_damaged' => 'check_outs#update_lost_or_damaged', :as => :update_lost_or_damaged
+
 
   resources :fines
 
@@ -41,7 +44,6 @@ Rails.application.routes.draw do
   get '/member_fees/:id/waive' => 'member_fees#waive', :as => :waive
 
   resources :transactions, except: [:new, :create, :show]
-
   resources :deposits
 
   # User associated routes

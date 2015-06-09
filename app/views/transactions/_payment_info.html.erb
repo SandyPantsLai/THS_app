@@ -5,6 +5,11 @@
       <%= link_to "Refund this online payment", charge_path(id: t.charge_id) %>
     <% elsif["Cash", "Credit Card, In-Person", "Online Payment"].include?(t.notes) %>
       <%= t.notes %>
+      <% if t.class == Deposit %>
+        <td><%= button_to "Delete Payment", deposit_path(t), :method => 'delete' %></td>
+      <% else %>
+        <td><%= button_to "Delete Payment", member_fee_path(t), :method => 'delete' %></td>
+      <% end %>
     <% else %>
       <%= "Waived - " + t.notes  %>
     <% end %>
@@ -13,9 +18,9 @@
   <td>UNPAID</td>
   <% if current_user.role == "admin" || current_user.role == "volunteer" %>
     <% if t.class == MemberFee %>
-      <td><%= button_to "Enter Payment", edit_member_fee_path(t) %></td>
+      <td><%= button_to "Enter Payment", edit_member_fee_path(t), :method => 'get' %></td>
     <% else %>
-      <td><%= button_to "Enter Payment", edit_deposit_path(t) %></td>
+      <td><%= button_to "Enter Payment", edit_deposit_path(t), :method => 'get' %></td>
     <% end %>
   <% else %>
     <td><%= button_to "Pay Owing", new_charge_path, class: "pay-owing" %></td>
