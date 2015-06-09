@@ -1,6 +1,5 @@
 <h3><%= check_out.book_copy.book.title %></h3>
 <p>By <%= check_out.book_copy.book.author %> </p>
-<p>Library code: <%= check_out.book_copy.library_code %></p>
 
 <p><strong>Borrower:</strong></p>
 
@@ -8,7 +7,7 @@
 Email: <%= check_out.user.email %><br />
 Phone: <%= check_out.user.phone_number %></p>
 
-<p><strong>Transaction:</strong></p>
+<p><strong>Transaction: </strong></p>
 
 <p>Checked out on: <strong><%= check_out.checkout_date.strftime("%A, %b %e, %Y") %></strong></p>
 

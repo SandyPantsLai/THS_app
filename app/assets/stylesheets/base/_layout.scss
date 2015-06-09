@@ -38,3 +38,13 @@ nav.pagination {
 	margin-bottom: rem(40);
 	font-family: $heading-font-family;	
 } 
+h2 { 
+  color: $base-font-color;
+  text-align: left;
+  padding: 0 rem(5) 0 rem(5);
+  margin-top: rem(30); 
+  width: 100%;
+  font-weight: $base-font-weight;
+  border-bottom: 1.5px solid $matt-black;
+}
+h3.book { margin-top: 0;}

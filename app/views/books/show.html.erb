@@ -14,7 +14,7 @@
 
 		<div class="data">
 
-			<h3><%= @book.title %><br />
+			<h3 class="book"><%= @book.title %><br />
 			<%= @book.subtitle %></h3>
 
 			<p>Author: <%= @book.author %><br />
@@ -23,6 +23,8 @@
 			ISBN: <%= @book.isbn_number %><br />
 			Category: <%= @book.category %><br />
 			Page Count: <%= @book.page_count %></p>
+
+			
 
 		</div><!-- end .data -->
 
@@ -45,14 +47,13 @@
 			<% end %>
 
 			<ul>
-			<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
-			  <li><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></li>
-			<% else %>
-					<li><%= button_to "Place a hold", new_book_hold_path(book_id: @book.id), :method => 'get' %></li>
-			<% end %>
-
-			<% if current_user.role == 'admin' %>
-		  	<li><%= button_to "Edit book", edit_book_path, :method => 'get' %></li>
+				<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
+				  <li><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></li>
+				<% else %>
+						<li><%= button_to "Place a hold", new_book_hold_path(book_id: @book.id), :method => 'get' %></li>
+				<% end %>
+				<% if current_user.role == 'admin' %>
+		  	<%= button_to "Edit book", edit_book_path, :method => 'get' %>
 			<% end %>
 			</ul>
 			
