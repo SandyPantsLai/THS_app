@@ -1,43 +1,53 @@
-<ul class="user-info">
-	<li><strong><%= @user.first_name %> <%= @user.last_name %></strong></li>
-	<li class="role"><%= @user.role %></li>
-	<li class="email"><%= mail_to @user.email %></li>
-	<li class="phone-number"><%= @user.phone_number %></li>
-</ul>
+<div class="catalogue">
 
-<%= button_to "Edit Profile", edit_user_path(current_user.id) %>
+	<div class="book-card">
 
-<section>
-	<h3>Fines</h3>
-	<p>You have <%= number_to_currency(sprintf("%.2f", @user.current_deposit.to_f / 100)) %> left in your deposit.</p>
-	<p>Total unsettled fine amount is <strong><%= number_to_currency( @total_fine / 100.0 ) %></strong></p>
-</section>
+		<p><strong><%= @user.first_name %> <%= @user.last_name %></strong><br />
+		<%= @user.role %><br />
+		<%= mail_to @user.email %><br />
+		<%= @user.phone_number %></p>
+		<%= button_to "Edit Profile", edit_user_path(current_user.id) %>
+	
+	</div>
+	
+	<div class"index-card">
+		
+		<h3>Fines</h3>
+		<p>You have <%= number_to_currency(sprintf("%.2f", @user.current_deposit.to_f / 100)) %> left in your deposit.</p>
+		<p>Total unsettled fine amount is <strong><%= number_to_currency( @total_fine / 100.0 ) %></strong></p>
 
-<section>
-	<h3>Holds</h3>
-	<%= render partial: '/holds/holds', locals: {  user_holds: @holds } %>
-</section>
+	</div>
 
-<section>
-	<h3>Current Check Outs</h3>
+	<div class"index-card">
 
-	<% if @current_check_outs.any? %>
-		<% @current_check_outs.each do |check_out| %>
-			<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
+		<h3>Holds</h3>
+		
+		<%= render partial: '/holds/holds', locals: {  user_holds: @holds } %>
+
+		<h3>Current Check Outs</h3>
+
+		<% if @current_check_outs.any? %>
+			<% @current_check_outs.each do |check_out| %>
+				<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
+			<% end %>
+		<% elsif %>
+			No current check outs for this user
 		<% end %>
-	<% elsif %>
-		No current check outs for this user
-	<% end %>
-</section>
 
-<section>
-	<h3>Past Check Outs</h3>
+	</div>
 
-	<% if @past_check_outs.any? %>
-		<% @past_check_outs.each do |check_out| %>
-			<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
+	<div class"index-card">
+			
+		<h3>Past Check Outs</h3>
+
+		<% if @past_check_outs.any? %>
+			<% @past_check_outs.each do |check_out| %>
+				<%= render partial: '/check_outs/checked_book', locals: { check_out: check_out }  %>
+			<% end %>
+		<% elsif %>
+			No past check outs for this user
 		<% end %>
-	<% elsif %>
-		No past check outs for this user
-	<% end %>
-</section>
+	
+	</div>
+
+</div><!-- end .catalogue -->
