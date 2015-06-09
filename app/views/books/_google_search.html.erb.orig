@@ -5,7 +5,10 @@
 	  <%= label_tag(:query, "Google Book Search:") %>
 	  <%= text_field_tag(:query) %>
 	  <%= submit_tag("Search") %>
-	  
+
+<<<<<<< HEAD
 	<% end %>
 
+=======
+>>>>>>> upstream/master
 </div>

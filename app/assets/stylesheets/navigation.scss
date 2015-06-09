@@ -1,8 +1,16 @@
-header {
-	background-color: $base-background-color;
+.nav-wrapper {
+	background-color: #400040;
 	width: 100%;
-	float: left;
 	height: $nav-height;
+	position: absolute;
+}
+header {
+	float: left;
+	width: 100%;
+	height: $nav-height;
+	position: relative;
+	z-index: 1;
+	top: 0;
 }
 nav.main-nav ul {
 	list-style: none;
@@ -13,12 +21,12 @@ nav.main-nav ul {
 }
 nav.main-nav ul a {
 	display:block;
-	color: $base-font-color;
+	color: #fff;
 	text-decoration: none;
 	font-weight: $base-font-weight;
 	font-size: $base-font-size;
 	line-height: $base-line-height;
-	padding: rem(15) rem(15);
+	padding: rem(13) rem(15);
 	font-family: $heading-font-family;
 }
 nav.main-nav ul li {
@@ -31,14 +39,14 @@ nav.main-nav ul li.current-menu-item {
 	background-color: #ddd;
 }
 nav.main-nav ul li:hover {
-	background-color: #f6f6f6;
+	background-color: lighten(#400040, 10%);
+	color: $base-font-color;
 }
 nav.main-nav ul ul {
 	display: none;
 	position: absolute;
 	top: 100%;
 	left: 0;
-	background: #fff;
 	padding: 0;
 }
 nav.main-nav ul ul li {
@@ -55,46 +63,5 @@ nav.main-nav ul ul ul {
 }
 nav.main-nav ul li:hover > ul {
 	display: block;
+	background-color: lighten(#400040, 5%);
 }
-// toggle
-.toggle-container {
-
-}
-#nav-toggle {
-	position: absolute;
-	cursor: pointer;
-	padding: 30px 100px 36px 0px;
-}
-#nav-toggle span,
-#nav-toggle span:before,
-#nav-toggle span:after {
-	cursor: pointer;
-	height: 10px;
-	width: 100px;
-	background: $off-white;
-	position: absolute;
-	display: block;
-	content: '';
-
-	
-	transition: all 0.2s;
-}
-#nav-toggle span:before {
-	top: -25px;
-}
-#nav-toggle span:after {
-	bottom: -25px;
-}
-#nav-toggle.is-open span {
-	height: 0;
-}
-#nav-toggle.is-open span:before {
-	top: 0;
-	transform: rotateZ(45deg);
-}
-#nav-toggle.is-open span:after {
-	top: 0;
-	transform: rotateZ(-45deg);
-}
-
-

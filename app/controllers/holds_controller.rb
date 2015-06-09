@@ -61,4 +61,10 @@ class HoldsController < ApplicationController
     render :index
     @mine = false
   end
+
+  private
+
+  def hold_params
+    params.require(:hold).permit(:book_id)
+  end
 end

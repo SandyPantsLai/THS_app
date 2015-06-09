@@ -1,9 +1,9 @@
 <div class="catalogue">
 
-  <h2>Checked Out Books</h2>
+  <p class="link">&larr; <%= link_to "Back to Check Out Index", check_outs_path %></p>
 
-  <p class="link"><%= link_to "Back to Check Out Index", check_outs_path %></p>
-
+  <h2 class="title">Checked Out Books</h2>
+  
   <%= render partial: 'checked_book', locals: { check_out: @check_out } %>
   
 </div>

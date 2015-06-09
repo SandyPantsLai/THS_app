@@ -30,7 +30,15 @@ every :day, at: '2am' do
   rake 'deposits:create_top_up_transaction'
 end
 
-every '0 2 05 * *' do
-  # runs monthly at 2am on the 5th of the month
+every '0 3 05 * *' do
+  # runs monthly at 3am on the 5th of the month
   rake 'member_fees:deactivate_users'
+end
+
+every '0 4 01 * *' do
+  rake 'member_fees:create_monthly_fee'
+end
+
+every '0 5 01 * *' do
+  rake 'member_fees:create_annual_fee'
 end

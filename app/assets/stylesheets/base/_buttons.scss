@@ -1,11 +1,11 @@
-#{$all-button-inputs},
+  #{$all-button-inputs},
 button {
   @include appearance(none);
   -webkit-font-smoothing: antialiased;
   background-color: $light-green;
   border-radius: $base-border-radius;
   border: #fff;
-  color: $off-white;
+  color: #fff;
   cursor: pointer;
   display: inline-block;
   font-family: $heading-font-family;
@@ -22,7 +22,7 @@ button {
 
   &:hover,
   &:focus {
-    background-color: darken($light-green, 15%);
+    background-color: lighten($light-green, 5%);
     color: #fff;
   }
 

@@ -10,10 +10,10 @@ class MemberFeesController < ApplicationController
 
   def update
     @member_fee = MemberFee.find(params["id"])
-    if @member_fee.update(settlement_date: Time.now, notes: params["member_fee"]["notes"])
+    if @member_fee.update(settlement_date: Time.now, notes: member_fee_params["notes"])
       flash[:notice] = "The membership fee was updated."
-      @member_fee.user.update(status: "active") if MemberFee.where(user: @member_fee.user).where("settlement_date IS NOT NULL")
-      redirect_to user_url(@member_fee.user)
+      @member_fee.user.update(status: "active")
+      redirect_to transactions_url
     else
       flash[:alert] = "There was an issue with updating the membership fee."
       redirect_to transactions_url
@@ -22,6 +22,17 @@ class MemberFeesController < ApplicationController
 
   def waive
     @member_fee = MemberFee.find(params["id"])
+  end
+
+  def destroy
+    MemberFee.find(params["id"]).destroy
+    flash[:alert] = "The member will have temporary access until their next scheduled membership payment is due"
+    redirect_to transactions_url
+  end
+
+  private
+  def member_fee_params
+    params.require(:member_fee).permit(:notes)
   end
 
 end

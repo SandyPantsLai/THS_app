@@ -16,22 +16,13 @@ h6 {
   font-family: $heading-font-family;
   line-height: $heading-line-height;
   letter-spacing: $letter-spacing / 4;
+  color: $base-heading-color;
 }
 
 h1 { font-size: rem(32);}
 h2 { font-size: rem(26);}
 h3 { font-size: rem(22);}
 h4 { font-size: rem(16);}
-
-h2.title { 
-  color: $base-font-color;
-  text-align: left;
-  padding: rem(5) rem(20);
-  margin-top: rem(30); 
-  width: 100%;
-  font-weight: $base-font-weight;
-  border-bottom: 1.5px solid $matt-black;
-}
 
 p {
   margin: 0 0 $small-spacing;

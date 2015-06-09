@@ -1,31 +1,65 @@
 // this file handles the structure of the website
+body {
+	background: -webkit-linear-gradient(#fff, #f2f2f2);
+}
 #wrapper {
 	@include outer-container;
+	margin-bottom: rem(200);
+}
+.input-form {
+	margin-top: rem(50px);
+	@include outer-container;
+	max-width: $small-screen;
 }
 .main-content {
 	float: left;
 	width: 100%;
-	padding-top: rem(30);
+	padding: rem(30) 0 rem(100) 0;
+	background-color: #fff;
+	margin-top: rem(10);
+	border-radius: $base-border-radius;
 }
 .catalogue {
 	width: 100%;
 	float: left;
 	padding: 0 rem(20);
-	margin-bottom: rem(30);
+	opacity: 0.8;
 }
 .qr-scanner {
   width: 200px;
   height: 200px;
   background-color: red;
 }
-p.link {
+p.link, p.link {
 	font-family: $heading-font-family;
-	padding-left: rem(20);
 }
+span.highlight {
+	background-color: #ffff99;
+	padding: 5px;}
 .submit {
 	float: left;
 	width: 100%;
 	padding-bottom: rem(30);
 	margin-bottom: rem(40);
-	border-bottom: $base-border;
 }
+nav.pagination {
+	float: left;
+	width: 100%;
+	padding-top: rem(20);
+	margin-bottom: rem(40);
+	font-family: $heading-font-family;	
+} 
+h1.title {
+	text-align: center;
+	font-weight: $base-font-weight;
+}
+h2 { 
+  color: $base-font-color;
+  text-align: left;
+  padding: 0 rem(5) 0 rem(5);
+  margin-top: rem(30); 
+  width: 100%;
+  font-weight: $base-font-weight;
+  border-bottom: 1.5px solid $matt-black;
+}
+h3.book { margin-top: 0;}

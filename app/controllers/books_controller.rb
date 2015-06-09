@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   end
 
   def new
-    @books = Book.new
+    @book = Book.new
   end
 
   def edit
@@ -34,7 +34,17 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+
     if @book.save
+      
+      # using book_copy_id to store number of copies
+      # creating copies of book in BookCopy
+      ( params[ :book ][ :book_copy_id ].to_i ).times do
+        book_copy = BookCopy.new
+        book_copy.book = @book
+        book_copy.save
+      end
+
       redirect_to books_url
     else
       render "new"
@@ -82,7 +92,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :subtitle, :author, :publisher, :published_date, :description, :page_count, :category, :cover_image, :type, :indetifier, :qr_code, :volume_id)
+    params.require(:book).permit(:title, :subtitle, :author, :publisher, :published_date, :description, :page_count, :category, :cover_image, :type, :isbn_number, :qr_code, :volume_id)
   end
 
 end

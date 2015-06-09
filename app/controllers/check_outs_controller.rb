@@ -35,6 +35,7 @@ class CheckOutsController < ApplicationController
         book_copies.each do |book_copy|
           if CheckOut.where( book_copy_id: book_copy.id ).count == 0
             @available_copies.push( book_copy )
+          end
         end
       end
     end
@@ -47,6 +48,8 @@ class CheckOutsController < ApplicationController
     @check_out.checkout_date = currentDate
     @check_out.due_date = currentDate + CheckOut::CHECK_OUT_PERIOD
     @check_out.renewal = CheckOut::RENEWAL_COUNT
+
+    binding.pry
 
     if @check_out.save
       redirect_to check_outs_path
@@ -66,6 +69,18 @@ class CheckOutsController < ApplicationController
       attributes[ :fine ] = Fine.new
       attributes[ :fine ].amount = fine_amount
     end
+
+    update_check_out( check_out, attributes )
+  end
+
+  def report_lost_or_damaged
+    @check_out = CheckOut.find( params[ :format ] )
+  end
+
+  def update_lost_or_damaged
+    check_out = CheckOut.find( params[ :format ] )
+    attributes = {}
+    attributes[ :fine ] = Fine.create(amount: params[:price], check_out_id: check_out.id)
 
     update_check_out( check_out, attributes )
   end
@@ -103,12 +118,14 @@ class CheckOutsController < ApplicationController
       if attributes[ :fine ]
         user = check_out.user
 
-        if !user.current_deposit.nil? && ( user.current_deposit > check_out.fine.amount )
+        if !user.current_deposit.nil? && ( user.current_deposit >= check_out.fine.amount )
           user.update( current_deposit: ( user.current_deposit - check_out.fine.amount ) )
           check_out.fine.update( settlement_date: DateTime.now )
+        else
+          Transaction.top_up_deposit(user)
+          flash[:alert] = "Please enter a payment to top up the deposit for user ##{user.id}"
+          redirect_to transactions_url
         end
-
-        redirect_to check_out_path( check_out )
       else
         redirect_to check_outs_path
       end

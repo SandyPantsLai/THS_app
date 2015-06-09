@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150608194651) do
 
-
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
     t.integer  "library_code"
@@ -122,7 +121,7 @@ ActiveRecord::Schema.define(version: 20150608194651) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.string   "stripe_id"
-    t.integer  "current_deposit"
+    t.integer  "current_deposit",                 default: 0
     t.string   "membership"
     t.string   "status",                          default: "active"
   end

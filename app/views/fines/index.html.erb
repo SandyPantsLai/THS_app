@@ -1,25 +1,29 @@
 <div class="catalogue">
 
-  <h2 class="title">Fines</h2>
+  <h2>Fines</h2>
 
-  <ul>
-    <% @users.each do |key, value| %>
-      <li>
-        <strong><%= value[ :name ] %></strong><br />
+  <div class="user-card">
+  
+    <ul>
+      <% @users.each do |key, value| %>
+        <li>
+          <strong><%= value[ :name ] %></strong><br />
 
-        Total unsettled fine amount: <strong><%= number_to_currency( value[ :total_fine ] / 100.0 ) %></strong><br />
+          Total unsettled fine amount: <strong><%= number_to_currency( value[ :total_fine ] / 100.0 ) %></strong><br />
 
-        <p>Fine breakdown by check outs:</p>
-          <ul>
-            <% value[ :check_outs ].each do |check_out| %>
-            <li>
-              Returned on <%= check_out.return_date.strftime("%A, %b %e, %Y") %>
-              with fine of <%= number_to_currency( check_out.fine.amount / 100.0 ) %>
-            </li>
-            <% end %>
-          </ul>
-      </li>
-    <% end %>
-  </ul>
+          <p>Fine breakdown by check outs:</p>
+            <ul>
+              <% value[ :check_outs ].each do |check_out| %>
+              <li>
+                Returned on <%= check_out.return_date.strftime("%A, %b %e, %Y") %>
+                with fine of <%= number_to_currency( check_out.fine.amount / 100.0 ) %>
+              </li>
+              <% end %>
+            </ul>
+        </li>
+      <% end %>
+    </ul>
+
+  </div><!-- end .user-card -->
 
 </div><!-- end .catalogue -->

@@ -1,31 +1,31 @@
 <!-- edit book form -->
+<div class="input-form">
 
-<%= form_for(@book) do |book| %>
+    <%= form_for(@book) do |book| %>
 
-    <%= book.label :title %><br />
-    <%= book.text_field :title %>
+        <%= book.label :title %><br />
+        <%= book.text_field :title %>
 
-    <%= book.label :subject %><br />
-    <%= book.text_area :subject %>
+        <%= book.label :subject %><br />
+        <%= book.text_area :subject %>
 
-    <%= book.label :published_date %><br />
-    <%= book.date_field :published_date %>
+        <%= book.label :published_date %><br />
+        <%= book.date_field :published_date %>
 
-    <%= book.label :publisher %><br />
-    <%= book.text_field :publisher %>
+        <%= book.label :publisher %><br />
+        <%= book.text_field :publisher %>
 
-    <%= book.label :page_count %><br />
-    <%= book.number_field :page_count %>
+        <%= book.label :page_count %><br />
+        <%= book.number_field :page_count %>
 
-    <%= book.label :description %><br />
-    <%= book.text_field :description %>
+        <%= book.label :description %><br />
+        <%= book.text_field :description %>
 
-    <%= book.label :cover_image %><br />
-    <%= book.text_field :cover_image %>
+        <%= book.label :isbn_number %><br />
+        <%= book.text_field :isbn_number %>
 
-    <%= book.label :isbn_number %><br />
-    <%= book.text_field :isbn_number %>
+        <%= book.submit %>
 
-    <%= book.submit %>
+    <% end %>
 
-<% end %>
+</div>

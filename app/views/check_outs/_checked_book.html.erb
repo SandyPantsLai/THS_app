@@ -1,39 +1,36 @@
-<div class="catalogue">
+<div class="user-card">
 
-  <p><%= check_out.book_copy.book.title %></p>
+  <h3><%=  check_out.book_copy.book.title %></h3>
   <p>By <%= check_out.book_copy.book.author %> </p>
-  <p>Library code: <%= check_out.book_copy.library_code %></p>
 
-  <h3>Borrower</h3>
+  <p><strong>Borrower:</strong></p>
 
   <p><%= check_out.user.first_name %> <%= check_out.user.last_name %><br />
   Email: <%= check_out.user.email %><br />
   Phone: <%= check_out.user.phone_number %></p>
 
-  <h4>Transaction</h4>
+  <p><strong>Transaction: </strong></p>
 
   <p>Checked out on: <strong><%= check_out.checkout_date.strftime("%A, %b %e, %Y") %></strong></p>
 
   <% if check_out.return_date %>
-    <p>Due on: <strong><%= check_out.due_date.strftime("%A, %b %e, %Y") %></strong></p>
+    <p><span class="highlight">Due on: <%= check_out.due_date.strftime("%A, %b %e, %Y") %></span></p>
     <p>Returned on: <strong><%= check_out.return_date.strftime("%A, %b %e, %Y") %></strong></p>
 
     <% if check_out.fine %>
       <% if check_out.fine.settlement_date %>
       <p>Fine amount settled on <strong><%= check_out.fine.settlement_date.strftime("%A, %b %e, %Y") %></strong></p>
     <% else %>
-      <p>Outstanding fine of <strong><%= number_to_currency( check_out.fine.amount / 100.0 ) %></strong></p>
+      <p><span class="highlight">Outstanding fine of <%= number_to_currency( check_out.fine.amount / 100.0 ) %></span></p>
     <% end %>
   <% end %>
 
   <% else %>
     <p>Due on:
-      <strong>
-      <%= check_out.due_date.strftime("%A, %b %e, %Y") %>
+      <strong><%= check_out.due_date.strftime("%A, %b %e, %Y") %></strong>
       <% if DateTime.now.to_time.to_i > check_out.due_date.to_time.to_i %>
-        (This book is overdue; running fine total is <%= number_to_currency( check_out.get_fine_amount( DateTime.now ) / 100 ) %>)
+        <p><span class="highlight">This book is overdue: running fine total is <%= number_to_currency( check_out.get_fine_amount( DateTime.now ) / 100 ) %></span></p> 
       <% end %>
-      </strong>
     </p>
   <% end %>
 
@@ -41,6 +38,7 @@
     <ul>
       <% if !check_out.return_date %>
         <li><%= button_to "Return Book", check_out_check_in_path( check_out ), method: :patch %></li>
+        <li><%= button_to "Report Book as Lost or Damaged", report_lost_or_damaged_path( check_out ), method: :get %></li>
 
         <% if DateTime.now.to_time.to_i < check_out.due_date.to_time.to_i && check_out.renewal > 0 %>
           <% if can_renew?( check_out.book_copy.book ) %>
@@ -56,4 +54,6 @@
     </ul>
   <% end %>
 
-</div><!-- end .catalogue -->
+</div><!-- end .user-card -->
+
+
