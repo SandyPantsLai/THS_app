@@ -1,7 +1,7 @@
 <div class="catalogue">
 
   <p><%= check_out.book_copy.book.title %></p>
-  <p>By <%= check_out.book_copy.book.first_name %> <%= check_out.book_copy.book.last_name %></p>
+  <p>By <%= check_out.book_copy.book.author %> </p>
   <p>Library code: <%= check_out.book_copy.library_code %></p>
 
   <h3>Borrower</h3>
@@ -44,7 +44,7 @@
 
         <% if DateTime.now.to_time.to_i < check_out.due_date.to_time.to_i && check_out.renewal > 0 %>
           <% if can_renew?( check_out.book_copy.book ) %>
-            <li><%= Button_to "Renew Book", check_out_renew_path( check_out ), method: :patch %></li>
+            <li><%= button_to "Renew Book", check_out_renew_path( check_out ), method: :patch %></li>
           <% elsif %>
             <li>There are holds placed on this book; it cannot be renewed.</li>
           <% end %>
