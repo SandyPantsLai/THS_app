@@ -2,12 +2,16 @@
 body {
 	background: -webkit-linear-gradient(#fff, #f2f2f2);
 }
+html {
+	width: 100%;
+	height: 100%;
+}
 #wrapper {
 	@include outer-container;
 	margin-bottom: rem(200);
-	background-color: #fff;
 }
 .input-form {
+	margin-top: rem(50px);
 	@include outer-container;
 	max-width: $small-screen;
 }
@@ -15,6 +19,9 @@ body {
 	float: left;
 	width: 100%;
 	padding: rem(30) 0 rem(100) 0;
+	background-color: #fff;
+	margin-top: rem(10);
+	border-radius: $base-border-radius;
 }
 .catalogue {
 	width: 100%;
@@ -32,7 +39,7 @@ p.link, p.link {
 }
 span.highlight {
 	background-color: #ffff99;
-}
+	padding: 5px;}
 .submit {
 	float: left;
 	width: 100%;
@@ -46,6 +53,10 @@ nav.pagination {
 	margin-bottom: rem(40);
 	font-family: $heading-font-family;	
 } 
+h1.title {
+	text-align: center;
+	font-weight: $base-font-weight;
+}
 h2 { 
   color: $base-font-color;
   text-align: left;
