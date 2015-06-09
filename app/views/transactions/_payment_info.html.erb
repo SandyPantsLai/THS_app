@@ -15,8 +15,8 @@
     <% end %>
   </td>
 <% else %>
-  <td>UNPAID</td>
-  <% if current_user.role == "admin" || current_user.role == "volunteer" %>
+  <td><span class="highlight">Unpaid</span></td>
+  <% if current_user.role == "admin" || current_user.role == "user" %>
     <% if t.class == MemberFee %>
       <td><%= button_to "Enter Payment", edit_member_fee_path(t), :method => 'get' %></td>
     <% else %>
