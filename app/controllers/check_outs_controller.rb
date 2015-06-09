@@ -63,7 +63,7 @@ class CheckOutsController < ApplicationController
   def update_lost_or_damaged
     check_out = CheckOut.find( params[ :format ] )
     attributes = {}
-    attributes[ :fine ] = Fine.create(amount: params[:price])
+    attributes[ :fine ] = Fine.create(amount: params[:price], check_out_id: check_out.id)
 
     update_check_out( check_out, attributes )
   end
