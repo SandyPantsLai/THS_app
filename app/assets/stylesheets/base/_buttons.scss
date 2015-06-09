@@ -22,7 +22,7 @@ button {
 
   &:hover,
   &:focus {
-    background-color: darken($light-green, 15%);
+    background-color: lighten($light-green, 5%);
     color: #fff;
   }
 
