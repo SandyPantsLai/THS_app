@@ -1,5 +1,5 @@
 // Google Book search from
-.google-search { // form
+.google-search { 
 	margin-top: rem(30);
 	float: left;
 	width: 100%;
@@ -7,13 +7,15 @@
 }
 // Google Book search results
 .volume .title input {
-	font-weight: $base-font-weight * 2;
-	padding: $no-margin;
-  text-align: center;
-  margin: 0 0 rem(10) 0;
-  font-weight: 600;
-  letter-spacing: $small-spacing / 2;
-  line-height: rem(30);
+	width: 100%;
+	font-size: rem(26);		
+  font-weight: $base-font-weight;
+  border-bottom: 1.5px solid $matt-black;
+	padding: 0 rem(5) 0 rem(5);
+  text-align: left;
+  margin: 0 0 rem(30) 0;
+  letter-spacing: $letter-spacing / 4;
+  line-height: $heading-line-height;
   border: 0;
   box-shadow: none;
   border-radius: 0;
@@ -25,14 +27,20 @@ form.new_book {
 	width: 100%;
 	border-bottom: $base-border;
 }
-.volume .images {
+.images {
 	padding-top: rem(10);
 	float: left;
-	max-width: $small-screen; 
+	max-width: rem(150); 
 }
 .volume .images img {
 	margin-bottom: rem(5);
-	
+	float: left;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+}
+images .img-pad { 
+	margin-left: rem(5);	
 }
 .volume .data {
 	float: left;
@@ -46,6 +54,7 @@ form.new_book {
 	letter-spacing: $small-spacing / 6;
 	font-weight: $base-font-weight * 2;
 	margin: rem(10) 0 0 0;
+	font-family: $base-font-family;
 }
 .volume .data .field input {
 	font-size: rem(14);
@@ -57,6 +66,7 @@ form.new_book {
 	border: 0;
   box-shadow: none;
   border-radius: 0;
+  font-family: $base-font-family;
 }
 .volume .data .hide input {
 	display: hidden;

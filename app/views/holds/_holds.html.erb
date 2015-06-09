@@ -1,15 +1,21 @@
 <% holds = user_holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
-<% holds.each do |hold| %>
-  <% title = Book.find(hold.book_id).title %>
-  <% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %>
+  <% holds.each do |hold| %>
+    <% title = Book.find(hold.book_id).title %>
+    <% queue = Hold.where(book_id: hold.book_id).find_index(hold) + 1 %>
 
-  <div class="copies">
-    <h4>Book: <%= link_to title, book_path(hold.book_id) %></h4>
-    <% if hold.pickup_expiry %>
-      <p>Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></p>
-    <% else %>
-      <p>You are #<%= queue %> in line.</p>
-    <% end %>
-    <%= button_to 'Cancel hold', hold_path(hold), method: :delete %></div>
-  </div>
+    <div class="user-card">
+
+      <h4><%= link_to title, book_path(hold.book_id) %></h4>
+
+      <% if hold.pickup_expiry %>
+        <p><span class="highlight">Pickup by: <%= hold.pickup_expiry.strftime("%A, %b %e, %Y") %></span></p>
+      <% else %>
+        <p>You are #<%= queue %> in line.</p>
+      <% end %>
+
+      <div class"submit"><%= button_to 'Cancel hold', hold_path(hold), method: :delete %></div>
+    
+    </div><!-- end .user-card -->
+
 <% end %>
+

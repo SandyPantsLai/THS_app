@@ -50,7 +50,7 @@
 
 			<ul>
 		  	<% @due_dates.sort.each do |due_date| %>
-		    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
+		    	<li><span class="highlight"><%= due_date.strftime("%A, %b %e, %Y") %></span></li>
 		  	<% end %>
 		  </ul>
 
@@ -60,11 +60,11 @@
 		<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
 		 	<p><span class="highlight"><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></span></p>
 		<% else %>
-				<%= button_to "Place a hold", new_book_hold_path(book_id: @book.id), :method => 'get' %>
+				<div class="submit"><%= button_to "Place a hold", new_book_hold_path(book_id: @book.id), :method => 'get' %>
 		<% end %>
 
 		<% if current_user.role == 'admin' %>
-	  	<%= button_to "Edit book", edit_book_path, :method => 'get' %>
+	  	<%= button_to "Edit book", edit_book_path, :method => 'get' %></div>
 		<% end %>
 		
 	
