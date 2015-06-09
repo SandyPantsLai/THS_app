@@ -51,7 +51,7 @@
         <% end %>
 
       <% elsif check_out.fine && !check_out.fine.settlement_date %>
-        <li><%= Button_to "Settle Fine", check_out_fine_path( check_out, check_out.fine ), method: :patch %></li>
+        <li><%= button_to "Settle Fine", check_out_fine_path( check_out, check_out.fine ), method: :patch %></li>
       <% end %>
     </ul>
   <% end %>

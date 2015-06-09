@@ -89,7 +89,7 @@ class CheckOutsController < ApplicationController
       if attributes[ :fine ]
         user = check_out.user
 
-        if user.current_deposit > check_out.fine.amount
+        if !user.current_deposit.nil? && ( user.current_deposit > check_out.fine.amount )
           user.update( current_deposit: ( user.current_deposit - check_out.fine.amount ) )
           check_out.fine.update( settlement_date: DateTime.now )
         end
