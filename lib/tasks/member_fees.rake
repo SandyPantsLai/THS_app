@@ -25,8 +25,11 @@ namespace :member_fees do
     users = User.where(:membership == "annual")
     users.each do |user|
       last_fee = user.member_fees.last
-      last_fee.destroy if last_fee.settlement_date == nil
-      Transaction.create_member_fee(user)
+      #only creates fee if the last annual payment was the same month as now
+      if last_fee.month == Time.now.month
+        last_fee.destroy if last_fee.settlement_date == nil
+        Transaction.create_member_fee(user)
+      end
     end
   end
 
