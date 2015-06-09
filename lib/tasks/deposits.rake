@@ -5,6 +5,7 @@ namespace :deposits do
     users = User.where(current_deposit: 0..35)
     users.each do |user|
       Transaction.top_up_deposit(user)
+      user.update(status: "inactive")
     end
   end
 
