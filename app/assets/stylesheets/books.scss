@@ -2,7 +2,6 @@
 .catalogue-search {
 	float: left;
 	width: 100%;
-	padding-bottom: rem(30);
 }
 .catalogue-search p {
 	margin-left: rem(20); 
@@ -15,6 +14,11 @@
 	padding: rem(30) 0;
 	float: left;
 	width: 100%;
+}
+.book-index {
+	border-top: $base-border;
+	margin-top: rem(30);
+	padding-top: rem(40);
 }
 .book-card img, .book-index img {
 	float: left;

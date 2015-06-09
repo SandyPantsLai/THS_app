@@ -2,6 +2,10 @@
 #wrapper {
 	@include outer-container;
 }
+.input-form {
+	@include outer-container;
+	max-width: $small-screen;
+}
 .main-content {
 	float: left;
 	width: 100%;
@@ -18,7 +22,7 @@
   height: 200px;
   background-color: red;
 }
-p.link {
+p.link, p.link {
 	font-family: $heading-font-family;
 	padding-left: rem(20);
 }
@@ -27,5 +31,11 @@ p.link {
 	width: 100%;
 	padding-bottom: rem(30);
 	margin-bottom: rem(40);
-	border-bottom: $base-border;
 }
+nav.pagination {
+	float: left;
+	width: 100%;
+	padding-top: rem(20);
+	margin-bottom: rem(40);
+	font-family: $heading-font-family;	
+} 

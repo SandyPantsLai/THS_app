@@ -1,12 +1,11 @@
-<div class="holds">
-
-	<h2>Hold Confirmation</h2>
+<div class="catalogue">
+	
+	<p classs="link">&larr; <%= link_to 'Back to Book', book_path(@hold.book_id) %></p> 
+	
+	<h2 class="title">Hold Confirmation</h2>
 
 	<p>Are you sure you want to reserve <%= Book.find(@hold.book_id).title %> ?</p>
 	
-	<ul>
-		<li><%= button_to'Confirm Hold', book_holds_path(@hold.book_id), method: :post %></li>
-		<li><%= link_to 'Back', book_path(@hold.book_id) %></li>
-	</ul>
+	<%= button_to'Confirm Hold', book_holds_path(@hold.book_id), method: :post %>
 
 </div><!-- end .holds -->

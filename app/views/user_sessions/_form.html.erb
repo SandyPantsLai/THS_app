@@ -1,18 +1,24 @@
 <div class="catalogue">
-<%= form_tag user_sessions_path, :method => :post do %>
-  
-  <%= label_tag :email %><br />
-  <%= text_field_tag :email %>
+	
+	<div class="input-form">
 
-  <%= label_tag :password %><br />
-  <%= password_field_tag :password %>
+		<%= form_tag user_sessions_path, :method => :post do %>
+	  
+	  	<%= label_tag :email %><br />
+	  	<%= text_field_tag :email %>
 
-	<%= label_tag :remember_me %>
-	<%= check_box_tag :remember_me %>
+	  	<%= label_tag :password %><br />
+	  	<%= password_field_tag :password %>
 
-  <%= submit_tag "Login" %>
+			<%= label_tag :remember_me %>
+			<%= check_box_tag :remember_me %>
 
-  <p><%= link_to 'Forgot your password?', new_reset_password_path %></p>
+	  	<div class="submit"><%= submit_tag "Login" %></div>
 
-<% end %>
+	  	<div class="submit"><%= link_to 'Forgot your password?', new_reset_password_path %></div>
+
+		<% end %>
+
+	</div>
+
 </div>

@@ -2,16 +2,16 @@
 
 	<h2 class="title">Check Outs</h2>
 
-	<div class="book-card">
+	<% @check_outs.each do |check_out| %>
+	    	
+	    <div class="user-card">
 
-	  <% @check_outs.each do |check_out| %>
-	    
-	    <h3><%= link_to check_out.book_copy.book.title, check_out_path( check_out ) %></h3>
+	    	<h3><%= link_to check_out.book_copy.book.title, check_out_path( check_out ) %></h3>
 
-	    <p>Checked out by <strong><%= check_out.user.first_name %> <%= check_out.user.last_name %></strong></p> 
+	    	<p>Checked out by <strong><%= check_out.user.first_name %> <%= check_out.user.last_name %></strong></p> 
 	    
+	    </div><!-- end .user-card -->
+
 	  <% end %>
-
-	</div><!-- end .book-card -->
 
 </div><!-- end .catalogue -->
