@@ -32,3 +32,10 @@ p.link {
 	padding-bottom: rem(30);
 	margin-bottom: rem(40);
 }
+nav.pagination {
+	float: left;
+	width: 100%;
+	padding-top: rem(20);
+	margin-bottom: rem(40);
+	font-family: $heading-font-family;	
+}
