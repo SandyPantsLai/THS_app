@@ -2,7 +2,7 @@
 
   <h2 class="title">Holds</h2>
 
-  <p>There are <%= @holds.where("pickup_expiry IS NOT NULL").count %> holds available for pickup.</p>
+  <p><span class"highlight">There are <%= @holds.where("pickup_expiry IS NOT NULL").count %> holds available for pickup.</span></p>
 
   <% holds = @holds.sort_by{|hold| hold.pickup_expiry || Time.now + 100.years} %>
   <% if current_user.role == "admin" || current_user.role == "volunteer" %>

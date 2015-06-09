@@ -3,28 +3,29 @@
 	<%= button_to "Pay Owing", new_charge_path(@user), :method => 'get' %>
 <% end %>
 <%= button_to "Edit Profile", edit_user_path(@user.id) %>
-<ul class="user-info">
-	<li><strong><%= @user.first_name %> <%= @user.last_name %></strong></li>
-	<li class="role"><%= @user.role.capitalize %></li>
-	<li class="email"><%= mail_to @user.email %></li>
-	<li class="phone-number"><%= @user.phone_number %></li>
-</ul>
-<section>
+<div class="user-card">
+	<p><strong><%= @user.first_name %> <%= @user.last_name %></strong></p>
+	<p class="role"><%= @user.role.capitalize %></p>
+	<p class="email"><%= mail_to @user.email %></p>
+	<p class="phone-number"><%= @user.phone_number %></p>
+</div>
+
+<div class="user-card">
 	<h3>Deposit</h3>
 	<p>You have <%= number_to_currency(sprintf("%.2f", @user.current_deposit.to_f / 100)) %> left in your deposit.</p>
-</section>
+</div>
 
-<section>
+<div class="user-card">
 	<h3>Fines</h3>
 	<p>Total unsettled fine amount is <strong><%= number_to_currency( @total_fine / 100.0 ) %></strong></p>
-</section>
+</div>
 
-<section>
+<div class="user-card">
 	<h3>Holds</h3>
 	<%= render partial: '/holds/holds', locals: {  user_holds: @holds } %>
-</section>
+</div>
 
-<section>
+<div class="user-card">
 	<h3>Current Check Outs</h3>
 
 	<% if @current_check_outs.any? %>
@@ -34,9 +35,9 @@
 	<% elsif %>
 		No current check outs for this user
 	<% end %>
-</section>
+</div>
 
-<section>
+<div class="user-card">
 	<h3>Past Check Outs</h3>
 
 	<% if @past_check_outs.any? %>
@@ -46,4 +47,4 @@
 	<% elsif %>
 		No past check outs for this user
 	<% end %>
-</section>
+</div>

@@ -15,7 +15,7 @@ class DepositsController < ApplicationController
 
   def update
     @deposit = Deposit.find(params["id"])
-    check_outs = CheckOut.where( user: user )
+    check_outs = CheckOut.where( user: @deposit.user )
     fines = check_outs.inject( 0 ) do | sum, check_out |
       sum += ( !check_out.fine.nil? && check_out.fine.settlement_date.nil? ) ? check_out.fine.amount : 0
       sum

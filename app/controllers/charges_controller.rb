@@ -5,6 +5,7 @@ class ChargesController < ApplicationController
     @user = User.find(params[:format]) || current_user
     @transactions = @user.deposits.where("settlement_date IS NULL") + @user.member_fees.where("settlement_date IS NULL")
     @amount = @transactions.sum(&:amount)
+    binding.pry
   end
 
   def create
@@ -36,7 +37,7 @@ class ChargesController < ApplicationController
 
     @transactions.each do |t|
 
-    check_outs = CheckOut.where( user: user )
+    check_outs = CheckOut.where( user: t.user )
     fines = check_outs.inject( 0 ) do | sum, check_out |
       sum += ( !check_out.fine.nil? && check_out.fine.settlement_date.nil? ) ? check_out.fine.amount : 0
       sum

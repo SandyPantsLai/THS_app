@@ -65,13 +65,16 @@ class Transaction
     end
 
     if last_deposit
-      unless last_deposit.settlement_date
+      if last_deposit.settlement_date == nil
         last_deposit.update(amount: fines + 4000 - user.current_deposit, created_at: Time.now)
+      else
+        Deposit.create(amount: fines + 4000 - user.current_deposit, user: user)
       end
     else
       Deposit.create(amount: fines + 4000 - user.current_deposit, user: user)
     end
     user.update(status: "inactive")
+
   end
 
 end
