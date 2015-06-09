@@ -14,13 +14,12 @@ select {
   display: block;
   font-family: $heading-font-family;
   font-size: $base-font-size;
-  margin: rem(15) 0;
   font-weight: $base-font-weight;
 }
 
 label {
   font-weight: $base-font-weight;
-  margin-bottom: $small-spacing / 2;
+  margin-top: rem(20);
 
   &.required::after {
     content: "*";
