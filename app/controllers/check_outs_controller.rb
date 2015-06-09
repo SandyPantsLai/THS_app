@@ -56,6 +56,18 @@ class CheckOutsController < ApplicationController
     update_check_out( check_out, attributes )
   end
 
+  def report_lost_or_damaged
+    @check_out = CheckOut.find( params[ :format ] )
+  end
+
+  def update_lost_or_damaged
+    check_out = CheckOut.find( params[ :format ] )
+    attributes = {}
+    attributes[ :fine ] = Fine.create(amount: params[:price])
+
+    update_check_out( check_out, attributes )
+  end
+
   def renew
     check_out = CheckOut.find( params[ :id ] )
 
@@ -97,8 +109,6 @@ class CheckOutsController < ApplicationController
           flash[:alert] = "Please enter a payment to top up the deposit for user ##{user.id}"
           redirect_to transactions_path(user)
         end
-
-        redirect_to check_out_path( check_out )
       else
         redirect_to check_outs_path
       end

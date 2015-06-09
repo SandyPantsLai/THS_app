@@ -41,6 +41,7 @@
     <ul>
       <% if !check_out.return_date %>
         <li><%= button_to "Return Book", check_out_check_in_path( check_out ), method: :patch %></li>
+        <li><%= button_to "Report Book as Lost or Damaged", report_lost_or_damaged_path( check_out ), method: :get %></li>
 
         <% if DateTime.now.to_time.to_i < check_out.due_date.to_time.to_i && check_out.renewal > 0 %>
           <% if can_renew?( check_out.book_copy.book ) %>

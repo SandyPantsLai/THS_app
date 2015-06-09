@@ -25,5 +25,4 @@ class DepositsController < ApplicationController
       redirect_to transactions_url
     end
   end
-
 end

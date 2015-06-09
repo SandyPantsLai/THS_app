@@ -15,7 +15,6 @@ class Transaction
 
   def self.update_member_fee(user)
     t = Time.now
-    binding.pry
     if user.membership == "annual"
       #since new membership is annual, check if this month's payment was already paid
       last_fee = MemberFee.where(user_id: user.id).where("amount <= ?", 1000).last
@@ -59,12 +58,18 @@ class Transaction
   def self.top_up_deposit(user)
     last_deposit = user.deposits.last
 
+    check_outs = CheckOut.where( user: user )
+    fines = check_outs.inject( 0 ) do | sum, check_out |
+      sum += ( !check_out.fine.nil? && check_out.fine.settlement_date.nil? ) ? check_out.fine.amount : 0
+      sum
+    end
+
     if last_deposit
       unless last_deposit.settlement_date
-        last_deposit.update(amount: 4000 - user.current_deposit, created_at: Time.now)
-      else
-        Deposit.create(amount: 4000 - user.current_deposit, user: user)
+        last_deposit.update(amount: fines + 4000 - user.current_deposit, created_at: Time.now)
       end
+    else
+      Deposit.create(amount: fines + 4000 - user.current_deposit, user: user)
     end
     user.update(status: "inactive")
   end

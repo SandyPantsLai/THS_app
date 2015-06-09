@@ -1,0 +1,5 @@
+<h1>Deduct book replacement fee</h1>
+<%= form_tag update_lost_or_damaged_path(@check_out) do %>
+  <%= text_field_tag :price, "Enter the cost to replace the book in cents, i.e. Enter $30 as 3000" %>
+  <%= submit_tag "Deduct cost of book from member's deposit "%>
+<% end %>
