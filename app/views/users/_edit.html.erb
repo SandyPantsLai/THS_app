@@ -2,36 +2,26 @@
 
 <%= form_for @user do |f| %>
 
-	<% @user.errors.each do |d| %>
-		<p><%= d %></p>
+	<% @user.errors.each do |error| %>
+		<p><%= error %></p>
 	<% end %>
 
-	<div class="field">
 		<%= f.label :first_name %><br />
 		<%= f.text_field :first_name %>
-	</div>
 
-	<div class="field">
 		<%= f.label :last_name %><br />
 		<%= f.text_field :last_name %>
-	</div>
 
-	<div class="field">
 		<%= f.label :email %><br />
 		<%= f.email_field :email %>
-	</div>
 
-	<div class="field">
 		<%= f.label :phone_number %><br />
 		<%= f.telephone_field :phone_number %>
-	</div>
 
-	<div class="field">
 		<%= f.label :membership, "Membership Billing" %>
 		<%= f.select :membership, [["$10 per month", "monthly"],["$100 per year","annual"]] %>
-	</div>
 
-	<div class="submit"><%= f.submit "Save changes" %></div>
+		<%= f.submit "Save changes" %>
 
 	<div class"alert">
 		<%= flash[ :notice ] if flash[ :notice ] %>

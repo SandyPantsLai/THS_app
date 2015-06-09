@@ -10,13 +10,12 @@
 
 	<div class="book-card">
 
-		<img src="http://place-hold.it/128x193" />
-		<!-- qr code needed -->
+		<%= image_tag "http://bks4.books.google.ca/books/content?id={@book.volume_id}&printsec=frontcover&img=1&zoom=1&source=gbs_api" %>
 
 		<div class="data">
 
-			<h4><%= @book.title %><br />
-			<%= @book.subtitle %></h4>
+			<h3><%= @book.title %><br />
+			<%= @book.subtitle %></h3>
 
 			<p>Author: <%= @book.author %><br />
 			Publisher: <%= @book.publisher %><br />
@@ -29,36 +28,47 @@
 
 		<%= button_to "Edit Book", edit_book_path %>
 
-			<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
-	  		<p><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></p>
-			<% elsif %>
-	  		<%= button_to "Checkout Book", new_check_out_path( book_id: @book.id ) %>
-			<% else %>
-				<%= button_to "Place Book Hold", new_book_hold_path(book_id: @book.id) %>
-			<% end %>
-
-		<div class="description"><p><%= @book.description %></p></div>
-
 	</div><!-- end .book-card -->
-</div><!-- end .catalogue -->
 
 <div class="copies">
 
 	<p><strong>Book Status:</strong></p><br />
 
-	<p><%= @copies_available %> copies are available for checkout.<br />
-	<em>(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</em></p><br />
+		<% unless @due_dates == [] %>
 
-	<% unless @due_dates == [] %>
+		  <p><strong>Checked out copies are due back:</strong></p>
 
-	  <p><strong>Checked out copies are due back:</strong></p><br />
+			<ul>
+		  	<% @due_dates.sort.each do |due_date| %>
+		    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
+		  	<% end %>
+		  </ul>
+
+		<% end %>
 
 		<ul>
-	  	<% @due_dates.sort.each do |due_date| %>
-	    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
-	  	<% end %>
-	  </ul>
+		<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
+		  <li><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></li>
+		<% else %>
+				<li><%= button_to "Place a hold", new_book_hold_path(book_id: @book.id), :method => 'get' %></li>
+		<% end %>
 
-	<% end %>
+		<% if current_user.role == 'admin' %>
+	  	<li><%= button_to "Edit book", edit_book_path, :method => 'get' %></li>
+		<% end %>
+		<li><%= button_to "Back to Catalogue", books_path, :method => 'get' %></li>
+		</ul>
+	</div><!-- end .copies -->
 
-</div><!-- end .copies -->
+	<div class="description">
+
+		<h3>Description</h3>
+
+		<p><%= @book.description %></p>
+
+	</div>
+
+</div><!-- end .catalogue -->
+
+
+

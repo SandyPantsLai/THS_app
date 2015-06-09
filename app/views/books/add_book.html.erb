@@ -1,56 +1,38 @@
 <div class="catalogue">
 
-  <h2>Add Book</h2>
+  <h2 class="title">Add Book</h2>
 
   <%= form_for(@book) do |book| %>
 
-    <div class="field">
-      <%= book.label :title %><br />
+      <%= book.label :title %>
       <%= book.text_field :title %>
-    </div>
 
-    <div class="field">
-      <%= book.label :subject_id %><br />
+      <%= book.label :subject_id %>
       <%= book.collection_select :subject_id, Subject.all, :id, :name, include_blank: true %>
-    </div>
 
-    <div class="field">
-      <%= book.label :published %><br />
+      <%= book.label :published %>
       <%= book.date_field :published %>
-    </div>
 
-    <div class="field">
-      <%= book.label :publisher %><br />
+      <%= book.label :publisher %>
       <%= book.text_field :publisher %>
-    </div>
 
-    <div class="field">
-      <%= book.label :page_count %><br />
+      <%= book.label :page_count %>
       <%= book.number_field :page_count %>
-    </div>
 
-    <div class="field">
-      <%= book.label :price %><br />
+      <%= book.label :price %>
       <%= book.number_field :price %>
-    </div>
 
-    <div class="field">
-      <%= book.label :description %><br />
+      <%= book.label :description %>
       <%= book.text_field :description %>
-    </div>
 
-    <div class="field">
-      <%= book.label :cover_image %><br />
+      <%= book.label :cover_image %>
       <%= book.text_field :cover_image %>
-    </div>
 
-    <div class="field">
-      <%= book.label :isbn %><br />
+      <%= book.label :isbn %>
       <%= book.text_field :isbn %>
-    </div>
-
-    <div class="submit"><%= book.submit %></div>
+  
+      <%= book.submit %>
 
   <% end %>
 
-  </div><!-- end .catalogue -->
+</div><!-- end .catalogue -->

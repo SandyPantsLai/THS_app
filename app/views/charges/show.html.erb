@@ -1,5 +1,7 @@
-<h1>Transaction Details</h1>
+<h2 class="title">Transaction Details</h1>
+
 <%= render "transactions/transaction"%>
+
 <ul class="card-transaction">
   <li><%= number_to_currency(sprintf("%.2f", @charge.amount.to_f / 100)) %></li>
   <li>Paid by: <%= @charge.source[:brand] %></li>

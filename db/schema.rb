@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605165444) do
+ActiveRecord::Schema.define(version: 20150608194651) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer  "book_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150605165444) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "qr_code"
+    t.string   "volume_id"
   end
 
   create_table "check_outs", force: :cascade do |t|
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150605165444) do
     t.string   "charge_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "notes"
   end
 
   create_table "fines", force: :cascade do |t|
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150605165444) do
     t.string   "charge_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "notes"
   end
 
   create_table "subjects", force: :cascade do |t|

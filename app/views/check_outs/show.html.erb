@@ -1,8 +1,9 @@
-<div class="check-out">
+<div class="catalogue">
 
   <h2>Checked Out Books</h2>
 
-  <%= render partial: 'checked_book', locals: { check_out: @check_out } %>
+  <p class="link"><%= link_to "Back to Check Out Index", check_outs_path %></p>
 
-  <p><%= link_to "Back to Check Out Index", check_outs_path %></p>
+  <%= render partial: 'checked_book', locals: { check_out: @check_out } %>
+  
 </div>
