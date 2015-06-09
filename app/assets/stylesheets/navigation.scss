@@ -1,8 +1,16 @@
+.nav-wrapper {
+	background-color: #400040;
+	width: 100%;
+	height: $nav-height;
+	position: absolute;
+}
 header {
 	float: left;
 	width: 100%;
 	height: $nav-height;
-	background-color: #400040;
+	position: relative;
+	z-index: 1;
+	top: 0;
 }
 nav.main-nav ul {
 	list-style: none;
@@ -57,45 +65,3 @@ nav.main-nav ul li:hover > ul {
 	display: block;
 	background-color: lighten(#400040, 5%);
 }
-// toggle
-.toggle-container {
-
-}
-#nav-toggle {
-	position: absolute;
-	cursor: pointer;
-	padding: 30px 100px 36px 0px;
-}
-#nav-toggle span,
-#nav-toggle span:before,
-#nav-toggle span:after {
-	cursor: pointer;
-	height: 10px;
-	width: 100px;
-	background: $off-white;
-	position: absolute;
-	display: block;
-	content: '';
-
-	
-	transition: all 0.2s;
-}
-#nav-toggle span:before {
-	top: -25px;
-}
-#nav-toggle span:after {
-	bottom: -25px;
-}
-#nav-toggle.is-open span {
-	height: 0;
-}
-#nav-toggle.is-open span:before {
-	top: 0;
-	transform: rotateZ(45deg);
-}
-#nav-toggle.is-open span:after {
-	top: 0;
-	transform: rotateZ(-45deg);
-}
-
-
