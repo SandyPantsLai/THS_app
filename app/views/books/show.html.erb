@@ -24,8 +24,6 @@
 			Category: <%= @book.category %><br />
 			Page Count: <%= @book.page_count %></p>
 
-			
-
 		</div><!-- end .data -->
 
 	</div><!-- end .book-card -->
@@ -33,30 +31,43 @@
 	<div class="copies">
 
 		<p><strong>Book Status:</strong></p><br />
+			
+		<% if @copies.count == 1 %>
+			<p class="copies"><%= @copies.count%> copy,  <%= @copies_available  %> available to checkout.</p>
+		<% else %>
+			<p class="copies"><%= @copies.count%> copies,  <%= @copies_available  %> available to checkout.</p>
+		<% end %>
 
-			<% unless @due_dates == [] %>
+		<% if holds = Hold.where(book_id: @book.id).count == 1 %>
+			<p>(<%= holds %> hold, <%= @checked_out %> checked out.)</p>
+		<% else %>
+			<p>(<%= holds %> holds, <%= @checked_out %> checked out.)</p>
+		<% end %>
 
-			  <p><strong>Checked out copies are due back:</strong></p>
+		<% unless @due_dates == [] %>
 
-				<ul>
-			  	<% @due_dates.sort.each do |due_date| %>
-			    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
-			  	<% end %>
-			  </ul>
-
-			<% end %>
+		  <p><strong>Checked out copies are due back:</strong></p>
 
 			<ul>
-				<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
-				  <li><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></li>
-				<% else %>
-						<li><%= button_to "Place a hold", new_book_hold_path(book_id: @book.id), :method => 'get' %></li>
-				<% end %>
-				<% if current_user.role == 'admin' %>
-		  	<%= button_to "Edit book", edit_book_path, :method => 'get' %>
-			<% end %>
-			</ul>
-			
+		  	<% @due_dates.sort.each do |due_date| %>
+		    	<li><%= due_date.strftime("%A, %b %e, %Y") %></li>
+		  	<% end %>
+		  </ul>
+
+		<% end %>
+
+		<ul>
+		<% if current_user && Hold.where(book_id: @book.id).find_by(user_id: current_user.id) %>
+		  <li><%= "You have this book on hold. You are ##{@holds.find_index {|hold| hold.user_id == current_user.id} + 1} in line." %></li>
+		<% else %>
+				<li><%= button_to "Place a hold", new_book_hold_path(book_id: @book.id), :method => 'get' %></li>
+		<% end %>
+
+		<% if current_user.role == 'admin' %>
+	  	<li><%= button_to "Edit book", edit_book_path, :method => 'get' %></li>
+		<% end %>
+		</ul>
+	
 	</div><!-- end .copies -->
 
 	<div class="description">
