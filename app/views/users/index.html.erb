@@ -1,19 +1,20 @@
-<div class="catalogue">		
-		
+<div class="catalogue">
+
 	<h2 class="title">Users</h2>
 
 	<% @users.each do |user| %>
-		
-	<div class="user-card">	
+
+	<div class="user-card">
 
 		<h3><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></h3>
-		
+
 		<ul class="user-info">
 			<li><%= user.role %></li>
+			<li><%= user.id %></li>
 			<li><%= mail_to user.email %></li>
 			<li><%= user.phone_number %></li>
 	  </ul>
-	
+
 	</div><!-- end user-card -->
 
 		<% end %>
