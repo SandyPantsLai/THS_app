@@ -17,7 +17,7 @@ class DepositsController < ApplicationController
     @deposit = Deposit.find(params["id"])
     current_deposit = @deposit.user.current_deposit || 0
     if @deposit.update(settlement_date: Time.now, notes: params["deposit"]["notes"])
-      @deposit.user.update(current_deposit: current_deposit + @deposit.amount)
+      @deposit.user.update(current_deposit: current_deposit + @deposit.amount, status: "active")
       flash[:notice] = "The payment has been updated"
       redirect_to user_url(@deposit.user)
     else

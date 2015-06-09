@@ -43,16 +43,29 @@ class Transaction
     end
   end
 
+  def self.create_member_fee(user)
+    if user.membership == "monthly"
+      amount = 1000
+    else
+      amount = 10000
+    end
+    MemberFee.create(amount: amount, user: user)
+  end
+
   def self.initial_deposit(user)
     Deposit.create(amount:4000, user_id: user.id)
   end
 
   def self.top_up_deposit(user)
-    if deposit = Deposit.where(user_id: user.id).where(settlement_date: nil)
-      deposit.update(amount: 4000 - user.current_deposit, updated_at: Time.now)
+    last_deposit = user.deposits.last
+
+    unless last_deposit.settlement_date
+      last_deposit.update(amount: 4000 - user.current_deposit, created_at: Time.now)
     else
-      Deposit.create(amount: 4000 - user.current_deposit, user_id: user.id)
+      Deposit.create(amount: 4000 - user.current_deposit, user: user)
     end
+
+    user.update(status: "inactive")
   end
 
 end

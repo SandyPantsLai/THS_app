@@ -28,12 +28,9 @@
 
 	</div><!-- end .book-card -->
 
-	<div class="copies">
+<div class="copies">
 
-		<h4>Book Status:</h4>
-
-		<p><%= @copies_available %> copies are available for checkout.<br />
-		<em>(<%= Hold.where(book_id: @book.id).count %> holds, <%= @checked_out %> checked out.)</em></p><br />
+	<p><strong>Book Status:</strong></p><br />
 
 		<% unless @due_dates == [] %>
 
@@ -69,5 +66,6 @@
 	</div>
 
 </div><!-- end .catalogue -->
+
 
 
