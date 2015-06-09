@@ -41,7 +41,6 @@ Rails.application.routes.draw do
   get '/member_fees/:id/waive' => 'member_fees#waive', :as => :waive
 
   resources :transactions, except: [:new, :create, :show]
-
   resources :deposits
 
   # User associated routes

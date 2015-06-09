@@ -1,3 +1,16 @@
+<section class='search'>
+<%= form_tag user_transactions_path(:id), :method => 'get' do %>
+  <%= label_tag("Search Transactions By User ID") %>
+  <%= text_field_tag :user_id, "Enter User ID" %>
+  <%= submit_tag "Search" %>
+<% end %>
+</section>
+<br>
+ <% if request.original_url == transactions_url %>
+  <%= button_to "Or view my transactions", user_transactions_path(current_user), :method => 'get' %>
+ <% else %>
+  <%= button_to "Or view all transactions", transactions_path, :method => 'get' %>
+  <% end %>
 <div class="transactions">
   <table id="transactions-table">
   <tr>
