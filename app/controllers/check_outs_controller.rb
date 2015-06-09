@@ -24,6 +24,20 @@ class CheckOutsController < ApplicationController
 
   def new
     @check_out = CheckOut.new
+
+    if !params[ :volume_id ].nil?
+      @book = Book.where( volume_id: params[ :volume_id ] )[ 0 ]
+
+      if ( !@book.nil? )
+        book_copies = BookCopy.where( book_id: @book.id )
+        @available_copies = []
+
+        book_copies.each do |book_copy|
+          if CheckOut.where( book_copy_id: book_copy.id ).count == 0
+            @available_copies.push( book_copy )
+        end
+      end
+    end
   end
 
   def create
