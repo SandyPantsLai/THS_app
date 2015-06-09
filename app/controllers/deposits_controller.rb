@@ -25,4 +25,13 @@ class DepositsController < ApplicationController
       redirect_to transactions_url
     end
   end
+
+  def destroy
+    deposit = Deposit.find(params["id"])
+    user = deposit.user
+    user.update(current_deposit: user.current_deposit - deposit.amount)
+    deposit.destroy
+    flash[:alert] = "The member will have temporary access before they must top up their deposit again tomorrow."
+    redirect_to transactions_url
+  end
 end

@@ -24,6 +24,12 @@ class MemberFeesController < ApplicationController
     @member_fee = MemberFee.find(params["id"])
   end
 
+  def destroy
+    MemberFee.find(params["id"]).destroy
+    flash[:alert] = "The member will have temporary access until their next scheduled membership payment is due"
+    redirect_to transactions_url
+  end
+
   private
   def member_fee_params
     params.require(:member_fee).permit(:notes)
