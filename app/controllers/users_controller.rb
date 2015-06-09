@@ -47,6 +47,8 @@ class UsersController < ApplicationController
       sum += ( !check_out.fine.nil? && check_out.fine.settlement_date.nil? ) ? check_out.fine.amount : 0
       sum
     end
+
+    @transactions = @user.deposits.where("settlement_date IS NULL") + @user.member_fees.where("settlement_date IS NULL")
   end
 
 	def edit

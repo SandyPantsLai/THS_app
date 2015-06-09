@@ -1,11 +1,14 @@
-<%= button_to "Edit Profile", edit_user_path(current_user.id) %>
+<% if @transactions.sum(&:amount) > 0 %>
+	<h3>You owe <%= number_to_currency(sprintf("%.2f", @transactions.sum(&:amount).to_f / 100)) %></h3>
+	<%= button_to "Pay Owing", new_charge_path(@user), :method => 'get' %>
+<% end %>
+<%= button_to "Edit Profile", edit_user_path(@user.id) %>
 <ul class="user-info">
 	<li><strong><%= @user.first_name %> <%= @user.last_name %></strong></li>
 	<li class="role"><%= @user.role %></li>
 	<li class="email"><%= mail_to @user.email %></li>
 	<li class="phone-number"><%= @user.phone_number %></li>
 </ul>
-
 <section>
 	<h3>Deposit</h3>
 	<p>You have <%= number_to_currency(sprintf("%.2f", @user.current_deposit.to_f / 100)) %> left in your deposit.</p>
