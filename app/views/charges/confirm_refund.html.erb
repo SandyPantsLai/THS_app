@@ -4,9 +4,8 @@
 
   <p>Are you sure you want to refund this transaction?</p>
   <%= render "transactions/transaction" %>
-  <% binding.pry %>
-  
+
   <%= button_to'Confirm Refund', refund_path(params["format"]), method: :post %></li>
   <p class="link"><%= link_to 'Back', charges_path(params["format"]) %></li></p>
-  
+
 </div>

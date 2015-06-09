@@ -5,7 +5,6 @@ class ChargesController < ApplicationController
     @user = User.find(params[:format]) || current_user
     @transactions = @user.deposits.where("settlement_date IS NULL") + @user.member_fees.where("settlement_date IS NULL")
     @amount = @transactions.sum(&:amount)
-    binding.pry
   end
 
   def create
@@ -60,7 +59,6 @@ class ChargesController < ApplicationController
   def show
     @charge = Stripe::Charge.retrieve(params[:id])
     @transactions = Deposit.where(charge_id: @charge.id) + MemberFee.where(charge_id: @charge.id)
-    binding.pry
   end
 
   def confirm_refund
