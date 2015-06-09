@@ -1,6 +1,11 @@
 // this file handles the structure of the website
+body {
+	background: -webkit-linear-gradient(#fff, #f2f2f2);
+}
 #wrapper {
 	@include outer-container;
+	margin-bottom: rem(200);
+	background-color: #fff;
 }
 .input-form {
 	@include outer-container;
@@ -9,13 +14,13 @@
 .main-content {
 	float: left;
 	width: 100%;
-	padding-top: rem(30);
+	padding: rem(30) 0 rem(100) 0;
 }
 .catalogue {
 	width: 100%;
 	float: left;
 	padding: 0 rem(20);
-	margin-bottom: rem(30);
+	opacity: 0.8;
 }
 .qr-scanner {
   width: 200px;
@@ -24,7 +29,9 @@
 }
 p.link, p.link {
 	font-family: $heading-font-family;
-	padding-left: rem(20);
+}
+span.highlight {
+	background-color: #ffff99;
 }
 .submit {
 	float: left;
@@ -39,3 +46,13 @@ nav.pagination {
 	margin-bottom: rem(40);
 	font-family: $heading-font-family;	
 } 
+h2 { 
+  color: $base-font-color;
+  text-align: left;
+  padding: 0 rem(5) 0 rem(5);
+  margin-top: rem(30); 
+  width: 100%;
+  font-weight: $base-font-weight;
+  border-bottom: 1.5px solid $matt-black;
+}
+h3.book { margin-top: 0;}

@@ -22,13 +22,14 @@
 }
 .book-card img, .book-index img {
 	float: left;
-	padding-right: rem(20);
+	padding: 0 rem(40) rem(30) 0;
 }
 .data {
 	float: left;
 }
 .copies {
 	float: left;
+	width: 100%;
 }
 .copies p, .copies ul, .copies li {
 	color: $base-font-color;
@@ -38,7 +39,6 @@
 	border-top: $base-border;
 }
 // book show
-
 .description { 
 	padding: rem(30) 0;
 	float: left;

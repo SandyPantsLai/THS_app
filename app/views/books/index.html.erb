@@ -1,6 +1,6 @@
 <div class="catalogue">	
 
-	<h2 class="title">Catalogue</h2>
+	<h2>Catalogue</h2>
 
 	<%= render 'search' %>
 
@@ -14,8 +14,8 @@
 
 			<div class="data">
 			
-				<h4><%= link_to book.title, "/books/#{book.id}" %><br />
-				<%= book.subtitle %></h4>
+				<h3 class="book"><%= link_to book.title, "/books/#{book.id}" %><br />
+				<%= book.subtitle %></h3>
 
 				<p>Author: <%= book.author %><br />
 				Category: <%= book.category %><br />
