@@ -59,12 +59,13 @@ class Transaction
   def self.top_up_deposit(user)
     last_deposit = user.deposits.last
 
-    unless last_deposit.settlement_date
-      last_deposit.update(amount: 4000 - user.current_deposit, created_at: Time.now)
-    else
-      Deposit.create(amount: 4000 - user.current_deposit, user: user)
+    if last_deposit
+      unless last_deposit.settlement_date
+        last_deposit.update(amount: 4000 - user.current_deposit, created_at: Time.now)
+      else
+        Deposit.create(amount: 4000 - user.current_deposit, user: user)
+      end
     end
-
     user.update(status: "inactive")
   end
 
